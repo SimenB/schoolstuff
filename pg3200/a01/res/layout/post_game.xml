@@ -1,0 +1,65 @@
+<?xml version="1.0" encoding="utf-8"?>
+<FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:orientation="vertical"
+    android:layout_width="fill_parent"
+    android:layout_height="fill_parent"
+    android:background="@drawable/background"
+    tools:context=".PostGame">
+
+    <LinearLayout
+        android:orientation="vertical"
+        android:layout_width="fill_parent"
+        android:layout_height="fill_parent">
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="@string/post_game"
+            android:textSize="@dimen/textsize_header"
+            android:layout_gravity="center"
+            android:enabled="true"
+            android:gravity="center" />
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:id="@+id/txtWinner"
+            android:textSize="@dimen/textsize_of_victor"
+            android:layout_gravity="center"
+            android:enabled="true"
+            android:gravity="center"
+            android:layout_marginTop="@dimen/margin_between_names_and_border_of_screen"/>
+    </LinearLayout>
+
+    <LinearLayout
+        android:orientation="horizontal"
+        android:layout_width="fill_parent"
+        android:layout_height="fill_parent"
+        android:gravity="center_horizontal">
+
+        <Button
+            android:layout_width="@dimen/width_of_buttons"
+            android:layout_height="@dimen/height_of_buttons"
+            android:text="@string/rematch"
+            android:id="@+id/btnRematch"
+            android:layout_gravity="center"
+            android:background="@drawable/button_selector"
+            android:layout_margin="@dimen/button_margin"
+            android:textColor="@color/almost_black"
+            android:clickable="false" />
+
+        <Button
+            android:layout_width="@dimen/width_of_buttons"
+            android:layout_height="@dimen/height_of_buttons"
+            android:text="@string/go_to_leaderboard"
+            android:id="@+id/btnLeaderboard"
+            android:layout_gravity="center"
+            android:background="@drawable/button_selector"
+            android:layout_margin="@dimen/button_margin"
+            android:textColor="@color/almost_black"
+            android:clickable="false" />
+
+    </LinearLayout>
+</FrameLayout>
+

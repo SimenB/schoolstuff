@@ -1,0 +1,11 @@
+<?xml version="1.0" encoding="utf-8"?>
+
+<resources>
+    <color name="blue">#ff4b4bc8</color>
+    <color name="red">#ffc84b4b</color>
+    <color name="almost_black">#ff1e1e1e</color>
+    <color name="dark_grey">#ff4b4b4b</color>
+    <color name="grey">#ff969696</color>
+    <color name="opaque_grey">#55c8c8c8</color>
+    <color name="android_default_grey">#ffbebebe</color>
+</resources>

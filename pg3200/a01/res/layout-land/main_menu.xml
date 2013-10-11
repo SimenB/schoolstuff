@@ -1,0 +1,83 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:orientation="vertical"
+    android:layout_width="fill_parent"
+    android:layout_height="fill_parent"
+    android:background="@drawable/background"
+    tools:context=".Menu">
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="@string/welcome_to_ttt"
+        android:textSize="@dimen/textsize_header"
+        android:layout_gravity="center"
+        android:enabled="true"
+        android:gravity="center" />
+
+    <LinearLayout
+        android:orientation="horizontal"
+        android:layout_width="fill_parent"
+        android:layout_height="fill_parent">
+
+        <LinearLayout
+            android:orientation="vertical"
+            android:layout_width="fill_parent"
+            android:layout_height="fill_parent"
+            android:gravity="center_vertical"
+            android:layout_weight="1">
+
+            <Button
+                android:layout_width="@dimen/width_of_buttons"
+                android:layout_height="@dimen/height_of_buttons"
+                android:text="@string/new_game"
+                android:id="@+id/btnNewGame"
+                android:layout_gravity="center"
+                android:background="@drawable/button_selector"
+                android:layout_margin="@dimen/button_margin"
+                android:textColor="@color/almost_black" />
+
+            <Button
+                android:layout_width="@dimen/width_of_buttons"
+                android:layout_height="@dimen/height_of_buttons"
+                android:text="@string/continue_game"
+                android:id="@+id/btnConGame"
+                android:layout_gravity="center"
+                android:background="@drawable/button_selector"
+                android:layout_margin="@dimen/button_margin"
+                android:textColor="@color/almost_black" />
+        </LinearLayout>
+
+        <LinearLayout
+            android:orientation="vertical"
+            android:layout_width="fill_parent"
+            android:layout_height="fill_parent"
+            android:gravity="center_vertical"
+            android:layout_weight="1">
+
+            <Button
+                android:layout_width="@dimen/width_of_buttons"
+                android:layout_height="@dimen/height_of_buttons"
+                android:text="@string/leaderboards"
+                android:id="@+id/btnLeader"
+                android:layout_gravity="center"
+                android:background="@drawable/button_selector"
+                android:layout_margin="@dimen/button_margin"
+                android:textColor="@color/almost_black" />
+
+            <Button
+                android:layout_width="@dimen/width_of_buttons"
+                android:layout_height="@dimen/height_of_buttons"
+                android:text="@string/settings"
+                android:id="@+id/btnSettings"
+                android:layout_gravity="center"
+                android:background="@drawable/button_selector"
+                android:layout_margin="@dimen/button_margin"
+                android:textColor="@color/almost_black" />
+
+
+        </LinearLayout>
+    </LinearLayout>
+</LinearLayout>
+

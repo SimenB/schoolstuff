@@ -1,0 +1,126 @@
+<?xml version="1.0" encoding="utf-8"?>
+<FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="fill_parent"
+    android:layout_height="fill_parent"
+    android:background="@drawable/background"
+    tools:context=".Gameboard">
+
+    <RelativeLayout
+        android:layout_width="fill_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="@dimen/margin_between_names_and_board">
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:textAppearance="?android:attr/textAppearanceLarge"
+            android:id="@+id/txtPlayer1"
+            android:layout_alignParentLeft="true"
+            android:layout_marginLeft="@dimen/margin_between_names_and_border_of_screen" />
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:textAppearance="?android:attr/textAppearanceLarge"
+            android:text="@string/vs"
+            android:id="@+id/txtVS"
+            android:layout_centerHorizontal="true" />
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:textAppearance="?android:attr/textAppearanceLarge"
+            android:id="@+id/txtPlayer2"
+            android:layout_alignParentRight="true"
+            android:layout_marginRight="@dimen/margin_between_names_and_border_of_screen" />
+    </RelativeLayout>
+
+    <LinearLayout
+        android:orientation="vertical"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:gravity="center_vertical|center_horizontal">
+
+        <TableLayout
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center">
+
+            <TableRow>
+
+                <ImageButton
+                    android:id="@+id/cell0"
+                    android:src="@drawable/blank" />
+
+                <ImageButton
+                    android:id="@+id/cell1"
+                    android:src="@drawable/blank" />
+
+                <ImageButton
+                    android:id="@+id/cell2"
+                    android:src="@drawable/blank" />
+            </TableRow>
+
+            <TableRow>
+
+                <ImageButton
+                    android:id="@+id/cell3"
+                    android:src="@drawable/blank" />
+
+                <ImageButton
+                    android:id="@+id/cell4"
+                    android:src="@drawable/blank" />
+
+                <ImageButton
+                    android:id="@+id/cell5"
+                    android:src="@drawable/blank" />
+            </TableRow>
+
+            <TableRow>
+
+                <ImageButton
+                    android:id="@+id/cell6"
+                    android:src="@drawable/blank" />
+
+                <ImageButton
+                    android:id="@+id/cell7"
+                    android:src="@drawable/blank" />
+
+                <ImageButton
+                    android:id="@+id/cell8"
+                    android:src="@drawable/blank" />
+            </TableRow>
+        </TableLayout>
+    </LinearLayout>
+
+    <LinearLayout
+        android:orientation="vertical"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:gravity="center_vertical|center_horizontal">
+
+        <ImageView
+            android:layout_alignParentBottom="true"
+            android:layout_height="wrap_content"
+            android:layout_width="wrap_content"
+            android:id="@+id/imgResult"
+            android:layout_gravity="center" />
+    </LinearLayout>
+
+    <RelativeLayout
+        android:layout_width="fill_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginBottom="@dimen/margin_between_names_and_board"
+        android:layout_gravity="bottom">
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:textAppearance="?android:attr/textAppearanceLarge"
+            android:id="@+id/txtWhosTurn"
+            android:layout_centerHorizontal="true"
+            android:gravity="center" />
+    </RelativeLayout>
+
+</FrameLayout>

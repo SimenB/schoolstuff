@@ -1,0 +1,18 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string-array name="list_of_words">
+        <item>hei</item>
+        <item>på</item>
+        <item>deg</item>
+        <item>du</item>
+        <item>er</item>
+        <item>teit</item>
+        <item>fin</item>
+        <item>stygg</item>
+        <item>ord</item>
+        <item>morn</item>
+        <item>tom</item>
+        <item>for</item>
+        <item>idéer</item>
+    </string-array>
+</resources>

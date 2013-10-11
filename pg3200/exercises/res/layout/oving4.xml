@@ -1,0 +1,27 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:orientation="vertical"
+    android:layout_width="fill_parent"
+    android:layout_height="fill_parent"
+    tools:context="no.nith.pg3200.ovinger.oving4.Oving4">
+
+    <Button
+        android:layout_width="fill_parent"
+        android:layout_height="120dp"
+        android:text="@string/task1"
+        android:id="@+id/oving4Task1" />
+
+    <Button
+        android:layout_width="fill_parent"
+        android:layout_height="120dp"
+        android:text="@string/task2"
+        android:id="@+id/oving4Task2" />
+
+    <Button
+        android:layout_width="fill_parent"
+        android:layout_height="120dp"
+        android:text="@string/task3"
+        android:id="@+id/oving4Task3" />
+</LinearLayout>
+

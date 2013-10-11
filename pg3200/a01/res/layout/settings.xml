@@ -1,0 +1,59 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:orientation="vertical"
+    android:layout_width="fill_parent"
+    android:layout_height="fill_parent"
+    android:background="@drawable/background"
+    tools:context=".Settings">
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="@string/settings"
+        android:textSize="@dimen/textsize_header"
+        android:layout_gravity="center"
+        android:enabled="true"
+        android:gravity="center" />
+
+    <LinearLayout
+        android:orientation="vertical"
+        android:layout_width="fill_parent"
+        android:layout_height="fill_parent"
+        android:gravity="center_vertical">
+
+        <Button
+            android:layout_width="@dimen/width_of_buttons"
+            android:layout_height="@dimen/height_of_buttons"
+            android:text="@string/btn_change_names"
+            android:id="@+id/btnChangeNames"
+            android:layout_gravity="center"
+            android:background="@drawable/button_selector"
+            android:layout_margin="@dimen/button_margin"
+            android:textColor="@color/almost_black" />
+
+        <Button
+            android:layout_width="@dimen/width_of_buttons"
+            android:layout_height="@dimen/height_of_buttons"
+            android:text="@string/btn_purge_leader"
+            android:id="@+id/btnPurgeLeader"
+            android:layout_gravity="center"
+            android:background="@drawable/button_selector"
+            android:layout_margin="@dimen/button_margin"
+            android:textColor="@color/almost_black"
+            android:enabled="false"/>
+
+        <Button
+            android:layout_width="@dimen/width_of_buttons"
+            android:layout_height="@dimen/height_of_buttons"
+            android:text="@string/btn_reset"
+            android:id="@+id/btnReset"
+            android:layout_gravity="center"
+            android:background="@drawable/button_selector"
+            android:layout_margin="@dimen/button_margin"
+            android:textColor="@color/almost_black"
+            android:enabled="false"/>
+
+    </LinearLayout>
+</LinearLayout>
+
