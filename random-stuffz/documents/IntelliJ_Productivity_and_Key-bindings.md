@@ -1,4 +1,4 @@
-#Productivity, Key-bindings and other awesomeness for IntelliJ IDEA
+﻿#Productivity, Key-bindings and other awesomeness for IntelliJ IDEA
 ###by Simen Bekkhus
 ######Very much a work in progress - Please send me a message, or better yet, a Pull Request, if you know of more!
 
@@ -136,6 +136,10 @@ PPPS: This list will be horribly disorganised. I'll try to make it more clean in
 * Links to videos, resources(?).
 * More tips&tricks.
 
+## Bonus
+
+[tl;dr][30]
+
 [1]:http://www.jetbrains.com/idea/
 [2]:http://www.jetbrains.com/
 [3]:http://www.jetbrains.com/resharper/
@@ -165,3 +169,4 @@ PPPS: This list will be horribly disorganised. I'll try to make it more clean in
 [27]:http://plugins.jetbrains.com/plugin/4455
 [28]:http://hadihariri.com/2012/02/17/the-kotlin-journey-part-i-getting-things-set-up/
 [29]:http://grahamhackingscala.blogspot.no/2010_08_01_archive.html
+[30]: http://www.jetbrains.com/idea/docs/IntelliJIDEA_ReferenceCard.pdf "Official IDEA reference card"
