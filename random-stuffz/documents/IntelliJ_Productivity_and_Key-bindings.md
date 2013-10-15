@@ -1,16 +1,16 @@
 #Productivity, Key-bindings and other awesomeness for IntelliJ IDEA
 ###by Simen Bekkhus
-######Very much a work in progress - Please send me a message if you know of more!
+######Very much a work in progress - Please send me a message, or better yet, a Pull Request, if you know of more!
 
 ##Table of Contents
 * [Useful stuff to know](#useful-stuff-to-know)
 * [Key-bindings](#key-bindings)
-* [Tips&Tricks](#tipstricks)
+* [Tips & Tricks](#tips--tricks)
 * [TODOs](#todos)
 
 ##Useful stuff to know
 * [Homepage][1]
-* IntelliJ is a polyglot (supports many languages) IDE from [JetBrains][2], the makers of [ReSharper][3], a C# and .NET plugin for Visual Studio.
+* IntelliJ is a multi-platform, polyglot (supports many languages) IDE from [JetBrains][2], the makers of [ReSharper][3], a C# and .NET plugin for Visual Studio.
     * IntelliJ is mainly centred on Java and Web-development, with support for many languages, including [Java][4], [JavaScript][5], Python, [Ruby][6], [PHP][7], [SQL][8] and many more
     * IntelliJ also bundles support for many frameworks and technologies, such as [Android][9], [Spring][10], [Hibernate][11], [Play][12], [NodeJS][13] and others.
     * There is also integration including for other services, such as [VCS][14] (Git, Subversion etc.), [build tools][15] (Maven, Gradle, Ant), [Databases][8] (including a terminal), a REST-service, [Servers][16] (GlassFish, WebLogic, TomCat) and many more.
@@ -22,7 +22,7 @@
 3 quick points before the awesomeness commences:
 
 1. I'd HIGHLY recommend installing a plugin for IntelliJ called ["Key Promoter"][27]. This plugin will tell you if you do something using your mouse (which is slow, thus bad), that you could have done with your keyboard, where your fingers already were (which is quick, thus awesome). In addition, if you use a command that does _not_ already have a key binding, it will prompt you to create one.
-2. Mac has 2 different keymaps, see [Tips&Tricks](#tipstricks) for why that is.
+2. Mac has 2 different keymaps, see [Tips & Tricks](#tips--tricks) for why that is.
 3. `ctrl shift a` is your best friend in the world. It allows you to search through all menu options and commands, showing you the key-binding, as well as letting you run the command. Its usefulness is ridiculous once you get used to it.
 
 Now then, let’s bounce!
@@ -42,7 +42,7 @@ PPPS: This list will be horribly disorganised. I'll try to make it more clean in
 * Delete line: `ctrl Y`
     * Delete the current line.
 * Generate: `alt insert`
-    * This will open the 'generate' window. Depending on where your selection is, it'll be different windows. E.g. While in a class, it'll ask if you mean getters&setters, constructors etc.. If you're in the project explorer, it'll suggest files depending on the type of folder, such as classes, Android layouts, SQL-files etc..
+    * This will open the 'generate' window. Depending on where your selection is, it'll be different windows. E.g. While in a class, it'll ask if you mean getters & setters, constructors etc.. If you're in the project explorer, it'll suggest files depending on the type of folder, such as classes, Android layouts, SQL-files etc..
 * Run: `(ctrl) shift f10`
     * This will run the current configuration. If you hold `ctrl` as well, it'll run the current context (e.g. the test-class you're in).
 * Debug: `(ctrl) shift f9`
@@ -74,7 +74,7 @@ PPPS: This list will be horribly disorganised. I'll try to make it more clean in
     * Finds members in current class, meaning a field or a method.
 * (De)select word: `ctrl (shift) W`
     * Incrementally selects a word. Goes from word to parameter, to method etc.. Adding `shift` goes the other way.
-* Surround with: `ctrl alt t`
+* Surround with: `ctrl alt T`
     * Surrounds the current selection with a variety of options. Typically an assertion or a loop.
 * Paste simple: `ctrl alt shift V`
     * Do a simple (normal) paste. The default paste (`ctrl V`) will format your text, as well as escaping as needed. Using this command avoids that.
@@ -103,9 +103,30 @@ PPPS: This list will be horribly disorganised. I'll try to make it more clean in
 * Go to test: `ctrl shift t`
     * Navigates to the associated test. If none is applicable, it prompts for the creation of the test-class.
 
-##Tips&Tricks
+##Tips & Tricks
+* In every popup and menu, you can filtrate the content just by typing. From options to generate, this allows you to quickly find what you're looking for in a window.
+* All searching also supports camelHumping and wildcards to filtrate. E.g. will `ABS` suggest `ActionBarSherlock` before a class named `Absolutely`.
+* Since IntelliJ is a polyglot IDE, it also supports language injection. This means that you can write e.g. SQL inside of a Java-class, and get autocomplete and Syntax-highlighting.
+* Keymaps
+ * The keymap is available from within IntelliJ. Go to Help -> Default Keymap Reference to open it.
+ * Windows and Linux share the same keymap, while OSX has the option of 2 different. One aimed towards those also using different platforms (thus very much alike Windows/Linux), and one aimed towards those sitting exclusively/mostly on OSX, with key-bindings more closely resembling those found in other programs on the platform.
 * IntelliJ natively supports multiple monitors.
  * Just drag and drop a tab or tool/window, and it'll just work.
+* IntelliJ supports vertical selection using the mouse. Simply hold `alt` down while selecting. This enables multiple cursors.
+* Using `shift alt up/down` allows you to move blocks of codes up and down. It's context-sensitive, meaning it'll move a method above another if the whole thing is selected, not into it.
+* Using `ctrl /` (comment) when having no selection, automatically comments out the current line, and jumps to the next one. This allows you to quickly comment out multiple consecutive lines.
+ * Similarly, using `ctrl C/X` with no selection copies/cuts the whole current line.
+* You can compare a section with the text in your clipboard
+* Writing `*//` and pressing enter will generate quick documentation for you, with all parameters and return-values.
+* When using an auto-complete list, there are four different alternatives for completing the word.
+ 1. Using `enter`. This completes the current word.
+ 2. Using `tab`. This completes the current word, and deletes the stuff after it, up to a `.` or `()`.
+ 3. Using `.`. This automatically puts a `.` after the word, allowing you to quickly chain.
+ 4. Using `!`. This automatically puts a `!` in front of the word, thus negating it.
+* If you use Visual Studio and .NET, you've probably heard about ReSharper. Because it's made by the same people that IntelliJ, you can get the same shortcuts for Visual Studio as the ones in IntelliJ.
+ * To enable it, go to the ReSharper Options in Visual Studio. Under 'Keyboard & Menus' you'll be able to select 'ReSharper 2.x or IntelliJ IDEA'. When you now use a shortcut for something that has a IntelliJ equivalent, it'll prompt you to choose which implementation to use.
+ * If you go the other way (From ReSharper in Visual Studio to IntelliJ), you can bring your shortcuts that way as well. Se [this blog-post][28] for more information.
+* A cool blog-series on different features in IntelliJ is available [here][29].
 
 ##TODOs
 ######Stuff not implemented yet. I'm sorry! D-:
@@ -142,3 +163,5 @@ PPPS: This list will be horribly disorganised. I'll try to make it more clean in
 [25]:http://plugins.jetbrains.com/plugin/2190
 [26]:http://www.jetbrains.com/idea/features/index.html
 [27]:http://plugins.jetbrains.com/plugin/4455
+[28]:http://hadihariri.com/2012/02/17/the-kotlin-journey-part-i-getting-things-set-up/
+[29]:http://grahamhackingscala.blogspot.no/2010_08_01_archive.html
