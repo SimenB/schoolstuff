@@ -11,9 +11,9 @@
 ##Useful stuff to know
 * [Homepage][1]
 * IntelliJ is a multi-platform, polyglot (supports many languages) IDE from [JetBrains][2], the makers of [ReSharper][3], a C# and .NET plugin for Visual Studio.
-    * IntelliJ is mainly centred on Java and Web-development, with support for many languages, including [Java][4], [JavaScript][5], Python, [Ruby][6], [PHP][7], [SQL][8] and many more
-    * IntelliJ also bundles support for many frameworks and technologies, such as [Android][9], [Spring][10], [Hibernate][11], [Play][12], [NodeJS][13] and others.
-    * There is also integration including for other services, such as [VCS][14] (Git, Subversion etc.), [build tools][15] (Maven, Gradle, Ant), [Databases][8] (including a terminal), a REST-service, [Servers][16] (GlassFish, WebLogic, TomCat) and many more.
+ * IntelliJ is mainly centred on Java and Web-development, with support for many languages, including [Java][4], [JavaScript][5], Python, [Ruby][6], [PHP][7], [SQL][8] and many more
+ * IntelliJ also bundles support for many frameworks and technologies, such as [Android][9], [Spring][10], [Hibernate][11], [Play][12], [NodeJS][13] and others.
+ * There is also integration including for other services, such as [VCS][14] (Git, Subversion etc.), [build tools][15] (Maven, Gradle, Ant), [Databases][8] (including a terminal), a REST-service, [Servers][16] (GlassFish, WebLogic, TomCat) and many more.
 * IntelliJ is being developed as a (open source) platform, which means it can be extended and split up. There are multiple smaller IDEs based on IntelliJ (such as [Android Studio][17], [PhpStorm][18], [WebStorm][19], [RubyMine][20] etc.), as well as multiple plugins (such as [AngularJS][21], [C/C++ support][22], [static code analysis][23], [JRebel][24], [Atlassian Tools][25] and many more).
 * See [here][26] for a full feature-list.
 
@@ -32,76 +32,76 @@ PPS: The use of parentheses denotes an alternative, or variation, of a shortcut,
 PPPS: This list will be horribly disorganised. I'll try to make it more clean in the future.
 ***
 * Basic Auto-complete: `ctrl space`
-    * This is the basic auto-complete we all know and love. If you press `space` again while holding in `ctrl`, it'll show all suggestions, also stuff not yet imported. Lastly, it will suggest name of variables when declaring them.
+ * This is the basic auto-complete we all know and love. If you press `space` again while holding in `ctrl`, it'll show all suggestions, also stuff not yet imported. Lastly, it will suggest name of variables when declaring them.
 * Smart Auto-complete: `ctrl shift space`
-    * This is the same as the normal variant, but it's type-aware. Meaning that if you know it's a String you need, it'll just suggest Strings.
+ * This is the same as the normal variant, but it's type-aware. Meaning that if you know it's a String you need, it'll just suggest Strings.
 * Find/Replace: `ctrl (shift) F/R`
-    * Pretty standard. Adding `shift` allows you to search all files, with a variety of filters, instead of only the current file.
+ * Pretty standard. Adding `shift` allows you to search all files, with a variety of filters, instead of only the current file.
 * Duplicate line: `ctrl D`
-    * Duplicates the current line.
+ * Duplicates the current line.
 * Delete line: `ctrl Y`
-    * Delete the current line.
+ * Delete the current line.
 * Generate: `alt insert`
-    * This will open the 'generate' window. Depending on where your selection is, it'll be different windows. E.g. While in a class, it'll ask if you mean getters & setters, constructors etc.. If you're in the project explorer, it'll suggest files depending on the type of folder, such as classes, Android layouts, SQL-files etc..
+ * This will open the 'generate' window. Depending on where your selection is, it'll be different windows. E.g. While in a class, it'll ask if you mean getters & setters, constructors etc.. If you're in the project explorer, it'll suggest files depending on the type of folder, such as classes, Android layouts, SQL-files etc..
 * Run: `(ctrl) shift f10`
-    * This will run the current configuration. If you hold `ctrl` as well, it'll run the current context (e.g. the test-class you're in).
+ * This will run the current configuration. If you hold `ctrl` as well, it'll run the current context (e.g. the test-class you're in).
 * Debug: `(ctrl) shift f9`
-    * Will debug the current configuration. Adding `ctrl` will allow you to choose between run-configurations.
+ * Will debug the current configuration. Adding `ctrl` will allow you to choose between run-configurations.
 * Quick fix: `alt enter`
-    * Proposes a quick fix to a potential problem, or just a refactoring. E.g. inverting an assertion, converting a for-loop to a foreach-loop or fixing an import.
+ * Proposes a quick fix to a potential problem, or just a refactoring. E.g. inverting an assertion, converting a for-loop to a foreach-loop or fixing an import.
 * Rename...: `shift f6`
-    * Rename a variable or method.
+ * Rename a variable or method.
 * (Un)comment: `ctrl (shift) /`
-    * Comments out, or in if already commented the selection. Adding `shift`
+ * Comments out, or in if already commented the selection. Adding `shift`
 * Format code: `ctrl alt L`
-    * Auto-formats the code. This can be configured to also organise imports as well.
+ * Auto-formats the code. This can be configured to also organise imports as well.
 * Optimise imports: `ctrl alt O`
 * Show usages: `ctrl alt f7`
-    * Searches for where a symbol is used elsewhere in the codebase.
+ * Searches for where a symbol is used elsewhere in the codebase.
 * Live templates: `ctrl (alt) J`
-    * This will suggest live-templates. A live template means e.g. writing `sout`, pressing `tab` and getting `System.out.println();`. This shortcut will give you a list of the ones available. Adding `alt` to the mix will try to _surround with_ a live template.
+ * This will suggest live-templates. A live template means e.g. writing `sout`, pressing `tab` and getting `System.out.println();`. This shortcut will give you a list of the ones available. Adding `alt` to the mix will try to _surround with_ a live template.
 * Extract variable: `ctrl alt V`
-    * Extracts your selection, and puts in in a variable. This can also be used to avoid having to write the lhs (declaration) of a variable.
+ * Extracts your selection, and puts in in a variable. This can also be used to avoid having to write the lhs (declaration) of a variable.
 * Extract method `ctrl alt M`
-    * Same as above, only for a method.
+ * Same as above, only for a method.
 * Extract method `ctrl alt F`
-    * Same as above, only for a field.
+ * Same as above, only for a field.
 * Extract method `ctrl alt C`
-    * Same as above, only for a constant.
+ * Same as above, only for a constant.
 * Open class, file or symbol: `ctrl (shift (alt)) N`
-    * Allows you to search for a class. Adding `shift` will search for any file, not just class. Adding a `alt` as well will search for symbol, meaning a field or a method. Pressing the command again will search in all available files (i.e. libraries), not just your own.
+ * Allows you to search for a class. Adding `shift` will search for any file, not just class. Adding a `alt` as well will search for symbol, meaning a field or a method. Pressing the command again will search in all available files (i.e. libraries), not just your own.
 * Find symbol in current file: `ctrl f12`
-    * Finds members in current class, meaning a field or a method.
+ * Finds members in current class, meaning a field or a method.
 * (De)select word: `ctrl (shift) W`
-    * Incrementally selects a word. Goes from word to parameter, to method etc.. Adding `shift` goes the other way.
+ * Incrementally selects a word. Goes from word to parameter, to method etc.. Adding `shift` goes the other way.
 * Surround with: `ctrl alt T`
-    * Surrounds the current selection with a variety of options. Typically an assertion or a loop.
+ * Surrounds the current selection with a variety of options. Typically an assertion or a loop.
 * Paste simple: `ctrl alt shift V`
-    * Do a simple (normal) paste. The default paste (`ctrl V`) will format your text, as well as escaping as needed. Using this command avoids that.
+ * Do a simple (normal) paste. The default paste (`ctrl V`) will format your text, as well as escaping as needed. Using this command avoids that.
 * Paste from history: `ctrl shift V`
-    * Allows you to paste from history. The default stack-size is 5, this can be increased.
+ * Allows you to paste from history. The default stack-size is 5, this can be increased.
 * Go to definition: `ctrl B` or `ctrl click`
-    * Go to the definition of a symbol.
+ * Go to the definition of a symbol.
 * Quick 'Doc'umentation: `ctrl Q`
-    * Open the JavaDoc or other documentation in a popup window, instead of navigating to it.
+ * Open the JavaDoc or other documentation in a popup window, instead of navigating to it.
 * Quick definition: `ctrl shift I`
-    * Same as above, only the implementation instead.
+ * Same as above, only the implementation instead.
 * Override methods: `ctrl O`
-    * Get a list of methods available to override
+ * Get a list of methods available to override
 * Implement methods: `ctrl I`
-    * Same as above, only for interfaces
+ * Same as above, only for interfaces
 * Parameter info: `ctrl P`
-    * Get info about the parameters. Will give a small popup saying which parameters the method receives.
+ * Get info about the parameters. Will give a small popup saying which parameters the method receives.
 * Switcher: `ctrl tab`
-    * Gives a list showing all that is open, allowing you to quickly shift between them. Jumps to the selection when `ctrl` is released.
+ * Gives a list showing all that is open, allowing you to quickly shift between them. Jumps to the selection when `ctrl` is released.
 * Open recent files: `ctrl (shift) E`
-    * Allows you to open recently opened files. Adding `shift` lets you scroll through only files you've edited, not just opened.
+ * Allows you to open recently opened files. Adding `shift` lets you scroll through only files you've edited, not just opened.
 * Cycle recent changes: `ctrl backspace`
-    * Cycles through your recent changes in files, in a reversed, chronological order. Jumps between files, both open ones, and the ones you've closed.
+ * Cycles through your recent changes in files, in a reversed, chronological order. Jumps between files, both open ones, and the ones you've closed.
 * Evaluate expression: `alt f8`
-    * During debug, this allows you to run the code and figure out what it evaluates to.
+ * During debug, this allows you to run the code and figure out what it evaluates to.
 * Go to test: `ctrl shift t`
-    * Navigates to the associated test. If none is applicable, it prompts for the creation of the test-class.
+ * Navigates to the associated test. If none is applicable, it prompts for the creation of the test-class.
 
 ##Tips & Tricks
 * In every popup and menu, you can filtrate the content just by typing. From options to generate, this allows you to quickly find what you're looking for in a window.
