@@ -5,7 +5,7 @@
     android:orientation="vertical"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context="no.nith.pg3200.ovinger.oving2.task1.Task1">
+    tools:context=".oving2.task1.Task1">
 
     <EditText
         android:layout_width="fill_parent"

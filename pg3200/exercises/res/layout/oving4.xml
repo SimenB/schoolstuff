@@ -4,7 +4,7 @@
     android:orientation="vertical"
     android:layout_width="fill_parent"
     android:layout_height="fill_parent"
-    tools:context="no.nith.pg3200.ovinger.oving4.Oving4">
+    tools:context=".oving4.Oving4">
 
     <Button
         android:layout_width="fill_parent"

@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
-    package="no.nith.pg3200.ovinger"
+    package="no.nith.pg3200.exercises"
     android:versionCode="1"
     android:versionName="1.0">
 
