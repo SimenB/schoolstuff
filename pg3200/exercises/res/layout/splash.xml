@@ -6,30 +6,11 @@
     android:layout_height="fill_parent"
     tools:context="no.nith.pg3200.ovinger..Oving2">
 
-    <TextView
+    <ListView
+        android:layout_height="fill_parent"
         android:layout_width="fill_parent"
-        android:layout_height="31dp"
-        android:text="@string/intro"
-        android:textSize="@dimen/headingSize"
-        android:textAlignment="center" />
-
-    <Button
-        android:layout_width="fill_parent"
-        android:layout_height="120dp"
-        android:text="@string/exercise2"
-        android:id="@+id/exercise2" />
-
-    <Button
-        android:layout_width="fill_parent"
-        android:layout_height="120dp"
-        android:text="@string/exercise3"
-        android:id="@+id/exercise3" />
-
-    <Button
-        android:layout_width="fill_parent"
-        android:layout_height="120dp"
-        android:text="@string/exercise4"
-        android:id="@+id/exercise4" />
+        android:id="@+id/splashListView">
+    </ListView>
 
 </LinearLayout>
 

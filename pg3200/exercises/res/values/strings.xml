@@ -1,11 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
     <string name="app_name">PG3200</string>
-    <string name="intro">Intro</string>
-
-    <string name="exercise2">Exercise 2</string>
-    <string name="exercise3">Exercise 3</string>
-    <string name="exercise4">Exercise 4</string>
 
     <string name="task1">Task 1</string>
     <string name="task2">Task 2</string>
