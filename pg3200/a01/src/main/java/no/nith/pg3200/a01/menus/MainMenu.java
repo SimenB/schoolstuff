@@ -12,7 +12,7 @@ import android.view.View;
 import android.widget.Button;
 import no.nith.pg3200.a01.InGame;
 import no.nith.pg3200.a01.Leaderboard;
-import no.nith.pg3200.innlevering1.R;
+import no.nith.pg3200.a01.R;
 
 public class MainMenu extends Activity implements View.OnClickListener {
     SharedPreferences preferences;

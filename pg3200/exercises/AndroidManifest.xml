@@ -22,19 +22,19 @@
             </intent-filter>
         </activity>
 
-        <activity android:name=".oving2.Oving2" />
-        <activity android:name=".oving2.task1.Task1" />
-        <activity android:name=".oving2.task2.Task2" />
-        <activity android:name=".oving2.task3.WriteNumber" />
-        <activity android:name=".oving2.task3.ShowNumber" />
-        <activity android:name=".oving2.task4.Task4" />
+        <activity android:name=".exercise2.Exercise2" />
+        <activity android:name=".exercise2.task1.Task1" />
+        <activity android:name=".exercise2.task2.Task2" />
+        <activity android:name=".exercise2.task3.WriteNumber" />
+        <activity android:name=".exercise2.task3.ShowNumber" />
+        <activity android:name=".exercise2.task4.Task4" />
 
-        <activity android:name=".oving3.Oving3" />
-        <activity android:name=".oving3.task1.Task1" />
-        <activity android:name=".oving3.task2.WordList" />
-        <activity android:name=".oving3.task2.ViewWord" />
-        <activity android:name=".oving4.Oving4" />
-        <activity android:name=".oving4.task1.FailActivity" />
-        <activity android:name=".oving4.task2.ContactViewer" />
+        <activity android:name=".exercise3.Exercise3" />
+        <activity android:name=".exercise3.task1.Task1" />
+        <activity android:name=".exercise3.task2.WordList" />
+        <activity android:name=".exercise3.task2.ViewWord" />
+        <activity android:name=".exercise4.Exercise4" />
+        <activity android:name=".exercise4.task1.FailActivity" />
+        <activity android:name=".exercise4.task2.ContactViewer" />
     </application>
 </manifest>

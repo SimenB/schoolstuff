@@ -1,4 +1,4 @@
-package no.nith.pg3200.exercises.oving3.task2;
+package no.nith.pg3200.exercises.exercise3.task2;
 
 import android.app.Activity;
 import android.content.Context;
@@ -18,7 +18,7 @@ import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
 import java.util.Random;
-import no.nith.pg3200.ovinger.R;
+import no.nith.pg3200.exercises.R;
 
 public class WordList extends Activity {
     private EditText input;
@@ -31,7 +31,7 @@ public class WordList extends Activity {
     @Override
     public void onCreate(final Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.oving3task2);
+        setContentView(R.layout.exercise3task2);
 
         input = (EditText) findViewById(R.id.exercise3task2input);
         btnAdd = (Button) findViewById(R.id.exercise3task2btn_add);

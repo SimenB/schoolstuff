@@ -1,4 +1,4 @@
-package no.nith.pg3200.exercises.oving2.task2;
+package no.nith.pg3200.exercises.exercise2.task2;
 
 import android.app.Activity;
 import android.graphics.Color;
@@ -8,7 +8,7 @@ import android.view.ViewGroup.MarginLayoutParams;
 import android.widget.Button;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
-import no.nith.pg3200.ovinger.R;
+import no.nith.pg3200.exercises.R;
 
 /**
  * Created by Simen on 05.09.13.
@@ -25,7 +25,7 @@ public class Task2 extends Activity implements View.OnClickListener {
 
     public void onCreate(final Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.oving2task2);
+        setContentView(R.layout.exercise2task2);
 
         imgRooney = (ImageView) findViewById(R.id.imgRooney);
         btnVisible = (Button) findViewById(R.id.btnVisible);

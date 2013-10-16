@@ -10,7 +10,7 @@ import android.preference.PreferenceManager;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
-import no.nith.pg3200.innlevering1.R;
+import no.nith.pg3200.a01.R;
 
 public class Settings extends Activity implements View.OnClickListener {
     private Context context;

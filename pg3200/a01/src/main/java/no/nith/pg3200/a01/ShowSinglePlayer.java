@@ -7,7 +7,7 @@ import android.view.View;
 import android.widget.AdapterView;
 import android.widget.ListView;
 import android.widget.TextView;
-import no.nith.pg3200.innlevering1.R;
+import no.nith.pg3200.a01.R;
 import no.nith.pg3200.a01.adapters.SinglePlayerAdapter;
 import no.nith.tic_tac_toe.players.AbstractPlayer;
 import no.nith.tic_tac_toe.players.PlayerHuman;

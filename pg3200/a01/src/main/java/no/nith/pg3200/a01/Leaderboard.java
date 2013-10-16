@@ -11,7 +11,6 @@ import java.io.BufferedReader;
 import java.io.FileInputStream;
 import java.io.InputStreamReader;
 import java.util.ArrayList;
-import no.nith.pg3200.innlevering1.R;
 import no.nith.pg3200.a01.adapters.LeaderboardAdapter;
 import no.nith.tic_tac_toe.LeaderboardHandler;
 import no.nith.tic_tac_toe.players.AbstractPlayer;

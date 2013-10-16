@@ -1,4 +1,4 @@
-package no.nith.pg3200.exercises.oving2.task4;
+package no.nith.pg3200.exercises.exercise2.task4;
 
 import android.app.Fragment;
 import android.os.Bundle;

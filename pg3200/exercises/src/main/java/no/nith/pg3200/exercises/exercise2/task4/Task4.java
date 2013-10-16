@@ -1,4 +1,4 @@
-package no.nith.pg3200.exercises.oving2.task4;
+package no.nith.pg3200.exercises.exercise2.task4;
 
 import android.app.ActionBar;
 import android.app.ActionBar.Tab;
@@ -6,7 +6,7 @@ import android.app.ActionBar.TabListener;
 import android.app.Activity;
 import android.app.FragmentTransaction;
 import android.os.Bundle;
-import no.nith.pg3200.ovinger.R;
+import no.nith.pg3200.exercises.R;
 
 /**
  * Created by Simen on 06.09.13.
@@ -14,7 +14,7 @@ import no.nith.pg3200.ovinger.R;
 public class Task4 extends Activity implements TabListener {
     public void onCreate(final Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.oving2task4);
+        setContentView(R.layout.exercise2task4);
 
         final ActionBar actionBar = getActionBar();
         actionBar.setNavigationMode(ActionBar.NAVIGATION_MODE_TABS);

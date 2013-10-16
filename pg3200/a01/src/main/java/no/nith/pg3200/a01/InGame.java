@@ -13,7 +13,6 @@ import android.view.View;
 import android.widget.ImageButton;
 import android.widget.ImageView;
 import android.widget.TextView;
-import no.nith.pg3200.innlevering1.R;
 import no.nith.tic_tac_toe.TicTacToeGame;
 import no.nith.tic_tac_toe.exceptions.GameNotFinishedException;
 

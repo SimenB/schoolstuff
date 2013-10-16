@@ -1,24 +1,24 @@
-package no.nith.pg3200.exercises.oving2;
+package no.nith.pg3200.exercises.exercise2;
 
 import android.app.Activity;
 import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.Button;
-import no.nith.pg3200.ovinger.R;
-import no.nith.pg3200.exercises.oving2.task1.Task1;
-import no.nith.pg3200.exercises.oving2.task2.Task2;
-import no.nith.pg3200.exercises.oving2.task3.WriteNumber;
-import no.nith.pg3200.exercises.oving2.task4.Task4;
+import no.nith.pg3200.exercises.R;
+import no.nith.pg3200.exercises.exercise2.task1.Task1;
+import no.nith.pg3200.exercises.exercise2.task2.Task2;
+import no.nith.pg3200.exercises.exercise2.task3.WriteNumber;
+import no.nith.pg3200.exercises.exercise2.task4.Task4;
 
-public class Oving2 extends Activity implements View.OnClickListener {
+public class Exercise2 extends Activity implements View.OnClickListener {
     /**
      * Called when the activity is first created.
      */
     @Override
     public void onCreate(final Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.oving2);
+        setContentView(R.layout.exercise2);
 
         final Button task1 = (Button) findViewById(R.id.oving2Task1);
         final Button task2 = (Button) findViewById(R.id.oving2Task2);

@@ -1,4 +1,4 @@
-package no.nith.pg3200.exercises.oving4.task2;
+package no.nith.pg3200.exercises.exercise4.task2;
 
 import android.app.Activity;
 import android.view.LayoutInflater;
@@ -7,7 +7,7 @@ import android.view.ViewGroup;
 import android.widget.BaseAdapter;
 import android.widget.TextView;
 import java.util.ArrayList;
-import no.nith.pg3200.ovinger.R;
+import no.nith.pg3200.exercises.R;
 
 public class ContactAdapter extends BaseAdapter {
     private LayoutInflater inflater;

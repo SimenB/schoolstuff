@@ -1,4 +1,4 @@
-package no.nith.pg3200.exercises.oving4.task2;
+package no.nith.pg3200.exercises.exercise4.task2;
 
 import android.app.Activity;
 import android.app.ProgressDialog;
@@ -11,7 +11,7 @@ import android.widget.ListView;
 import android.widget.Toast;
 import java.util.ArrayList;
 import java.util.List;
-import no.nith.pg3200.ovinger.R;
+import no.nith.pg3200.exercises.R;
 
 import static android.provider.ContactsContract.CommonDataKinds.Email;
 import static android.provider.ContactsContract.CommonDataKinds.Phone;
@@ -100,7 +100,7 @@ public class ContactViewer extends Activity {
 
         @Override
         protected void onPreExecute() {
-            setContentView(R.layout.oving4task2);
+            setContentView(R.layout.exercise4task2);
 
             dialog = ProgressDialog.show(context, "Loading", "Loading contacts, please wait", true);
 

@@ -5,10 +5,9 @@ import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.Button;
-import no.nith.pg3200.ovinger.R;
-import no.nith.pg3200.exercises.oving2.Oving2;
-import no.nith.pg3200.exercises.oving3.Oving3;
-import no.nith.pg3200.exercises.oving4.Oving4;
+import no.nith.pg3200.exercises.exercise2.Exercise2;
+import no.nith.pg3200.exercises.exercise3.Exercise3;
+import no.nith.pg3200.exercises.exercise4.Exercise4;
 
 public class Splash extends Activity implements View.OnClickListener {
     /**
@@ -32,13 +31,13 @@ public class Splash extends Activity implements View.OnClickListener {
     public void onClick(final View v) {
         switch (v.getId()) {
         case R.id.exercise2:
-            startActivity(new Intent(this, Oving2.class));
+            startActivity(new Intent(this, Exercise2.class));
             break;
         case R.id.exercise3:
-            startActivity(new Intent(this, Oving3.class));
+            startActivity(new Intent(this, Exercise3.class));
             break;
         case R.id.exercise4:
-            startActivity(new Intent(this, Oving4.class));
+            startActivity(new Intent(this, Exercise4.class));
             break;
         }
     }

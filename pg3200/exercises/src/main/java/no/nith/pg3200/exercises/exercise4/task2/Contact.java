@@ -1,4 +1,4 @@
-package no.nith.pg3200.exercises.oving4.task2;
+package no.nith.pg3200.exercises.exercise4.task2;
 
 import java.util.List;
 

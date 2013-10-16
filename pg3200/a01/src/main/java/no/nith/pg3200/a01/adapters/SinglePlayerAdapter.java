@@ -8,7 +8,7 @@ import android.widget.BaseAdapter;
 import android.widget.ImageView;
 import android.widget.TextView;
 import java.util.ArrayList;
-import no.nith.pg3200.innlevering1.R;
+import no.nith.pg3200.a01.R;
 import no.nith.tic_tac_toe.FinishedTicTacToeGame;
 
 public class SinglePlayerAdapter extends BaseAdapter {

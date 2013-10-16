@@ -1,4 +1,4 @@
-package no.nith.pg3200.exercises.oving2.task3;
+package no.nith.pg3200.exercises.exercise2.task3;
 
 import android.app.Activity;
 import android.content.Context;
@@ -8,7 +8,7 @@ import android.os.Bundle;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
-import no.nith.pg3200.ovinger.R;
+import no.nith.pg3200.exercises.R;
 
 /**
  * Created by Simen on 06.09.13.
@@ -20,7 +20,7 @@ public class WriteNumber extends Activity {
 
     public void onCreate(final Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.oving2write_number);
+        setContentView(R.layout.exercise2write_number);
 
         context = this;
 

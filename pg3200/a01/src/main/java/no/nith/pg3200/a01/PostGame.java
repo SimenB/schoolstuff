@@ -11,7 +11,7 @@ import android.widget.Button;
 import android.widget.TextView;
 import android.widget.Toast;
 import java.io.FileOutputStream;
-import no.nith.pg3200.innlevering1.R;
+import no.nith.pg3200.a01.R;
 import no.nith.pg3200.a01.menus.MainMenu;
 import no.nith.tic_tac_toe.FinishedTicTacToeGame;
 import no.nith.tic_tac_toe.LeaderboardHandler;
