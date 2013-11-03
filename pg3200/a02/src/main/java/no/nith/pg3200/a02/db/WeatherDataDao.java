@@ -7,6 +7,7 @@ import android.database.SQLException;
 import android.database.sqlite.SQLiteDatabase;
 import com.google.android.gms.maps.model.LatLng;
 import java.util.ArrayList;
+import java.util.Collections;
 import java.util.List;
 import no.nith.pg3200.a02.domain.Forecast;
 import no.nith.pg3200.a02.domain.WeatherData;
@@ -128,6 +129,8 @@ public class WeatherDataDao {
         }
 
         this.close();
+
+        Collections.sort(data);
 
         return data;
     }

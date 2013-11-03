@@ -21,6 +21,7 @@ import java.io.StringWriter;
 import java.lang.reflect.Type;
 import java.net.HttpURLConnection;
 import java.net.URL;
+import java.util.Collections;
 import no.nith.pg3200.a02.domain.WeatherData;
 import org.apache.commons.io.IOUtils;
 import org.joda.time.DateTime;
@@ -33,11 +34,11 @@ import org.json.JSONObject;
  */
 public class LoadJson extends AsyncTask<Void, Integer, String> {
     final String path;
-    private ProgressDialog dialog;
     private final Context context;
     private final CallbackListener callbackListener;
+    private ProgressDialog dialog;
 
-    public LoadJson(final LatLng latlng, Context context, CallbackListener callbackListener) {
+    public LoadJson(final LatLng latlng, final Context context, final CallbackListener callbackListener) {
         path = String.format("http://weathermap-nith.appspot.com/locationforecast?lat=%f&lon=%f", latlng.latitude, latlng.longitude);
         this.context = context;
         this.callbackListener = callbackListener;
@@ -51,7 +52,7 @@ public class LoadJson extends AsyncTask<Void, Integer, String> {
     }
 
     @Override
-    protected String doInBackground(Void... params) {
+    protected String doInBackground(final Void... params) {
         HttpURLConnection connection = null;
         InputStream inputStream = null;
         StringWriter stringWriter = null;
@@ -88,9 +89,10 @@ public class LoadJson extends AsyncTask<Void, Integer, String> {
     }
 
     @Override
-    protected void onPostExecute(String s) {
+    protected void onPostExecute(final String s) {
         super.onPostExecute(s);
-        dialog.dismiss();
+
+        Log.i("WeatherMap", "JSON returned from service: " + s);
 
         String json = "";
 
@@ -108,6 +110,10 @@ public class LoadJson extends AsyncTask<Void, Integer, String> {
 
         Log.i("mytag", json);
 
+        Collections.sort(weatherData.getForecasts());
+
+        dialog.dismiss();
+
         callbackListener.addWeatherDataToList(weatherData);
     }
 
@@ -119,7 +125,7 @@ public class LoadJson extends AsyncTask<Void, Integer, String> {
      * @return JSON representing the local domain-object
      * @throws org.json.JSONException
      */
-    private String convertJson(String json) throws JSONException {
+    private String convertJson(final String json) throws JSONException {
         final JSONObject weatherdata = new JSONObject(json).getJSONObject("weatherdata");
         // Get the 'time' array, and put it up a level
         weatherdata.put("forecasts", weatherdata.getJSONObject("product").getJSONArray("time"));
@@ -152,7 +158,11 @@ public class LoadJson extends AsyncTask<Void, Integer, String> {
             current.put("temperature", temperature);
         }
 
-        return weatherdata.toString();
+        final String jsonString = weatherdata.toString();
+
+        Log.i("WeatherMap", "JSON after parsing: " + jsonString);
+
+        return jsonString;
     }
 
     // Taken from https://sites.google.com/site/gson/gson-type-adapters-for-common-classes

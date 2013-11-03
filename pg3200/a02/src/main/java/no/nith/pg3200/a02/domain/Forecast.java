@@ -1,11 +1,12 @@
 package no.nith.pg3200.a02.domain;
 
+import org.jetbrains.annotations.NotNull;
 import org.joda.time.DateTime;
 
 /**
  * @author Simen Bekkhus
  */
-public class Forecast {
+public class Forecast implements Comparable<Forecast> {
     private DateTime time;
     private int symbol;
     private double temperature;
@@ -29,5 +30,10 @@ public class Forecast {
 
     public double getTemperature() {
         return temperature;
+    }
+
+    @Override
+    public int compareTo(@NotNull final Forecast another) {
+        return this.getTime().compareTo(another.getTime());
     }
 }
