@@ -65,7 +65,7 @@ public class Main extends Activity implements CallbackListener {
         googleMap.setMyLocationEnabled(true);
 
         if (!weatherDataArray.isEmpty()) {
-            for (WeatherData weatherData : weatherDataArray) {
+            for (final WeatherData weatherData : weatherDataArray) {
                 this.addMarkerToMap(weatherData);
             }
         }

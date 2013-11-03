@@ -33,7 +33,7 @@ import org.json.JSONObject;
  * @author Simen Bekkhus
  */
 public class LoadJson extends AsyncTask<Void, Integer, String> {
-    final String path;
+    private final String path;
     private final Context context;
     private final CallbackListener callbackListener;
     private ProgressDialog dialog;
@@ -112,9 +112,9 @@ public class LoadJson extends AsyncTask<Void, Integer, String> {
 
         Collections.sort(weatherData.getForecasts());
 
-        dialog.dismiss();
+        this.dialog.dismiss();
 
-        callbackListener.addWeatherDataToList(weatherData);
+        this.callbackListener.addWeatherDataToList(weatherData);
     }
 
     /**

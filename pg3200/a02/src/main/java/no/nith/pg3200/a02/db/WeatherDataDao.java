@@ -20,7 +20,7 @@ public class WeatherDataDao {
     private final DatabaseHelper dbHelper;
     private SQLiteDatabase database;
 
-    public WeatherDataDao(Context context) {
+    public WeatherDataDao(final Context context) {
         this.dbHelper = new DatabaseHelper(context);
     }
 
@@ -67,7 +67,7 @@ public class WeatherDataDao {
         }
     }
 
-    private boolean existsInDatabase(int hash) {
+    private boolean existsInDatabase(final int hash) {
         @Language("SQLite")
         final String sqlFormat = "SELECT * FROM %s WHERE %s=%d";
 
@@ -109,10 +109,10 @@ public class WeatherDataDao {
         if (cursor.moveToFirst()) {
             do {
                 final String date = cursor.getString(cursor.getColumnIndex(DatabaseHelper.DATE));
-                final double lon = cursor.getDouble(cursor.getColumnIndex(DatabaseHelper.LONGITUDE));
-                final double lat = cursor.getDouble(cursor.getColumnIndex(DatabaseHelper.LATITUDE));
+                final double lon = cursor.getDouble(cursor.getColumnIndex(DatabaseHelper.LONGITUDE)),
+                        lat = cursor.getDouble(cursor.getColumnIndex(DatabaseHelper.LATITUDE));
 
-                ArrayList<Forecast> forecasts = new ArrayList<Forecast>();
+                final ArrayList<Forecast> forecasts = new ArrayList<Forecast>();
 
                 for (int i = 0; i < 24; i++) {
                     final int symbol = cursor.getInt(cursor.getColumnIndex(DatabaseHelper.SYMBOL));
