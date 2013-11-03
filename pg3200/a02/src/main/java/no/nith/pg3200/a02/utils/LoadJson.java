@@ -1,6 +1,10 @@
 package no.nith.pg3200.a02.utils;
 
+import android.app.ProgressDialog;
+import android.content.Context;
 import android.os.AsyncTask;
+import android.util.Log;
+import com.google.android.gms.maps.model.LatLng;
 import com.google.gson.GsonBuilder;
 import com.google.gson.JsonDeserializationContext;
 import com.google.gson.JsonDeserializer;
@@ -9,7 +13,6 @@ import com.google.gson.JsonParseException;
 import com.google.gson.JsonPrimitive;
 import com.google.gson.JsonSerializationContext;
 import com.google.gson.JsonSerializer;
-import com.google.gson.JsonSyntaxException;
 import java.io.BufferedInputStream;
 import java.io.IOException;
 import java.io.InputStream;
@@ -17,11 +20,9 @@ import java.io.StringWriter;
 import java.lang.reflect.Type;
 import java.net.HttpURLConnection;
 import java.net.URL;
-import java.util.TimeZone;
 import no.nith.pg3200.a02.domain.WeatherData;
 import org.apache.commons.io.IOUtils;
 import org.joda.time.DateTime;
-import org.joda.time.DateTimeZone;
 import org.json.JSONArray;
 import org.json.JSONException;
 import org.json.JSONObject;
@@ -29,11 +30,23 @@ import org.json.JSONObject;
 /**
  * @author Simen Bekkhus
  */
-public class LoadJson extends AsyncTask<Void, Void, String> {
+public class LoadJson extends AsyncTask<Void, Integer, String> {
     final String path;
+    private ProgressDialog dialog;
+    private Context context;
+    private CallbackListener callbackListener;
 
-    public LoadJson(final double lat, final double lon) {
-        path = String.format("http://weathermap-nith.appspot.com/locationforecast?lat=%f&lon=%f", lat, lon);
+    public LoadJson(final LatLng latlng, Context context, CallbackListener callbackListener) {
+        path = String.format("http://weathermap-nith.appspot.com/locationforecast?lat=%f&lon=%f", latlng.latitude, latlng.longitude);
+        this.context = context;
+        this.callbackListener = callbackListener;
+    }
+
+    @Override
+    protected void onPreExecute() {
+        dialog = ProgressDialog.show(context, "Loading", "Loading weather-data, please wait", true);
+
+        dialog.show();
     }
 
     @Override
@@ -76,6 +89,8 @@ public class LoadJson extends AsyncTask<Void, Void, String> {
     @Override
     protected void onPostExecute(String s) {
         super.onPostExecute(s);
+        dialog.dismiss();
+
         String json = "";
 
         try {
@@ -84,16 +99,14 @@ public class LoadJson extends AsyncTask<Void, Void, String> {
             e.printStackTrace();
         }
 
-        try {
-            //final WeatherData weatherData = new Gson().fromJson(json, WeatherData.class);
-            final WeatherData weatherData = new GsonBuilder()
-                    .registerTypeAdapter(DateTime.class, new DateTimeTypeConverter())
-                    .create()
-                    .fromJson(json, WeatherData.class);
-            String hei = "";
-        } catch (JsonSyntaxException e) {
-            e.printStackTrace();
-        }
+        WeatherData weatherData = new GsonBuilder()
+                .registerTypeAdapter(DateTime.class, new DateTimeTypeConverter())
+                .create()
+                .fromJson(json, WeatherData.class);
+
+        Log.i("mytag", json);
+
+        callbackListener.callback(weatherData);
     }
 
     /**
@@ -106,15 +119,17 @@ public class LoadJson extends AsyncTask<Void, Void, String> {
      */
     private String convertJson(String json) throws JSONException {
         final JSONObject weatherdata = new JSONObject(json).getJSONObject("weatherdata");
-        JSONArray k = weatherdata.getJSONObject("product").getJSONArray("time");
-        weatherdata.put("forecasts", k);
-        k = weatherdata.getJSONArray("forecasts");
+        // Get the 'time' array, and put it up a level
+        weatherdata.put("forecasts", weatherdata.getJSONObject("product").getJSONArray("time"));
+        final JSONArray k = weatherdata.getJSONArray("forecasts");
 
+        // Remove unneeded objects
         weatherdata.remove("product");
         weatherdata.remove("xmlns:xsi");
         weatherdata.remove("meta");
         weatherdata.remove("xsi:noNamespaceSchemaLocation");
 
+        // Extract position from the first element, as we only need one of them
         final JSONObject location1 = ((JSONObject) k.get(0)).getJSONObject("location");
         weatherdata.put("longitude", location1.getDouble("longitude"));
         weatherdata.put("latitude", location1.getDouble("latitude"));
@@ -122,8 +137,7 @@ public class LoadJson extends AsyncTask<Void, Void, String> {
         for (int i = 0; i < k.length(); i++) {
             final JSONObject current = (JSONObject) k.get(i);
             final String time = current.getString("to");
-            final JSONObject location = current.getJSONObject("location");
-            final double temperature = location.getJSONObject("temperature").getDouble("value");
+            final double temperature = current.getJSONObject("location").getJSONObject("temperature").getDouble("value");
 
             current.remove("to");
             current.remove("datatype");
@@ -138,7 +152,6 @@ public class LoadJson extends AsyncTask<Void, Void, String> {
     }
 
     // Taken from https://sites.google.com/site/gson/gson-type-adapters-for-common-classes
-    // I changed the timezone when creating a new instance, otherwise pure copy.
     private class DateTimeTypeConverter implements JsonSerializer<DateTime>, JsonDeserializer<DateTime> {
         // No need for an InstanceCreator since DateTime provides a no-args constructor
         @Override
@@ -150,9 +163,7 @@ public class LoadJson extends AsyncTask<Void, Void, String> {
         public DateTime deserialize(JsonElement json, Type type, JsonDeserializationContext context)
                 throws JsonParseException {
 
-            return new DateTime(json.getAsString(), DateTimeZone.forTimeZone(TimeZone.getTimeZone("Europe/Oslo")));
-            //return new DateTime(json.getAsString(), DateTimeZone.UTC);
-            //return new DateTime(json.getAsString(), DateTimeZone.forOffsetHours(1));
+            return new DateTime(json.getAsString());
         }
     }
 }
