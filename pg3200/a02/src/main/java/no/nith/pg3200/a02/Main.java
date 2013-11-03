@@ -12,6 +12,7 @@ import com.google.android.gms.maps.model.LatLng;
 import com.google.android.gms.maps.model.Marker;
 import com.google.android.gms.maps.model.MarkerOptions;
 import java.util.ArrayList;
+import no.nith.pg3200.a02.db.WeatherDataDao;
 import no.nith.pg3200.a02.domain.WeatherData;
 import no.nith.pg3200.a02.utils.CallbackListener;
 import no.nith.pg3200.a02.utils.LoadJson;
@@ -45,6 +46,7 @@ public class Main extends Activity implements CallbackListener {
     private GoogleMap googleMap;
     private Context context;
     private ArrayList<WeatherData> weatherDataArray;
+    private WeatherDataDao dao;
 
     public void onCreate(final Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -52,11 +54,21 @@ public class Main extends Activity implements CallbackListener {
 
         context = this;
 
-        weatherDataArray = new ArrayList<WeatherData>();
+        dao = new WeatherDataDao(context);
+
+        //dao.deleteAllData();
+
+        weatherDataArray = dao.getAllWeatherData();
 
         googleMap = ((MapFragment) getFragmentManager().findFragmentById(R.id.map)).getMap();
 
         googleMap.setMyLocationEnabled(true);
+
+        if (!weatherDataArray.isEmpty()) {
+            for (WeatherData weatherData : weatherDataArray) {
+                this.addMarkerToMap(weatherData);
+            }
+        }
 
 //        LocationManager locationManager = (LocationManager) getSystemService(LOCATION_SERVICE);
 //
@@ -95,6 +107,8 @@ public class Main extends Activity implements CallbackListener {
     @Override
     public void addWeatherDataToList(final WeatherData weatherData) {
         weatherDataArray.add(weatherData);
+
+        dao.insertWeatherData(weatherData);
 
         addMarkerToMap(weatherData);
     }

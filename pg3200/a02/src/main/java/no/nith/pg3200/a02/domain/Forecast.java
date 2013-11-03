@@ -10,6 +10,15 @@ public class Forecast {
     private int symbol;
     private double temperature;
 
+    public Forecast(final String time, final int symbol, final double temperature) {
+        this.time = new DateTime(time);
+        this.symbol = symbol;
+        this.temperature = temperature;
+    }
+
+    public Forecast() {
+    }
+
     public DateTime getTime() {
         return time;
     }
