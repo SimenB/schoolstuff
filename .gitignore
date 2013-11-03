@@ -221,3 +221,4 @@ pip-log.txt
 #############
 .idea/
 target/
+gen-external-apklibs
