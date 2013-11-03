@@ -1,5 +1,6 @@
 package no.nith.pg3200.a02.domain;
 
+import com.google.android.gms.maps.model.LatLng;
 import java.util.List;
 import org.joda.time.DateTime;
 
@@ -8,19 +9,15 @@ import org.joda.time.DateTime;
  */
 public class WeatherData {
     private DateTime created;
-    private double latitude, longitude;
+    private LatLng position;
     private List<Forecast> forecasts;
 
     public DateTime getCreated() {
         return created;
     }
 
-    public double getLatitude() {
-        return latitude;
-    }
-
-    public double getLongitude() {
-        return longitude;
+    public LatLng getPosition() {
+        return position;
     }
 
     public List<Forecast> getForecasts() {

@@ -136,7 +136,6 @@
                 <groupId>com.google.android.gms</groupId>
                 <artifactId>google-play-services</artifactId>
                 <version>${play-services.version}</version>
-                <type>jar</type>
             </dependency>
             <dependency>
                 <groupId>joda-time</groupId>

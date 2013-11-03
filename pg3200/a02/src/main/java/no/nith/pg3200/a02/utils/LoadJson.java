@@ -9,6 +9,7 @@ import com.google.gson.GsonBuilder;
 import com.google.gson.JsonDeserializationContext;
 import com.google.gson.JsonDeserializer;
 import com.google.gson.JsonElement;
+import com.google.gson.JsonObject;
 import com.google.gson.JsonParseException;
 import com.google.gson.JsonPrimitive;
 import com.google.gson.JsonSerializationContext;
@@ -33,8 +34,8 @@ import org.json.JSONObject;
 public class LoadJson extends AsyncTask<Void, Integer, String> {
     final String path;
     private ProgressDialog dialog;
-    private Context context;
-    private CallbackListener callbackListener;
+    private final Context context;
+    private final CallbackListener callbackListener;
 
     public LoadJson(final LatLng latlng, Context context, CallbackListener callbackListener) {
         path = String.format("http://weathermap-nith.appspot.com/locationforecast?lat=%f&lon=%f", latlng.latitude, latlng.longitude);
@@ -101,12 +102,13 @@ public class LoadJson extends AsyncTask<Void, Integer, String> {
 
         WeatherData weatherData = new GsonBuilder()
                 .registerTypeAdapter(DateTime.class, new DateTimeTypeConverter())
+                .registerTypeAdapter(LatLng.class, new LatLngTypeConverter())
                 .create()
                 .fromJson(json, WeatherData.class);
 
         Log.i("mytag", json);
 
-        callbackListener.callback(weatherData);
+        callbackListener.addWeatherDataToList(weatherData);
     }
 
     /**
@@ -130,9 +132,11 @@ public class LoadJson extends AsyncTask<Void, Integer, String> {
         weatherdata.remove("xsi:noNamespaceSchemaLocation");
 
         // Extract position from the first element, as we only need one of them
-        final JSONObject location1 = ((JSONObject) k.get(0)).getJSONObject("location");
-        weatherdata.put("longitude", location1.getDouble("longitude"));
-        weatherdata.put("latitude", location1.getDouble("latitude"));
+        final JSONObject location = ((JSONObject) k.get(0)).getJSONObject("location");
+        final JSONObject position = new JSONObject();
+        position.put("longitude", location.getDouble("longitude"));
+        position.put("latitude", location.getDouble("latitude"));
+        weatherdata.put("position", position);
 
         for (int i = 0; i < k.length(); i++) {
             final JSONObject current = (JSONObject) k.get(i);
@@ -164,6 +168,28 @@ public class LoadJson extends AsyncTask<Void, Integer, String> {
                 throws JsonParseException {
 
             return new DateTime(json.getAsString());
+        }
+    }
+
+    private class LatLngTypeConverter implements JsonSerializer<LatLng>, JsonDeserializer<LatLng> {
+        // No need for an InstanceCreator since DateTime provides a no-args constructor
+        @Override
+        public JsonElement serialize(LatLng src, Type srcType, JsonSerializationContext context) {
+            final JsonObject jsonObject = new JsonObject();
+            jsonObject.add("latitude", new JsonPrimitive(src.latitude));
+            jsonObject.add("longitude", new JsonPrimitive(src.longitude));
+            return jsonObject;
+        }
+
+        @Override
+        public LatLng deserialize(JsonElement json, Type type, JsonDeserializationContext context)
+                throws JsonParseException {
+            final JsonObject data = json.getAsJsonObject();
+
+            final double lat = data.get("latitude").getAsDouble();
+            final double lng = data.get("longitude").getAsDouble();
+
+            return new LatLng(lat, lng);
         }
     }
 }
