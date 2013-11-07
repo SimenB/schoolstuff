@@ -1,21 +1,45 @@
 package no.nith.pg5100;
 
+import java.util.ArrayList;
+import java.util.List;
+import java.util.Scanner;
 import javax.persistence.EntityManager;
 import javax.persistence.EntityManagerFactory;
 import javax.persistence.Persistence;
 import no.nith.pg5100.entities.Animal;
+import no.nith.pg5100.entities.Voter;
 
 public class Client {
-    private final EntityManagerFactory entityManagerFactory;
+    public static final EntityManagerFactory entityManagerFactory = Persistence.createEntityManagerFactory("votestuff");
 
     public Client() {
-        entityManagerFactory = Persistence.createEntityManagerFactory("votestuff");
-
         createAnimals();
     }
 
     public static void main(String[] args) {
         new Client();
+
+        getVotes();
+    }
+
+    private static void getVotes() {
+        List<Integer> list = new ArrayList<>();
+
+        for (int i = 0; i < 5; i++) {
+            list.add(askForVote());
+        }
+
+        for (int id : list) {
+            new Voter(id);
+        }
+    }
+
+    private static int askForVote() {
+        Scanner in = new Scanner(System.in);
+
+        System.out.print("What animal do you want to vote for? ");
+
+        return in.nextInt();
     }
 
     private void createAnimals() {

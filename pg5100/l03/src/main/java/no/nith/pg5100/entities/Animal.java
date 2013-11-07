@@ -2,6 +2,7 @@ package no.nith.pg5100.entities;
 
 import com.sun.javafx.beans.annotations.NonNull;
 import java.util.List;
+import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
@@ -14,6 +15,7 @@ public class Animal {
     private int id;
     private int numberOfVotes;
     @NonNull
+    @Column(unique = true)
     private String name;
     @OneToMany
     private List<Vote> votes;
@@ -22,7 +24,7 @@ public class Animal {
         this.name = name;
     }
 
-    public Animal() {
+    protected Animal() {
     }
 
     public int getId() {
@@ -55,5 +57,9 @@ public class Animal {
 
     public void setVotes(List<Vote> votes) {
         this.votes = votes;
+    }
+
+    public void incrementVotes() {
+        this.numberOfVotes++;
     }
 }
