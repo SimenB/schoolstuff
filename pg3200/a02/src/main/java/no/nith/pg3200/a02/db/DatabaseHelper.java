@@ -8,7 +8,7 @@ import org.intellij.lang.annotations.Language;
 /**
  * @author Simen Bekkhus
  */
-public class DatabaseHelper extends SQLiteOpenHelper {
+class DatabaseHelper extends SQLiteOpenHelper {
     public static final String TABLE_WEATHER_DATA = "weather_data";
     public static final String TABLE_FORECAST = "forecast";
     public static final String KEY_COLUMN_ID = "id";

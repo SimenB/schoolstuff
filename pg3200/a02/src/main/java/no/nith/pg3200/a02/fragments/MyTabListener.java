@@ -10,7 +10,7 @@ import no.nith.pg3200.a02.R;
  */
 
 public class MyTabListener implements ActionBar.TabListener {
-    private Fragment fragment;
+    private final Fragment fragment;
 
     public MyTabListener(final MyMapFragment mapFragment) {
         this.fragment = mapFragment;

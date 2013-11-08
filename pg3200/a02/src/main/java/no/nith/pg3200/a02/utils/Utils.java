@@ -52,6 +52,7 @@ public final class Utils {
         return weatherDataArray;
     }
 
+    @NotNull
     public static WeatherDataDao getDao() {
         return dao;
     }

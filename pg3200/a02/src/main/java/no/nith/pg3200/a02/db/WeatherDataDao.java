@@ -24,12 +24,12 @@ public class WeatherDataDao {
         this.dbHelper = new DatabaseHelper(context);
     }
 
-    public void open() throws SQLException {
+    private void open() throws SQLException {
         if (database == null || !database.isOpen())
             database = dbHelper.getWritableDatabase();
     }
 
-    public void close() {
+    private void close() {
         if (database != null && database.isOpen())
             dbHelper.close();
     }
