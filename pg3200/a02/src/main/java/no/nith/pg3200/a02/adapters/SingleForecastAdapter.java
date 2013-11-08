@@ -9,14 +9,15 @@ import android.widget.ImageView;
 import android.widget.TextView;
 import java.util.ArrayList;
 import no.nith.pg3200.a02.R;
-import no.nith.pg3200.a02.domain.WeatherData;
+import no.nith.pg3200.a02.domain.Forecast;
+import no.nith.pg3200.a02.utils.Utils;
 
-public class AllForecastsAdapter extends BaseAdapter {
-    private final ArrayList<WeatherData> data;
+public class SingleForecastAdapter extends BaseAdapter {
+    private final ArrayList<Forecast> data;
     private final LayoutInflater inflater;
     private final Activity activity;
 
-    public AllForecastsAdapter(final ArrayList<WeatherData> data, final Activity activity) {
+    public SingleForecastAdapter(final ArrayList<Forecast> data, final Activity activity) {
         this.data = data;
         this.activity = activity;
         this.inflater = activity.getLayoutInflater();
@@ -43,19 +44,18 @@ public class AllForecastsAdapter extends BaseAdapter {
         ViewHolder holder;
 
         if (convertView == null) {
-            convertView = inflater.inflate(R.layout.forecasts_list_row, parent, false);
+            convertView = inflater.inflate(R.layout.forecast_list_row, parent, false);
 
             holder = new ViewHolder();
 
-            holder.txtLonView = (TextView) convertView.findViewById(R.id.lonText);
-            holder.txtLatView = (TextView) convertView.findViewById(R.id.latText);
-            holder.txtDateView = (TextView) convertView.findViewById(R.id.date_txt);
-            holder.imgArrowView = (ImageView) convertView.findViewById(R.id.imgRightArrow);
+            holder.imgIconView = (ImageView) convertView.findViewById(R.id.imgWeatherIcon);
+            holder.txtTimeView = (TextView) convertView.findViewById(R.id.txtHour);
+            holder.txtDeggreesView = (TextView) convertView.findViewById(R.id.txtTemp);
 
-            final WeatherData weatherData = this.data.get(position);
-            holder.txtLatView.setText(String.format(activity.getString(R.string.latitude_text), weatherData.getPosition().latitude));
-            holder.txtLonView.setText(String.format(activity.getString(R.string.longitude_text), weatherData.getPosition().longitude));
-            holder.txtDateView.setText(weatherData.getCreated().toString("dd/M-Y H:mm"));
+            final Forecast forecast = this.data.get(position);
+            holder.imgIconView.setImageResource(Utils.getIcon(forecast.getSymbol()));
+            holder.txtTimeView.setText(forecast.getTime().toString("dd/M H:mm"));
+            holder.txtDeggreesView.setText(String.format(activity.getString(R.string.degrees), forecast.getTemperature()));
 
             convertView.setTag(holder);
         } else {
@@ -66,9 +66,8 @@ public class AllForecastsAdapter extends BaseAdapter {
     }
 
     private static class ViewHolder {
-        TextView txtLatView;
-        TextView txtLonView;
-        TextView txtDateView;
-        ImageView imgArrowView;
+        ImageView imgIconView;
+        TextView txtTimeView;
+        TextView txtDeggreesView;
     }
 }

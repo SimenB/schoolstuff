@@ -1,8 +1,13 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
     <string name="app_name">WeatherMap</string>
-    <string name="forecasts">Forecasts</string>
     <string name="map">Map</string>
+    <string name="forecasts">Forecasts</string>
     <string name="clear_data">Clear saved data</string>
     <string name="clear_all_data">Clear all saved data</string>
+    <string name="latitude_text">Latitude: %f</string>
+    <string name="longitude_text">Longitude: %f</string>
+    <string name="degrees">%.1f &#x2103;</string>
+    <string name="lblTime">Time:</string>
+    <string name="lblTemp">Temperatur:</string>
 </resources>

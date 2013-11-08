@@ -30,7 +30,7 @@ public class MyMapFragment extends MapFragment implements CallbackListener {
         try {
             forecastClickedListener = (OnForecastClickedListener) activity;
         } catch (ClassCastException e) {
-            throw new ClassCastException(activity.toString() + " must implement OnArticleSelectedListener");
+            throw new ClassCastException(activity.toString() + " must implement OnForecastClickedListener");
         }
     }
 
@@ -66,8 +66,6 @@ public class MyMapFragment extends MapFragment implements CallbackListener {
 
     private void openForecast(final Marker marker) {
         final int id = Integer.parseInt(marker.getTitle());
-
-        WeatherData clicked = null;
 
         Log.i("Icon pressed with ID: ", "" + id);
 

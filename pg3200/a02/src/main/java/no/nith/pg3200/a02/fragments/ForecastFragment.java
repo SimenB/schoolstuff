@@ -2,21 +2,41 @@ package no.nith.pg3200.a02.fragments;
 
 import android.app.ListFragment;
 import android.os.Bundle;
+import android.view.View;
+import android.widget.ListView;
+import java.util.ArrayList;
 import no.nith.pg3200.a02.adapters.AllForecastsAdapter;
+import no.nith.pg3200.a02.adapters.SingleForecastAdapter;
+import no.nith.pg3200.a02.domain.Forecast;
 import no.nith.pg3200.a02.domain.WeatherData;
 import no.nith.pg3200.a02.utils.Utils;
-import org.joda.time.DateTime;
 
 /**
  * @author Simen Bekkhus
  */
 public class ForecastFragment extends ListFragment {
 
+    private AllForecastsAdapter allForecastsAdapter;
+    private SingleForecastAdapter forecastAdapter;
+
     @Override
     public void onActivityCreated(final Bundle savedInstanceState) {
         super.onActivityCreated(savedInstanceState);
 
-        AllForecastsAdapter forecastAdapter = new AllForecastsAdapter(Utils.getWeatherDataArray(), getActivity().getLayoutInflater());
+        allForecastsAdapter = new AllForecastsAdapter(Utils.getWeatherDataArray(), getActivity());
+
+        setListAdapter(allForecastsAdapter);
+    }
+
+    @Override
+    public void onListItemClick(final ListView l, final View v, final int position, final long id) {
+        final WeatherData weatherData = Utils.getWeatherDataArray().get(position);
+
+        openSingleForecast(weatherData);
+    }
+
+    private void openSingleForecast(final WeatherData weatherData) {
+        forecastAdapter = new SingleForecastAdapter((ArrayList<Forecast>) weatherData.getForecasts(), getActivity());
 
         setListAdapter(forecastAdapter);
     }
@@ -32,7 +52,7 @@ public class ForecastFragment extends ListFragment {
         }
 
         if (current != null) {
-            final DateTime created = current.getCreated();
+            this.openSingleForecast(current);
         }
     }
 }
