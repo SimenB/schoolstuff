@@ -85,9 +85,7 @@ public class MyMapFragment extends MapFragment implements CallbackListener {
 
     @Override
     public void addWeatherDataToList(final WeatherData weatherData) {
-        weatherDataArray.add(weatherData);
-
-        Utils.getDao().insertWeatherData(weatherData);
+        Utils.addWeatherData(weatherData);
 
         addMarkerToMap(weatherData);
     }

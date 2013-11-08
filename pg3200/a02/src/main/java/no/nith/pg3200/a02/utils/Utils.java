@@ -6,6 +6,7 @@ import java.util.ArrayList;
 import no.nith.pg3200.a02.R;
 import no.nith.pg3200.a02.db.WeatherDataDao;
 import no.nith.pg3200.a02.domain.WeatherData;
+import org.jetbrains.annotations.NotNull;
 
 /**
  * @author Simen Bekkhus
@@ -37,6 +38,7 @@ public final class Utils {
         put(23, R.drawable.img_23);
     }};
     private static ArrayList<WeatherData> weatherDataArray;
+    @NotNull
     private static WeatherDataDao dao;
 
     private Utils() {
@@ -60,5 +62,11 @@ public final class Utils {
 
     public static int getIcon(final int index) {
         return mapIcons.get(index);
+    }
+
+    public static void addWeatherData(final WeatherData weatherData) {
+        weatherDataArray.add(weatherData);
+
+        dao.insertWeatherData(weatherData);
     }
 }

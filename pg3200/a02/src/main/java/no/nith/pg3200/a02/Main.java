@@ -3,6 +3,7 @@ package no.nith.pg3200.a02;
 import android.app.ActionBar;
 import android.app.Activity;
 import android.os.Bundle;
+import android.view.Menu;
 import no.nith.pg3200.a02.fragments.ForecastFragment;
 import no.nith.pg3200.a02.fragments.MyMapFragment;
 import no.nith.pg3200.a02.fragments.MyTabListener;
@@ -24,6 +25,13 @@ public class Main extends Activity {
         //dao.deleteAllData();
 
         Utils.fetchWeatherData();
+    }
+
+    @Override
+    public boolean onCreateOptionsMenu(final Menu menu) {
+        getMenuInflater().inflate(R.menu.my_options_menu, menu);
+
+        return true;
     }
 
     // http://youtu.be/d6uNjVEu7_Q

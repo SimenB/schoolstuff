@@ -3,4 +3,6 @@
     <string name="app_name">WeatherMap</string>
     <string name="forecasts">Forecasts</string>
     <string name="map">Map</string>
+    <string name="clear_data">Clear saved data</string>
+    <string name="clear_all_data">Clear all saved data</string>
 </resources>
