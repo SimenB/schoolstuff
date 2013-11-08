@@ -1,0 +1,47 @@
+<?xml version="1.0" encoding="utf-8"?>
+
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="75dip"
+    android:background="@drawable/list_selector"
+    android:orientation="horizontal"
+    android:padding="@dimen/list_padding">
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:id="@+id/lonText"
+        android:textSize="@dimen/name_text_size"
+        android:text="Longitude: 22513"
+        android:textColor="@color/almost_black" />
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:id="@+id/latText"
+        android:textSize="@dimen/name_text_size"
+        android:text="Latitude: 22513"
+        android:textColor="@color/almost_black"
+        android:layout_alignParentTop="true"
+        android:layout_alignRight="@+id/imgRightArrow" />
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:id="@+id/date_txt"
+        android:textSize="@dimen/name_text_size"
+        android:textColor="@color/almost_black"
+        android:text="20.10.2013 15:45"
+        android:layout_alignParentBottom="true"
+        android:layout_centerHorizontal="true" />
+
+    <ImageView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:id="@+id/imgRightArrow"
+        android:src="@drawable/right_arrow"
+        android:layout_alignParentRight="true"
+        android:layout_centerVertical="true"
+        android:contentDescription="Rigth Arrow" />
+
+</RelativeLayout>

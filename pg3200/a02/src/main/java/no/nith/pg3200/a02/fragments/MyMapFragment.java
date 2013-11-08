@@ -48,17 +48,6 @@ public class MyMapFragment extends MapFragment implements CallbackListener {
 
         drawAllIcons();
 
-//        LocationManager locationManager = (LocationManager) getSystemService(LOCATION_SERVICE);
-//
-//        // Creating a criteria object to retrieve provider
-//        Criteria criteria = new Criteria();
-//
-//        // Getting the name of the best provider
-//        String provider = locationManager.getBestProvider(criteria, true);
-//
-//        // Getting Current Location
-//        Location location = locationManager.getLastKnownLocation(provider);
-
         googleMap.setOnMarkerClickListener(new GoogleMap.OnMarkerClickListener() {
             @Override
             public boolean onMarkerClick(final Marker marker) {

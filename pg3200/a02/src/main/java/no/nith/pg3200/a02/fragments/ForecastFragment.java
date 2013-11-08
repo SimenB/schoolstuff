@@ -2,7 +2,7 @@ package no.nith.pg3200.a02.fragments;
 
 import android.app.ListFragment;
 import android.os.Bundle;
-import no.nith.pg3200.a02.adapters.SingleForecastAdapter;
+import no.nith.pg3200.a02.adapters.AllForecastsAdapter;
 import no.nith.pg3200.a02.domain.WeatherData;
 import no.nith.pg3200.a02.utils.Utils;
 import org.joda.time.DateTime;
@@ -15,6 +15,10 @@ public class ForecastFragment extends ListFragment {
     @Override
     public void onActivityCreated(final Bundle savedInstanceState) {
         super.onActivityCreated(savedInstanceState);
+
+        AllForecastsAdapter forecastAdapter = new AllForecastsAdapter(Utils.getWeatherDataArray(), getActivity().getLayoutInflater());
+
+        setListAdapter(forecastAdapter);
     }
 
     public void showWeatherData(final int hashId) {

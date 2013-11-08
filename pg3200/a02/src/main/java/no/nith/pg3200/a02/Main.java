@@ -17,6 +17,7 @@ public class Main extends Activity implements OnForecastClickedListener {
 
     private MyMapFragment mapFragment;
     private ForecastFragment forecastFragment;
+    private ActionBar actionBar;
 
     @Override
     public void onCreate(final Bundle savedInstanceState) {
@@ -41,7 +42,7 @@ public class Main extends Activity implements OnForecastClickedListener {
 
     // http://youtu.be/d6uNjVEu7_Q
     private void initTabs() {
-        final ActionBar actionBar = getActionBar();
+        actionBar = getActionBar();
         actionBar.setNavigationMode(NAVIGATION_MODE_TABS);
         actionBar.setTitle(getString(R.string.app_name));
 
@@ -60,6 +61,7 @@ public class Main extends Activity implements OnForecastClickedListener {
 
     @Override
     public void showWeatherData(final int hashId) {
+        actionBar.selectTab(actionBar.getTabAt(1));
         forecastFragment.showWeatherData(hashId);
     }
 }
