@@ -6,11 +6,13 @@ import android.os.AsyncTask;
 import android.util.Log;
 import com.google.android.gms.maps.model.LatLng;
 import com.google.gson.GsonBuilder;
+import com.google.gson.JsonArray;
 import com.google.gson.JsonDeserializationContext;
 import com.google.gson.JsonDeserializer;
 import com.google.gson.JsonElement;
 import com.google.gson.JsonObject;
 import com.google.gson.JsonParseException;
+import com.google.gson.JsonParser;
 import com.google.gson.JsonPrimitive;
 import com.google.gson.JsonSerializationContext;
 import com.google.gson.JsonSerializer;
@@ -25,9 +27,6 @@ import java.util.Collections;
 import no.nith.pg3200.a02.domain.WeatherData;
 import org.apache.commons.io.IOUtils;
 import org.joda.time.DateTime;
-import org.json.JSONArray;
-import org.json.JSONException;
-import org.json.JSONObject;
 
 /**
  * @author Simen Bekkhus
@@ -94,13 +93,7 @@ public class LoadJson extends AsyncTask<Void, Integer, String> {
 
         Log.i("WeatherMap", "JSON returned from service: " + s);
 
-        String json = "";
-
-        try {
-            json = convertJson(s);
-        } catch (JSONException e) {
-            e.printStackTrace();
-        }
+        JsonObject json = convertJson(s);
 
         WeatherData weatherData = new GsonBuilder()
                 .registerTypeAdapter(DateTime.class, new DateTimeTypeConverter())
@@ -108,7 +101,7 @@ public class LoadJson extends AsyncTask<Void, Integer, String> {
                 .create()
                 .fromJson(json, WeatherData.class);
 
-        Log.i("mytag", json);
+        Log.i("mytag", json.toString());
 
         Collections.sort(weatherData.getForecasts());
 
@@ -123,46 +116,38 @@ public class LoadJson extends AsyncTask<Void, Integer, String> {
      * @param json
      *         JSON from the Yr-API
      * @return JSON representing the local domain-object
-     * @throws org.json.JSONException
      */
-    private String convertJson(final String json) throws JSONException {
-        final JSONObject weatherdata = new JSONObject(json).getJSONObject("weatherdata");
-        // Get the 'time' array, and put it up a level
-        weatherdata.put("forecasts", weatherdata.getJSONObject("product").getJSONArray("time"));
-        final JSONArray k = weatherdata.getJSONArray("forecasts");
+    private JsonObject convertJson(final String json) {
+        final JsonObject origJsonObject = new JsonParser().parse(json).getAsJsonObject().getAsJsonObject("weatherdata"),
+                newJsonObject = new JsonObject();
 
-        // Remove unneeded objects
-        weatherdata.remove("product");
-        weatherdata.remove("xmlns:xsi");
-        weatherdata.remove("meta");
-        weatherdata.remove("xsi:noNamespaceSchemaLocation");
+        newJsonObject.add("forecasts", origJsonObject.getAsJsonObject("product").getAsJsonArray("time"));
+        newJsonObject.add("created", origJsonObject.getAsJsonPrimitive("created"));
 
-        // Extract position from the first element, as we only need one of them
-        final JSONObject location = ((JSONObject) k.get(0)).getJSONObject("location");
-        final JSONObject position = new JSONObject();
-        position.put("longitude", location.getDouble("longitude"));
-        position.put("latitude", location.getDouble("latitude"));
-        weatherdata.put("position", position);
+        final JsonArray forecasts = newJsonObject.getAsJsonArray("forecasts");
+        final JsonObject location = forecasts.get(0).getAsJsonObject().getAsJsonObject("location");
+        final JsonObject position = new JsonObject();
 
-        for (int i = 0; i < k.length(); i++) {
-            final JSONObject current = (JSONObject) k.get(i);
-            final String time = current.getString("to");
-            final double temperature = current.getJSONObject("location").getJSONObject("temperature").getDouble("value");
+        position.add("longitude", location.getAsJsonPrimitive("longitude"));
+        position.add("latitude", location.getAsJsonPrimitive("latitude"));
+
+        newJsonObject.add("position", position);
+
+        for (int i = 0; i < forecasts.size(); i++) {
+            final JsonObject current = (JsonObject) forecasts.get(i);
+            final String time = current.getAsJsonPrimitive("to").getAsString();
+            final double temperature = current.getAsJsonObject("location").getAsJsonObject("temperature").getAsJsonPrimitive("value").getAsDouble();
 
             current.remove("to");
             current.remove("datatype");
             current.remove("from");
             current.remove("location");
 
-            current.put("time", time);
-            current.put("temperature", temperature);
+            current.addProperty("time", time);
+            current.addProperty("temperature", temperature);
         }
 
-        final String jsonString = weatherdata.toString();
-
-        Log.i("WeatherMap", "JSON after parsing: " + jsonString);
-
-        return jsonString;
+        return newJsonObject;
     }
 
     // Taken from https://sites.google.com/site/gson/gson-type-adapters-for-common-classes
