@@ -45,7 +45,7 @@ public class LoadJson extends AsyncTask<Void, Integer, String> {
 
     @Override
     protected void onPreExecute() {
-        dialog = ProgressDialog.show(context, "Loading", "Loading weather-data, please wait", true);
+        dialog = ProgressDialog.show(context, "Loading", "Loading weather-data, please wait", true, true);
 
         dialog.show();
     }

@@ -5,6 +5,8 @@ import android.app.Fragment;
 import android.app.FragmentTransaction;
 import no.nith.pg3200.a02.R;
 
+import static android.app.ActionBar.Tab;
+
 /**
  * @author Simen Bekkhus
  */
@@ -21,15 +23,15 @@ public class MyTabListener implements ActionBar.TabListener {
     }
 
     @Override
-    public void onTabSelected(final ActionBar.Tab tab, final FragmentTransaction ft) {
+    public void onTabSelected(final Tab tab, final FragmentTransaction ft) {
         ft.replace(R.id.fragment_wrapper, fragment);
     }
 
     @Override
-    public void onTabUnselected(final ActionBar.Tab tab, final FragmentTransaction ft) {
+    public void onTabUnselected(final Tab tab, final FragmentTransaction ft) {
     }
 
     @Override
-    public void onTabReselected(final ActionBar.Tab tab, final FragmentTransaction ft) {
+    public void onTabReselected(final Tab tab, final FragmentTransaction ft) {
     }
 }

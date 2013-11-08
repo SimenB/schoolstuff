@@ -1,18 +1,34 @@
 package no.nith.pg3200.a02.fragments;
 
-import android.app.Fragment;
+import android.app.ListFragment;
 import android.os.Bundle;
-import android.view.LayoutInflater;
-import android.view.View;
-import android.view.ViewGroup;
-import no.nith.pg3200.a02.R;
+import no.nith.pg3200.a02.adapters.SingleForecastAdapter;
+import no.nith.pg3200.a02.domain.WeatherData;
+import no.nith.pg3200.a02.utils.Utils;
+import org.joda.time.DateTime;
 
 /**
  * @author Simen Bekkhus
  */
-public class ForecastFragment extends Fragment {
+public class ForecastFragment extends ListFragment {
+
     @Override
-    public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
-        return inflater.inflate(R.layout.list_view, container, false);
+    public void onActivityCreated(final Bundle savedInstanceState) {
+        super.onActivityCreated(savedInstanceState);
+    }
+
+    public void showWeatherData(final int hashId) {
+        WeatherData current = null;
+
+        for (final WeatherData weatherData : Utils.getWeatherDataArray()) {
+            if (weatherData.hashCode() == hashId) {
+                current = weatherData;
+                break;
+            }
+        }
+
+        if (current != null) {
+            final DateTime created = current.getCreated();
+        }
     }
 }

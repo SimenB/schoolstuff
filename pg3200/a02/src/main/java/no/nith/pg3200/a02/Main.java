@@ -11,8 +11,13 @@ import no.nith.pg3200.a02.utils.Utils;
 
 import static android.app.ActionBar.NAVIGATION_MODE_TABS;
 import static android.app.ActionBar.Tab;
+import static no.nith.pg3200.a02.fragments.MyMapFragment.OnForecastClickedListener;
 
-public class Main extends Activity {
+public class Main extends Activity implements OnForecastClickedListener {
+
+    private MyMapFragment mapFragment;
+    private ForecastFragment forecastFragment;
+
     @Override
     public void onCreate(final Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -43,13 +48,18 @@ public class Main extends Activity {
         final Tab mapTab = actionBar.newTab().setText(getString(R.string.map));
         final Tab forecastTab = actionBar.newTab().setText(getString(R.string.forecasts));
 
-        final MyMapFragment mapFragment = new MyMapFragment();
-        final ForecastFragment forecastFragment = new ForecastFragment();
+        mapFragment = new MyMapFragment();
+        forecastFragment = new ForecastFragment();
 
         mapTab.setTabListener(new MyTabListener(mapFragment));
         forecastTab.setTabListener(new MyTabListener(forecastFragment));
 
         actionBar.addTab(mapTab);
         actionBar.addTab(forecastTab);
+    }
+
+    @Override
+    public void showWeatherData(final int hashId) {
+        forecastFragment.showWeatherData(hashId);
     }
 }

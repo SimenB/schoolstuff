@@ -1,5 +1,6 @@
 package no.nith.pg3200.a02.fragments;
 
+import android.app.Activity;
 import android.os.Bundle;
 import android.util.Log;
 import com.google.android.gms.maps.GoogleMap;
@@ -18,8 +19,20 @@ import no.nith.pg3200.a02.utils.Utils;
  * @author Simen Bekkhus
  */
 public class MyMapFragment extends MapFragment implements CallbackListener {
+    private OnForecastClickedListener forecastClickedListener;
     private GoogleMap googleMap;
     private ArrayList<WeatherData> weatherDataArray;
+
+    // http://developer.android.com/guide/components/fragments.html#EventCallbacks
+    @Override
+    public void onAttach(Activity activity) {
+        super.onAttach(activity);
+        try {
+            forecastClickedListener = (OnForecastClickedListener) activity;
+        } catch (ClassCastException e) {
+            throw new ClassCastException(activity.toString() + " must implement OnArticleSelectedListener");
+        }
+    }
 
     @Override
     public void onActivityCreated(final Bundle savedInstanceState) {
@@ -49,8 +62,7 @@ public class MyMapFragment extends MapFragment implements CallbackListener {
         googleMap.setOnMarkerClickListener(new GoogleMap.OnMarkerClickListener() {
             @Override
             public boolean onMarkerClick(final Marker marker) {
-                String name = marker.getTitle();
-                Log.i("whoop", name);
+                openForecast(marker);
                 return true;
             }
         });
@@ -61,6 +73,16 @@ public class MyMapFragment extends MapFragment implements CallbackListener {
                 fetchWeatherData(latLng);
             }
         });
+    }
+
+    private void openForecast(final Marker marker) {
+        final int id = Integer.parseInt(marker.getTitle());
+
+        WeatherData clicked = null;
+
+        Log.i("Icon pressed with ID: ", "" + id);
+
+        forecastClickedListener.showWeatherData(id);
     }
 
     private void drawAllIcons() {
@@ -98,5 +120,9 @@ public class MyMapFragment extends MapFragment implements CallbackListener {
                 .icon(BitmapDescriptorFactory.fromResource(Utils.getIcon(symbol)))
                 .title("" + weatherData.hashCode())
         );
+    }
+
+    public interface OnForecastClickedListener {
+        public void showWeatherData(final int hashId);
     }
 }
