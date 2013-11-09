@@ -1,6 +1,7 @@
 package no.nith.pg3200.a02.adapters;
 
 import android.app.Activity;
+import android.content.res.Resources;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -14,11 +15,11 @@ import no.nith.pg3200.a02.domain.WeatherData;
 public class AllForecastsAdapter extends BaseAdapter {
     private final ArrayList<WeatherData> data;
     private final LayoutInflater inflater;
-    private final Activity activity;
+    private final Resources resources;
 
     public AllForecastsAdapter(final ArrayList<WeatherData> data, final Activity activity) {
         this.data = data;
-        this.activity = activity;
+        this.resources = activity.getResources();
         this.inflater = activity.getLayoutInflater();
     }
 
@@ -53,8 +54,8 @@ public class AllForecastsAdapter extends BaseAdapter {
             holder.imgArrowView = (ImageView) convertView.findViewById(R.id.imgRightArrow);
 
             final WeatherData weatherData = this.data.get(position);
-            holder.txtLatView.setText(String.format(activity.getString(R.string.latitude_text), weatherData.getPosition().latitude));
-            holder.txtLonView.setText(String.format(activity.getString(R.string.longitude_text), weatherData.getPosition().longitude));
+            holder.txtLatView.setText(String.format(resources.getString(R.string.latitude_text), weatherData.getPosition().latitude));
+            holder.txtLonView.setText(String.format(resources.getString(R.string.longitude_text), weatherData.getPosition().longitude));
             holder.txtDateView.setText(weatherData.getCreated().toString("dd/M-Y H:mm"));
 
             convertView.setTag(holder);

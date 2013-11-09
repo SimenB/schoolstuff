@@ -1,6 +1,7 @@
 package no.nith.pg3200.a02.adapters;
 
 import android.app.Activity;
+import android.content.res.Resources;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -15,11 +16,11 @@ import no.nith.pg3200.a02.utils.Utils;
 public class SingleForecastAdapter extends BaseAdapter {
     private final ArrayList<Forecast> data;
     private final LayoutInflater inflater;
-    private final Activity activity;
+    private final Resources resources;
 
     public SingleForecastAdapter(final ArrayList<Forecast> data, final Activity activity) {
         this.data = data;
-        this.activity = activity;
+        this.resources = activity.getResources();
         this.inflater = activity.getLayoutInflater();
     }
 
@@ -53,9 +54,13 @@ public class SingleForecastAdapter extends BaseAdapter {
             holder.txtDeggreesView = (TextView) convertView.findViewById(R.id.txtTemp);
 
             final Forecast forecast = this.data.get(position);
+            final double temperature = forecast.getTemperature();
+            final int degreeColor = temperature < 0 ? R.color.blue : temperature > 0 ? R.color.red : R.color.almost_black;
+
             holder.imgIconView.setImageResource(Utils.getIcon(forecast.getSymbol()));
             holder.txtTimeView.setText(forecast.getTime().toString("dd/M H:mm"));
-            holder.txtDeggreesView.setText(String.format(activity.getString(R.string.degrees), forecast.getTemperature()));
+            holder.txtDeggreesView.setText(String.format(resources.getString(R.string.degrees), temperature));
+            holder.txtDeggreesView.setTextColor(resources.getColor(degreeColor));
 
             convertView.setTag(holder);
         } else {
