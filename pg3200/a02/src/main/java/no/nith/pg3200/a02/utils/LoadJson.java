@@ -16,7 +16,6 @@ import com.google.gson.JsonParser;
 import com.google.gson.JsonPrimitive;
 import com.google.gson.JsonSerializationContext;
 import com.google.gson.JsonSerializer;
-import java.io.BufferedInputStream;
 import java.io.IOException;
 import java.io.InputStream;
 import java.io.StringWriter;
@@ -54,13 +53,13 @@ public class LoadJson extends AsyncTask<Void, Integer, String> {
     protected String doInBackground(final Void... params) {
         HttpURLConnection connection = null;
         InputStream inputStream = null;
-        StringWriter stringWriter = null;
+        StringWriter stringWriter;
         String res = "";
 
         try {
             URL url = new URL(this.path);
             connection = (HttpURLConnection) url.openConnection();
-            inputStream = new BufferedInputStream(connection.getInputStream());
+            inputStream = connection.getInputStream();
             stringWriter = new StringWriter();
 
             IOUtils.copy(inputStream, stringWriter, "UTF-8");
@@ -71,37 +70,26 @@ public class LoadJson extends AsyncTask<Void, Integer, String> {
             if (connection != null) {
                 connection.disconnect();
             }
-            try {
 
-                if (inputStream != null) {
-                    inputStream.close();
-                }
-
-                if (stringWriter != null) {
-                    stringWriter.close();
-                }
-            } catch (IOException ignored) {
-            }
+            IOUtils.closeQuietly(inputStream);
         }
 
         return res;
     }
 
     @Override
-    protected void onPostExecute(final String s) {
-        super.onPostExecute(s);
+    protected void onPostExecute(final String jsonString) {
+        super.onPostExecute(jsonString);
 
-        Log.i("WeatherMap", "JSON returned from service: " + s);
+        Log.i("WeatherMap", "JSON returned from service: " + jsonString);
 
-        JsonObject json = convertJson(s);
+        JsonObject jsonObject = convertJson(jsonString);
 
         WeatherData weatherData = new GsonBuilder()
                 .registerTypeAdapter(DateTime.class, new DateTimeTypeConverter())
                 .registerTypeAdapter(LatLng.class, new LatLngTypeConverter())
                 .create()
-                .fromJson(json, WeatherData.class);
-
-        Log.i("mytag", json.toString());
+                .fromJson(jsonObject, WeatherData.class);
 
         Collections.sort(weatherData.getForecasts());
 
@@ -146,6 +134,8 @@ public class LoadJson extends AsyncTask<Void, Integer, String> {
             current.addProperty("time", time);
             current.addProperty("temperature", temperature);
         }
+
+        Log.i("WeatherMap", "Json deserialized: " + newJsonObject.toString());
 
         return newJsonObject;
     }
