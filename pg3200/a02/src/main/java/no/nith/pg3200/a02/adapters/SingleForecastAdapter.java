@@ -19,6 +19,7 @@ public class SingleForecastAdapter extends BaseAdapter {
     private final Resources resources;
 
     public SingleForecastAdapter(final ArrayList<Forecast> data, final Activity activity) {
+        if (data.size() != 24) throw new RuntimeException("There should be 24 forecasts, but was " + data.size());
         this.data = data;
         this.resources = activity.getResources();
         this.inflater = activity.getLayoutInflater();

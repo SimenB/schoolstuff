@@ -4,6 +4,7 @@ import android.app.ListFragment;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.ListView;
+import android.widget.Toast;
 import java.util.ArrayList;
 import no.nith.pg3200.a02.adapters.AllForecastsAdapter;
 import no.nith.pg3200.a02.adapters.SingleForecastAdapter;
@@ -23,9 +24,14 @@ public class ForecastFragment extends ListFragment {
     public void onActivityCreated(final Bundle savedInstanceState) {
         super.onActivityCreated(savedInstanceState);
 
-        allForecastsAdapter = new AllForecastsAdapter(Utils.getWeatherDataArray(), getActivity());
+        final ArrayList<WeatherData> weatherDataArray = Utils.getWeatherDataArray();
+        allForecastsAdapter = new AllForecastsAdapter(weatherDataArray, getActivity());
 
         setListAdapter(allForecastsAdapter);
+
+        if (weatherDataArray.isEmpty()) {
+            Toast.makeText(getActivity().getApplicationContext(), "There are no weather-data saved to the system", Toast.LENGTH_LONG).show();
+        }
     }
 
     @Override

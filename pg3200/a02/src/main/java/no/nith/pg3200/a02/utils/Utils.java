@@ -1,6 +1,7 @@
 package no.nith.pg3200.a02.utils;
 
 import android.content.Context;
+import com.google.android.gms.maps.model.Marker;
 import java.util.ArrayList;
 import java.util.List;
 import no.nith.pg3200.a02.R;
@@ -40,21 +41,33 @@ public final class Utils {
     private static ArrayList<WeatherData> weatherDataArray;
     @NotNull
     private static WeatherDataDao dao;
+    private static ArrayList<Marker> markers;
 
     private Utils() {
     }
 
     public static void initUtils(final Context context) {
         dao = new WeatherDataDao(context);
+        markers = new ArrayList<Marker>();
     }
 
     public static ArrayList<WeatherData> getWeatherDataArray() {
         return weatherDataArray;
     }
 
-    @NotNull
-    public static WeatherDataDao getDao() {
-        return dao;
+    public static ArrayList<Marker> getMarkers() {
+        return markers;
+    }
+
+    public static void deleteData(final boolean allData, int... ids) {
+        dao.deleteAllData();
+        weatherDataArray.clear();
+
+        for (final Marker marker : markers) {
+            marker.remove();
+        }
+
+        markers.clear();
     }
 
     public static void fetchWeatherData() {
@@ -69,5 +82,9 @@ public final class Utils {
         weatherDataArray.add(weatherData);
 
         dao.insertWeatherData(weatherData);
+    }
+
+    public static void addMarker(final Marker marker) {
+        markers.add(marker);
     }
 }

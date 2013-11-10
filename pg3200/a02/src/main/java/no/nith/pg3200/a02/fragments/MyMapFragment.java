@@ -102,11 +102,13 @@ public class MyMapFragment extends MapFragment implements CallbackListener {
     private void addMarkerToMap(final WeatherData weatherData) {
         final int symbol = weatherData.getForecasts().get(0).getSymbol();
 
-        googleMap.addMarker(new MarkerOptions()
+        final Marker marker = googleMap.addMarker(new MarkerOptions()
                 .position(weatherData.getPosition())
                 .icon(BitmapDescriptorFactory.fromResource(Utils.getIcon(symbol)))
                 .title("" + weatherData.hashCode())
         );
+
+        Utils.addMarker(marker);
     }
 
     public interface OnForecastClickedListener {

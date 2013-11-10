@@ -34,7 +34,7 @@
         <commons-io.version>2.4</commons-io.version>
         <maps.version>19_r1</maps.version>
         <play-services.version>13</play-services.version>
-        <joda-time.version>2.1</joda-time.version>
+        <joda-time.version>2.3</joda-time.version>
 
         <!-- Maven-stuff -->
         <maven-source-plugin.version>2.2.1</maven-source-plugin.version>

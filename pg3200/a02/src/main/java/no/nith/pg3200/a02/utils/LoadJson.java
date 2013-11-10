@@ -126,6 +126,7 @@ public class LoadJson extends AsyncTask<Void, Integer, String> {
             final String time = current.getAsJsonPrimitive("to").getAsString();
             final double temperature = current.getAsJsonObject("location").getAsJsonObject("temperature").getAsJsonPrimitive("value").getAsDouble();
 
+            // Easier to remove than extracting parts into a new object
             current.remove("to");
             current.remove("datatype");
             current.remove("from");
