@@ -1,0 +1,9 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <dimen name="list_padding">5dip</dimen>
+    <dimen name="text_size">15sp</dimen>
+    <dimen name="margin_forecast_latlng">50dp</dimen>
+    <dimen name="margin_forecast_lbls">25dp</dimen>
+    <dimen name="height_of_location">75dip</dimen>
+    <dimen name="height_of_forecast">50dip</dimen>
+</resources>

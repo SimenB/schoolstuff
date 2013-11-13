@@ -30,14 +30,14 @@ public class Splash extends Activity {
                 "Exercise2", "Exercise3", "Exercise4"
         };
 
-        final ArrayAdapter<String> adapter = new ArrayAdapter<>(this, android.R.layout.simple_list_item_1, listOfExercises);
+        final ArrayAdapter<String> adapter = new ArrayAdapter<String>(this, android.R.layout.simple_list_item_1, listOfExercises);
 
         listView.setAdapter(adapter);
 
         listView.setOnItemClickListener(new AdapterView.OnItemClickListener() {
             @Override
             public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
-                switch (((TextView) view).getText().toString()) {
+                /*switch (((TextView) view).getText().toString()) {
                 case "Exercise2":
                     startActivity(new Intent(context, Exercise2.class));
                     break;
@@ -47,7 +47,7 @@ public class Splash extends Activity {
                 case "Exercise4":
                     startActivity(new Intent(context, Exercise4.class));
                     break;
-                }
+                }*/
             }
         });
     }
