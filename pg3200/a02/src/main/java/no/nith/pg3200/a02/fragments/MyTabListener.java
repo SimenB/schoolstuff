@@ -18,8 +18,8 @@ public class MyTabListener implements ActionBar.TabListener {
         this.fragment = mapFragment;
     }
 
-    public MyTabListener(final ForecastFragment forecastFragment) {
-        this.fragment = forecastFragment;
+    public MyTabListener(final ForecastsFragment forecastsFragment) {
+        this.fragment = forecastsFragment;
     }
 
     @Override

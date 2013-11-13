@@ -158,7 +158,6 @@ public class LoadJson extends AsyncTask<Void, Integer, String> {
     }
 
     private class LatLngTypeConverter implements JsonSerializer<LatLng>, JsonDeserializer<LatLng> {
-        // No need for an InstanceCreator since DateTime provides a no-args constructor
         @Override
         public JsonElement serialize(LatLng src, Type srcType, JsonSerializationContext context) {
             final JsonObject jsonObject = new JsonObject();

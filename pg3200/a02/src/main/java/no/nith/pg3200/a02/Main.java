@@ -2,11 +2,18 @@ package no.nith.pg3200.a02;
 
 import android.app.ActionBar;
 import android.app.Activity;
+import android.app.AlertDialog;
+import android.app.FragmentTransaction;
+import android.content.DialogInterface;
 import android.os.Bundle;
 import android.view.Menu;
-import no.nith.pg3200.a02.fragments.ForecastFragment;
+import android.view.MenuItem;
+import android.widget.Toast;
+import no.nith.pg3200.a02.domain.WeatherData;
+import no.nith.pg3200.a02.fragments.ForecastsFragment;
 import no.nith.pg3200.a02.fragments.MyMapFragment;
 import no.nith.pg3200.a02.fragments.MyTabListener;
+import no.nith.pg3200.a02.fragments.SingleForecastFragment;
 import no.nith.pg3200.a02.utils.Utils;
 
 import static android.app.ActionBar.NAVIGATION_MODE_TABS;
@@ -16,7 +23,8 @@ import static no.nith.pg3200.a02.fragments.MyMapFragment.OnForecastClickedListen
 public class Main extends Activity implements OnForecastClickedListener {
 
     private MyMapFragment mapFragment;
-    private ForecastFragment forecastFragment;
+    private ForecastsFragment forecastsFragment;
+    private SingleForecastFragment singleForecastFragment;
     private ActionBar actionBar;
 
     @Override
@@ -40,6 +48,41 @@ public class Main extends Activity implements OnForecastClickedListener {
         return true;
     }
 
+    @Override
+    public boolean onOptionsItemSelected(final MenuItem item) {
+        switch (item.getItemId()) {
+        case R.id.clear_data:
+            askUserClearData(false);
+            return true;
+        case R.id.clear_all_data:
+            askUserClearData(true);
+            return true;
+        case android.R.id.home:
+            final FragmentTransaction fragmentTransaction = getFragmentManager().beginTransaction();
+            fragmentTransaction.replace(R.id.fragment_wrapper, forecastsFragment);
+            fragmentTransaction.commit();
+            actionBar.setHomeButtonEnabled(false);
+            actionBar.setDisplayHomeAsUpEnabled(false);
+            return true;
+        default:
+            return super.onOptionsItemSelected(item);
+        }
+    }
+
+    private void askUserClearData(final boolean allData) {
+        new AlertDialog.Builder(this)
+                .setTitle("Deleting data")
+                .setMessage("Are you sure you want to delete all items?")
+                .setPositiveButton("Yes", new DialogInterface.OnClickListener() {
+                    @Override
+                    public void onClick(final DialogInterface dialog, final int which) {
+                        Utils.deleteData(true, null);
+                    }
+                })
+                .setNegativeButton("No", null)
+                .show();
+    }
+
     // http://youtu.be/d6uNjVEu7_Q
     private void initTabs() {
         actionBar = getActionBar();
@@ -50,10 +93,11 @@ public class Main extends Activity implements OnForecastClickedListener {
         final Tab forecastTab = actionBar.newTab().setText(getString(R.string.forecasts));
 
         mapFragment = new MyMapFragment();
-        forecastFragment = new ForecastFragment();
+        forecastsFragment = new ForecastsFragment();
+        singleForecastFragment = new SingleForecastFragment();
 
         mapTab.setTabListener(new MyTabListener(mapFragment));
-        forecastTab.setTabListener(new MyTabListener(forecastFragment));
+        forecastTab.setTabListener(new MyTabListener(forecastsFragment));
 
         actionBar.addTab(mapTab);
         actionBar.addTab(forecastTab);
@@ -61,7 +105,22 @@ public class Main extends Activity implements OnForecastClickedListener {
 
     @Override
     public void showWeatherData(final int hashId) {
-        actionBar.selectTab(actionBar.getTabAt(1));
-        forecastFragment.showWeatherData(hashId);
+        actionBar.setSelectedNavigationItem(1);
+
+        for (final WeatherData weatherData : Utils.getWeatherDataArray()) {
+            if (weatherData.hashCode() == hashId) {
+                final FragmentTransaction fragmentTransaction = getFragmentManager().beginTransaction();
+                fragmentTransaction.replace(R.id.fragment_wrapper, singleForecastFragment);
+                fragmentTransaction.commit();
+
+                singleForecastFragment.openForecast(weatherData, this);
+
+                actionBar.setHomeButtonEnabled(true);
+                actionBar.setDisplayHomeAsUpEnabled(true);
+
+                Toast.makeText(this, "Press the Home-key on the actionbar to view all forecast", Toast.LENGTH_SHORT).show();
+                break;
+            }
+        }
     }
 }

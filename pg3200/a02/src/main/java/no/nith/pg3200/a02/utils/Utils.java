@@ -42,6 +42,7 @@ public final class Utils {
     @NotNull
     private static WeatherDataDao dao;
     private static ArrayList<Marker> markers;
+    private static boolean isFirst = true;
 
     private Utils() {
     }
@@ -86,5 +87,13 @@ public final class Utils {
 
     public static void addMarker(final Marker marker) {
         markers.add(marker);
+    }
+
+    public static boolean isFirst() {
+        if (isFirst) {
+            isFirst = false;
+            return true;
+        }
+        return false;
     }
 }

@@ -48,6 +48,9 @@ public class MyMapFragment extends MapFragment implements CallbackListener {
 
         drawAllIcons();
 
+        // Avoid reloading every single time
+        setRetainInstance(true);
+
         googleMap.setOnMarkerClickListener(new GoogleMap.OnMarkerClickListener() {
             @Override
             public boolean onMarkerClick(final Marker marker) {

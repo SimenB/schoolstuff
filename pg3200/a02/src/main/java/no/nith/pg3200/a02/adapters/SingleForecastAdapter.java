@@ -8,17 +8,17 @@ import android.view.ViewGroup;
 import android.widget.BaseAdapter;
 import android.widget.ImageView;
 import android.widget.TextView;
-import java.util.ArrayList;
+import java.util.List;
 import no.nith.pg3200.a02.R;
 import no.nith.pg3200.a02.domain.Forecast;
 import no.nith.pg3200.a02.utils.Utils;
 
 public class SingleForecastAdapter extends BaseAdapter {
-    private final ArrayList<Forecast> data;
+    private final List<Forecast> data;
     private final LayoutInflater inflater;
     private final Resources resources;
 
-    public SingleForecastAdapter(final ArrayList<Forecast> data, final Activity activity) {
+    public SingleForecastAdapter(final List<Forecast> data, final Activity activity) {
         if (data.size() != 24) throw new RuntimeException("There should be 24 forecasts, but was " + data.size());
         this.data = data;
         this.resources = activity.getResources();
