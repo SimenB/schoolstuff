@@ -42,7 +42,6 @@ public final class Utils {
     @NotNull
     private static WeatherDataDao dao;
     private static ArrayList<Marker> markers;
-    private static boolean isFirst = true;
 
     private Utils() {
     }
@@ -53,6 +52,7 @@ public final class Utils {
     }
 
     public static ArrayList<WeatherData> getWeatherDataArray() {
+        if (weatherDataArray == null) fetchWeatherData();
         return weatherDataArray;
     }
 
@@ -60,7 +60,7 @@ public final class Utils {
         return markers;
     }
 
-    public static void deleteData(final boolean allData, int... ids) {
+    public static void deleteData() {
         dao.deleteAllData();
         weatherDataArray.clear();
 
@@ -87,13 +87,5 @@ public final class Utils {
 
     public static void addMarker(final Marker marker) {
         markers.add(marker);
-    }
-
-    public static boolean isFirst() {
-        if (isFirst) {
-            isFirst = false;
-            return true;
-        }
-        return false;
     }
 }

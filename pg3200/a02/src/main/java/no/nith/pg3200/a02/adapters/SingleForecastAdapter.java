@@ -13,13 +13,15 @@ import no.nith.pg3200.a02.R;
 import no.nith.pg3200.a02.domain.Forecast;
 import no.nith.pg3200.a02.utils.Utils;
 
+/**
+ * @author Simen Bekkhus
+ */
 public class SingleForecastAdapter extends BaseAdapter {
     private final List<Forecast> data;
     private final LayoutInflater inflater;
     private final Resources resources;
 
     public SingleForecastAdapter(final List<Forecast> data, final Activity activity) {
-        if (data.size() != 24) throw new RuntimeException("There should be 24 forecasts, but was " + data.size());
         this.data = data;
         this.resources = activity.getResources();
         this.inflater = activity.getLayoutInflater();
@@ -31,49 +33,33 @@ public class SingleForecastAdapter extends BaseAdapter {
     }
 
     @Override
-    public Object getItem(int position) {
+    public Forecast getItem(final int position) {
         return data.get(position);
     }
 
     @Override
-    public long getItemId(int position) {
+    public long getItemId(final int position) {
         return position;
     }
 
     // Way of doing it stolen from here: http://youtu.be/N6YdwzAvwOA
     @Override
-    public View getView(int position, View convertView, ViewGroup parent) {
-        ViewHolder holder;
+    public View getView(final int position, final View convertView, final ViewGroup parent) {
+        final View view = inflater.inflate(R.layout.forecast_list_row, parent, false);
 
-        if (convertView == null) {
-            convertView = inflater.inflate(R.layout.forecast_list_row, parent, false);
+        final ImageView imgIconView = (ImageView) view.findViewById(R.id.imgWeatherIcon);
+        final TextView txtTimeView = (TextView) view.findViewById(R.id.txtHour);
+        final TextView txtDegreesView = (TextView) view.findViewById(R.id.txtTemp);
 
-            holder = new ViewHolder();
+        final Forecast forecast = this.getItem(position);
+        final double temperature = forecast.getTemperature();
+        final int degreeColor = temperature < 0 ? R.color.blue : temperature > 0 ? R.color.red : R.color.almost_black;
 
-            holder.imgIconView = (ImageView) convertView.findViewById(R.id.imgWeatherIcon);
-            holder.txtTimeView = (TextView) convertView.findViewById(R.id.txtHour);
-            holder.txtDeggreesView = (TextView) convertView.findViewById(R.id.txtTemp);
+        imgIconView.setImageResource(Utils.getIcon(forecast.getSymbol()));
+        txtTimeView.setText(forecast.getTime().toString("dd/M H:mm"));
+        txtDegreesView.setText(String.format(resources.getString(R.string.degrees), temperature));
+        txtDegreesView.setTextColor(resources.getColor(degreeColor));
 
-            final Forecast forecast = this.data.get(position);
-            final double temperature = forecast.getTemperature();
-            final int degreeColor = temperature < 0 ? R.color.blue : temperature > 0 ? R.color.red : R.color.almost_black;
-
-            holder.imgIconView.setImageResource(Utils.getIcon(forecast.getSymbol()));
-            holder.txtTimeView.setText(forecast.getTime().toString("dd/M H:mm"));
-            holder.txtDeggreesView.setText(String.format(resources.getString(R.string.degrees), temperature));
-            holder.txtDeggreesView.setTextColor(resources.getColor(degreeColor));
-
-            convertView.setTag(holder);
-        } else {
-            holder = (ViewHolder) convertView.getTag();
-        }
-
-        return convertView;
-    }
-
-    private static class ViewHolder {
-        ImageView imgIconView;
-        TextView txtTimeView;
-        TextView txtDeggreesView;
+        return view;
     }
 }

@@ -20,17 +20,24 @@ import no.nith.pg3200.a02.utils.Utils;
  */
 public class MyMapFragment extends MapFragment implements CallbackListener {
     private OnForecastClickedListener forecastClickedListener;
+    private OnForecastAddedListener forecastAddedListener;
     private GoogleMap googleMap;
     private ArrayList<WeatherData> weatherDataArray;
+    private boolean myLocationEnabled = false;
 
     // http://developer.android.com/guide/components/fragments.html#EventCallbacks
     @Override
-    public void onAttach(Activity activity) {
+    public void onAttach(final Activity activity) {
         super.onAttach(activity);
         try {
             forecastClickedListener = (OnForecastClickedListener) activity;
         } catch (ClassCastException e) {
             throw new ClassCastException(activity.toString() + " must implement OnForecastClickedListener");
+        }
+        try {
+            forecastAddedListener = (OnForecastAddedListener) activity;
+        } catch (ClassCastException e) {
+            throw new ClassCastException(activity.toString() + " must implement OnForecastAddedListener");
         }
     }
 
@@ -39,10 +46,6 @@ public class MyMapFragment extends MapFragment implements CallbackListener {
         super.onActivityCreated(savedInstanceState);
 
         googleMap = getMap();
-
-        googleMap.setMyLocationEnabled(true);
-
-        Utils.fetchWeatherData();
 
         weatherDataArray = Utils.getWeatherDataArray();
 
@@ -99,6 +102,8 @@ public class MyMapFragment extends MapFragment implements CallbackListener {
     public void addWeatherDataToList(final WeatherData weatherData) {
         Utils.addWeatherData(weatherData);
 
+        forecastAddedListener.newDataAdded();
+
         addMarkerToMap(weatherData);
     }
 
@@ -114,7 +119,19 @@ public class MyMapFragment extends MapFragment implements CallbackListener {
         Utils.addMarker(marker);
     }
 
+    /**
+     * Toggle the My Location indicator
+     */
+    public void activateLocation() {
+        myLocationEnabled = !myLocationEnabled;
+        googleMap.setMyLocationEnabled(myLocationEnabled);
+    }
+
     public interface OnForecastClickedListener {
         public void showWeatherData(final int hashId);
+    }
+
+    public interface OnForecastAddedListener {
+        public void newDataAdded();
     }
 }

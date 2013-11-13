@@ -18,10 +18,13 @@ import no.nith.pg3200.a02.utils.Utils;
 
 import static android.app.ActionBar.NAVIGATION_MODE_TABS;
 import static android.app.ActionBar.Tab;
+import static no.nith.pg3200.a02.fragments.MyMapFragment.OnForecastAddedListener;
 import static no.nith.pg3200.a02.fragments.MyMapFragment.OnForecastClickedListener;
 
-public class Main extends Activity implements OnForecastClickedListener {
-
+/**
+ * @author Simen Bekkhus
+ */
+public class Main extends Activity implements OnForecastClickedListener, OnForecastAddedListener {
     private MyMapFragment mapFragment;
     private ForecastsFragment forecastsFragment;
     private SingleForecastFragment singleForecastFragment;
@@ -35,10 +38,6 @@ public class Main extends Activity implements OnForecastClickedListener {
         initTabs();
 
         Utils.initUtils(this);
-
-        //dao.deleteAllData();
-
-        Utils.fetchWeatherData();
     }
 
     @Override
@@ -51,11 +50,11 @@ public class Main extends Activity implements OnForecastClickedListener {
     @Override
     public boolean onOptionsItemSelected(final MenuItem item) {
         switch (item.getItemId()) {
-        case R.id.clear_data:
-            askUserClearData(false);
+        case R.id.activate_location:
+            mapFragment.activateLocation();
             return true;
         case R.id.clear_all_data:
-            askUserClearData(true);
+            askUserClearData();
             return true;
         case android.R.id.home:
             final FragmentTransaction fragmentTransaction = getFragmentManager().beginTransaction();
@@ -69,18 +68,23 @@ public class Main extends Activity implements OnForecastClickedListener {
         }
     }
 
-    private void askUserClearData(final boolean allData) {
+    private void askUserClearData() {
         new AlertDialog.Builder(this)
-                .setTitle("Deleting data")
-                .setMessage("Are you sure you want to delete all items?")
-                .setPositiveButton("Yes", new DialogInterface.OnClickListener() {
+                .setTitle(getString(R.string.delete_data_title))
+                .setMessage(getString(R.string.delete_data_text))
+                .setPositiveButton(getString(R.string.yes), new DialogInterface.OnClickListener() {
                     @Override
                     public void onClick(final DialogInterface dialog, final int which) {
                         Utils.deleteData(true, null);
                     }
                 })
-                .setNegativeButton("No", null)
+                .setNegativeButton(getString(R.string.no), null)
                 .show();
+    }
+
+    @Override
+    public void onBackPressed() {
+        // TODO: Should something be done?
     }
 
     // http://youtu.be/d6uNjVEu7_Q
@@ -96,8 +100,8 @@ public class Main extends Activity implements OnForecastClickedListener {
         forecastsFragment = new ForecastsFragment();
         singleForecastFragment = new SingleForecastFragment();
 
-        mapTab.setTabListener(new MyTabListener(mapFragment));
-        forecastTab.setTabListener(new MyTabListener(forecastsFragment));
+        mapTab.setTabListener(new MyTabListener(mapFragment, actionBar));
+        forecastTab.setTabListener(new MyTabListener(forecastsFragment, actionBar));
 
         actionBar.addTab(mapTab);
         actionBar.addTab(forecastTab);
@@ -113,14 +117,20 @@ public class Main extends Activity implements OnForecastClickedListener {
                 fragmentTransaction.replace(R.id.fragment_wrapper, singleForecastFragment);
                 fragmentTransaction.commit();
 
-                singleForecastFragment.openForecast(weatherData, this);
-
                 actionBar.setHomeButtonEnabled(true);
                 actionBar.setDisplayHomeAsUpEnabled(true);
 
-                Toast.makeText(this, "Press the Home-key on the actionbar to view all forecast", Toast.LENGTH_SHORT).show();
+                singleForecastFragment.openForecast(weatherData, this);
+
+                Toast.makeText(this, getString(R.string.navigate_to_forecasts), Toast.LENGTH_LONG).show();
                 break;
             }
         }
+    }
+
+    @Override
+    public void newDataAdded() {
+        forecastsFragment.notifyAdapter();
+        singleForecastFragment.notifyAdapter();
     }
 }

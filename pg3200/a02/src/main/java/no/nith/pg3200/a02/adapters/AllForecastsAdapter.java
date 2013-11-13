@@ -12,6 +12,9 @@ import java.util.ArrayList;
 import no.nith.pg3200.a02.R;
 import no.nith.pg3200.a02.domain.WeatherData;
 
+/**
+ * @author Simen Bekkhus
+ */
 public class AllForecastsAdapter extends BaseAdapter {
     private final ArrayList<WeatherData> data;
     private final LayoutInflater inflater;
@@ -29,47 +32,29 @@ public class AllForecastsAdapter extends BaseAdapter {
     }
 
     @Override
-    public Object getItem(int position) {
+    public WeatherData getItem(final int position) {
         return data.get(position);
     }
 
     @Override
-    public long getItemId(int position) {
+    public long getItemId(final int position) {
         return position;
     }
 
-    // Way of doing it stolen from here: http://youtu.be/N6YdwzAvwOA
     @Override
-    public View getView(int position, View convertView, ViewGroup parent) {
-        ViewHolder holder;
+    public View getView(final int position, final View convertView, final ViewGroup parent) {
+        final View view = inflater.inflate(R.layout.forecasts_list_row, parent, false);
 
-        if (convertView == null) {
-            convertView = inflater.inflate(R.layout.forecasts_list_row, parent, false);
+        final TextView txtLonView = (TextView) view.findViewById(R.id.lonText);
+        final TextView txtLatView = (TextView) view.findViewById(R.id.latText);
+        final TextView txtDateView = (TextView) view.findViewById(R.id.date_txt);
+        final ImageView imgArrowView = (ImageView) view.findViewById(R.id.imgRightArrow);
 
-            holder = new ViewHolder();
+        final WeatherData weatherData = this.getItem(position);
+        txtLatView.setText(String.format(resources.getString(R.string.latitude_text), weatherData.getPosition().latitude));
+        txtLonView.setText(String.format(resources.getString(R.string.longitude_text), weatherData.getPosition().longitude));
+        txtDateView.setText(weatherData.getCreated().toString("dd/M-Y H:mm"));
 
-            holder.txtLonView = (TextView) convertView.findViewById(R.id.lonText);
-            holder.txtLatView = (TextView) convertView.findViewById(R.id.latText);
-            holder.txtDateView = (TextView) convertView.findViewById(R.id.date_txt);
-            holder.imgArrowView = (ImageView) convertView.findViewById(R.id.imgRightArrow);
-
-            final WeatherData weatherData = this.data.get(position);
-            holder.txtLatView.setText(String.format(resources.getString(R.string.latitude_text), weatherData.getPosition().latitude));
-            holder.txtLonView.setText(String.format(resources.getString(R.string.longitude_text), weatherData.getPosition().longitude));
-            holder.txtDateView.setText(weatherData.getCreated().toString("dd/M-Y H:mm"));
-
-            convertView.setTag(holder);
-        } else {
-            holder = (ViewHolder) convertView.getTag();
-        }
-
-        return convertView;
-    }
-
-    private static class ViewHolder {
-        TextView txtLatView;
-        TextView txtLonView;
-        TextView txtDateView;
-        ImageView imgArrowView;
+        return view;
     }
 }

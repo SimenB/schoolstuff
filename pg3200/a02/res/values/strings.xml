@@ -3,11 +3,17 @@
     <string name="app_name">WeatherMap</string>
     <string name="map">Map</string>
     <string name="forecasts">Forecasts</string>
-    <string name="clear_data">Clear saved data</string>
+    <string name="activate_location">Activate My Location</string>
     <string name="clear_all_data">Clear all saved data</string>
+    <string name="delete_data_title">Deleting data</string>
+    <string name="delete_data_text">Are you sure you want to delete all items?</string>
     <string name="latitude_text">Latitude: %f</string>
     <string name="longitude_text">Longitude: %f</string>
     <string name="degrees">%.1f &#x2103;</string>
     <string name="lblTime">Time:</string>
     <string name="lblTemp">Temperatur:</string>
+    <string name="navigate_to_forecasts">Press the Home-key on the actionbar to view all forecast</string>
+    <string name="lat_lng">Lat: %1$.4f, Lon: %2$.4f</string>
+    <string name="yes">Yes</string>
+    <string name="no">No</string>
 </resources>

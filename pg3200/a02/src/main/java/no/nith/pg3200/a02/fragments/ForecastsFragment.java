@@ -39,7 +39,9 @@ public class ForecastsFragment extends ListFragment {
         ((Main) getActivity()).showWeatherData(weatherDataHash);
     }
 
-    //http://developer.android.com/guide/components/fragments.html#EventCallbacks
-    //http://developer.android.com/reference/android/app/ListFragment.html
-    //http://www.sitepoint.com/10-reasons-use-angularjs/
+    public void notifyAdapter() {
+        if (allForecastsAdapter != null) {
+            allForecastsAdapter.notifyDataSetChanged();
+        }
+    }
 }
