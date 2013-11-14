@@ -25,12 +25,16 @@
         <hibernate.version>4.2.6.Final</hibernate.version>
         <mysql-connector-java.version>5.1.26</mysql-connector-java.version>
         <junit.version>4.11</junit.version>
-        <android.platform.version>4.3_r1</android.platform.version>
-        <android.plugin.version>3.7.0</android.plugin.version>
-        <android.api.version>18</android.api.version>
+        <android.platform.version>4.4_r1</android.platform.version>
+        <android.plugin.version>3.7.1-SNAPSHOT</android.plugin.version>
+        <android.api.version>19</android.api.version>
         <gson.version>2.2.4</gson.version>
         <tic-tac-toe.version>1.0-SNAPSHOT</tic-tac-toe.version>
         <annotations.version>12.0</annotations.version>
+        <commons-io.version>2.4</commons-io.version>
+        <maps.version>19_r1</maps.version>
+        <play-services.version>13</play-services.version>
+        <joda-time.version>2.3</joda-time.version>
 
         <!-- Maven-stuff -->
         <maven-source-plugin.version>2.2.1</maven-source-plugin.version>
@@ -60,6 +64,18 @@
             </snapshots>
         </repository>
     </repositories>
+
+    <!-- TODO: Remove-->
+    <pluginRepositories>
+        <pluginRepository>
+            <id>oss.sonatype.org-jayway-snapshots</id>
+            <name>Jayway OpenSource SNAPSHOTs on Sonatype.org</name>
+            <url>http://oss.sonatype.org/content/repositories/jayway-snapshots/</url>
+            <snapshots>
+                <enabled>true</enabled>
+            </snapshots>
+        </pluginRepository>
+    </pluginRepositories>
 
     <dependencyManagement>
         <dependencies>
@@ -98,6 +114,33 @@
                 <groupId>com.intellij</groupId>
                 <artifactId>annotations</artifactId>
                 <version>${annotations.version}</version>
+            </dependency>
+            <dependency>
+                <groupId>commons-io</groupId>
+                <artifactId>commons-io</artifactId>
+                <version>${commons-io.version}</version>
+            </dependency>
+            <dependency>
+                <groupId>com.google.android.maps</groupId>
+                <artifactId>maps</artifactId>
+                <version>${maps.version}</version>
+                <scope>provided</scope>
+            </dependency>
+            <dependency>
+                <groupId>com.google.android.gms</groupId>
+                <artifactId>google-play-services</artifactId>
+                <version>${play-services.version}</version>
+                <type>apklib</type>
+            </dependency>
+            <dependency>
+                <groupId>com.google.android.gms</groupId>
+                <artifactId>google-play-services</artifactId>
+                <version>${play-services.version}</version>
+            </dependency>
+            <dependency>
+                <groupId>joda-time</groupId>
+                <artifactId>joda-time</artifactId>
+                <version>${joda-time.version}</version>
             </dependency>
 
             <dependency>

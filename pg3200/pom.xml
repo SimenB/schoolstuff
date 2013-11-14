@@ -16,5 +16,6 @@
     <modules>
         <module>exercises</module>
         <module>a01</module>
+        <module>a02</module>
     </modules>
 </project>

@@ -1,0 +1,63 @@
+<?xml version="1.0" encoding="utf-8"?>
+
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="@dimen/height_of_forecast"
+    android:background="@drawable/list_selector"
+    android:orientation="horizontal"
+    android:padding="@dimen/list_padding">
+
+    <ImageView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:id="@+id/imgWeatherIcon"
+        android:src="@drawable/img_1"
+        android:contentDescription="Weather Icon"
+        android:layout_centerVertical="true"
+        android:layout_alignParentLeft="true" />
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:id="@+id/lblHour"
+        android:textSize="@dimen/text_size"
+        android:text="@string/lblTime"
+        android:textColor="@color/almost_black"
+        android:layout_alignParentTop="true"
+        android:layout_toRightOf="@+id/imgWeatherIcon"
+        android:layout_marginLeft="@dimen/margin_forecast_latlng" />
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:id="@+id/lblTmp"
+        android:textSize="@dimen/text_size"
+        android:text="@string/lblTemp"
+        android:textColor="@color/almost_black"
+        android:layout_alignParentBottom="true"
+        android:layout_toRightOf="@+id/imgWeatherIcon"
+        android:layout_marginLeft="@dimen/margin_forecast_latlng" />
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:id="@+id/txtHour"
+        android:textSize="@dimen/text_size"
+        android:text="27.10.2013 11:00"
+        android:textColor="@color/almost_black"
+        android:layout_alignBottom="@+id/lblHour"
+        android:layout_toRightOf="@+id/lblTmp"
+        android:layout_marginLeft="@dimen/margin_forecast_lbls" />
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:id="@+id/txtTemp"
+        android:textSize="@dimen/text_size"
+        android:text="@string/degrees"
+        android:textColor="@color/almost_black"
+        android:layout_alignParentBottom="true"
+        android:layout_toRightOf="@+id/lblTmp"
+        android:layout_marginLeft="@dimen/margin_forecast_lbls" />
+
+</RelativeLayout>
