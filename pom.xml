@@ -77,7 +77,7 @@
             <dependency>
                 <groupId>org.hibernate</groupId>
                 <artifactId>hibernate-entitymanager</artifactId>
-                <version>${hibernate-entitymanager.version}</version>
+                <version>${hibernate.version}</version>
             </dependency>
             <dependency>
                 <groupId>mysql</groupId>
