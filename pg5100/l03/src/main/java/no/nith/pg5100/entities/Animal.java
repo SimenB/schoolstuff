@@ -1,6 +1,5 @@
 package no.nith.pg5100.entities;
 
-import com.sun.javafx.beans.annotations.NonNull;
 import java.util.List;
 import javax.persistence.Column;
 import javax.persistence.Entity;
@@ -14,7 +13,6 @@ public class Animal {
     @GeneratedValue
     private int id;
     private int numberOfVotes;
-    @NonNull
     @Column(unique = true)
     private String name;
     @OneToMany
