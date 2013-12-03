@@ -4,17 +4,18 @@
     <modelVersion>4.0.0</modelVersion>
 
     <parent>
-        <artifactId>pg5100</artifactId>
+        <artifactId>pg5100-exam</artifactId>
         <groupId>no.nith</groupId>
         <version>1.0-SNAPSHOT</version>
     </parent>
 
-    <artifactId>pg5100-exam</artifactId>
+    <artifactId>task2</artifactId>
+    <name>Task 2 - JEE7</name>
     <packaging>pom</packaging>
-    <name>PG5100-Exam</name>
 
     <modules>
-        <module>task1</module>
-        <module>task2</module>
+        <module>ear</module>
+        <module>ejb</module>
+        <module>web</module>
     </modules>
 </project>
