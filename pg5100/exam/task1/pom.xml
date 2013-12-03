@@ -1,22 +1,21 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns="http://maven.apache.org/POM/4.0.0"
-    xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
+         xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
     <modelVersion>4.0.0</modelVersion>
 
     <parent>
-        <artifactId>schoolstuff</artifactId>
+        <artifactId>pg5100-exam</artifactId>
         <groupId>no.nith</groupId>
         <version>1.0-SNAPSHOT</version>
     </parent>
 
-    <artifactId>pg5100</artifactId>
+    <artifactId>task1</artifactId>
+    <name>Task 1 - RMI</name>
     <packaging>pom</packaging>
-    <name>PG5100</name>
 
     <modules>
-        <module>l03</module>
-        <module>l04</module>
-        <module>l07</module>
-        <module>exam</module>
+        <module>client</module>
+        <module>interface</module>
+        <module>server</module>
     </modules>
 </project>

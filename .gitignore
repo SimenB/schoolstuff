@@ -223,3 +223,5 @@ pip-log.txt
 *.iml
 target/
 gen-external-apklibs
+gen/
+
