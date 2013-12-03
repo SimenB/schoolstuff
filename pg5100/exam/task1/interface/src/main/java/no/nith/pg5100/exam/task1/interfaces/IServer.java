@@ -9,9 +9,11 @@ import java.util.List;
  * @author Simen Bekkhus
  */
 public interface IServer extends Remote {
-    void login(IClient client, String nick) throws RemoteException;
+    void logIn(IClient client, String nick) throws RemoteException;
 
-    List<String> subscribeToWords(String nick, String[] keywords) throws RemoteException;
+    void logOut(String nick) throws RemoteException;
 
-    void broadcastMessage(String nick, String[] keywords, String message) throws RemoteException;
+    ArrayList<String> subscribeToWords(String nick, List<String> keywords) throws RemoteException;
+
+    void broadcastMessage(String nick, List<String> keywords, String message) throws RemoteException;
 }

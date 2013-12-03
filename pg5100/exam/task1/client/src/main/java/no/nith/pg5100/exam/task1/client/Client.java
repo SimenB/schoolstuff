@@ -8,6 +8,9 @@ import java.rmi.NotBoundException;
 import java.rmi.RemoteException;
 import java.rmi.registry.LocateRegistry;
 import java.rmi.registry.Registry;
+import java.util.ArrayList;
+import java.util.Arrays;
+import java.util.List;
 import java.util.Scanner;
 
 /**
@@ -26,27 +29,57 @@ public class Client {
         System.out.print("Please enter your name: ");
         String name = scanner.nextLine();
 
-        System.out.print("please enter the words you which to subscribe to (CSV): ");
-        String[] words = scanner.nextLine().split(",");
-
-        System.out.println();
-
-        service.login(new ClientImpl(), name);
-
-        service.subscribeToWords(name, words);
+        service.logIn(new ClientImpl(), name);
 
         messageloop(service, name);
     }
 
     private static void messageloop(final IServer service, final String name) throws RemoteException {
         for (; ; ) {
-            System.out.print("Enter the keywords you want to use for your message (CSV): ");
-            String[] words = scanner.nextLine().split(",");
+            System.out.println("What do you want to do?");
+            System.out.println("1: Publish a message");
+            System.out.println("2: Subscribe to keywords");
+            System.out.println("-1: Log out");
 
-            System.out.print("Enter your message: ");
-            String message = scanner.nextLine();
+            final int choice = Integer.parseInt(scanner.nextLine());
 
-            service.broadcastMessage(name, words, message);
+            switch (choice) {
+            case 1:
+                newMessage(service, name);
+                break;
+            case 2:
+                subscribeToWords(service, name);
+                break;
+            case -1:
+                service.logOut(name);
+                System.exit(0);
+            default:
+                System.out.println("Please enter a valid option");
+                break;
+            }
         }
+    }
+
+    private static void subscribeToWords(final IServer service, final String name) throws RemoteException {
+        System.out.print("Please enter the words you which to subscribe to (CSV): ");
+        final List<String> keywords = getKeywords();
+        final ArrayList<String> subscribedWords = service.subscribeToWords(name, keywords);
+
+        System.out.println(name + " is now subscribed to " + subscribedWords.toString());
+    }
+
+    private static List<String> getKeywords() {
+        String[] strings = scanner.nextLine().split(",");
+        return Arrays.asList(strings);
+    }
+
+    private static void newMessage(final IServer service, final String name) throws RemoteException {
+        System.out.print("Enter the keywords you want to use for your message (CSV): ");
+        final List<String> keywords = getKeywords();
+
+        System.out.print("Enter your message: ");
+        String message = scanner.nextLine();
+
+        service.broadcastMessage(name, keywords, message);
     }
 }
