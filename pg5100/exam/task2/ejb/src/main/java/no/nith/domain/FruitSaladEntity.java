@@ -10,37 +10,39 @@ import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
 import javax.persistence.Table;
 
+import java.io.Serializable;
+
 /**
  * @author Simen Bekkhus
  */
 @Entity
 @Table(name = "FRUIT_SALAD", schema = "BEKSIM_EXAM", catalog = "")
-public class FruitSaladEntity {
+public class FruitSaladEntity implements Serializable {
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
     @Column(name = "SALAD_ID", nullable = false, insertable = true, updatable = true, length = 10)
     private int saladId;
-
     @Column(name = "NAME", nullable = false, insertable = true, updatable = true, length = 255)
     private String name;
-
     @Column(name = "PRICE", nullable = false, insertable = true, updatable = true, length = 23)
     private float price;
-
     @Basic
     @Column(name = "INSTRUCTIONS", nullable = true, insertable = true, updatable = true, length = 1023)
     private String instructions;
-
     @ManyToOne
     @JoinColumn(name = "FK_FRUITSALAD_CUSTOMER", referencedColumnName = "CUSTOMER_ID", nullable = false)
     private CustomerEntity customerByFkFruitsaladCustomer;
 
-    public int getSaladId() {
-        return saladId;
+    protected FruitSaladEntity() {
     }
 
-    public void setSaladId(final int saladId) {
-        this.saladId = saladId;
+    public FruitSaladEntity(final String name, final CustomerEntity customerByFkFruitsaladCustomer) {
+        this.name = name;
+        this.customerByFkFruitsaladCustomer = customerByFkFruitsaladCustomer;
+    }
+
+    public int getSaladId() {
+        return saladId;
     }
 
     public String getName() {

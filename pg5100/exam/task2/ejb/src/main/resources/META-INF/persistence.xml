@@ -4,7 +4,7 @@
     http://java.sun.com/xml/ns/persistence/persistence_2_0.xsd" version="2.0">
     <persistence-unit name="PG5100">
         <properties>
-            <property name="hibernate.ejb.cfgfile" value="/hibernate.cfg.xml" />
+            <property name="hibernate.ejb.cfgfile" value="/hibernate.cfg.xml"/>
             <!-- Remove before production (which MIGHT not happen to this project) -->
             <property name="hibernate.hbm2ddl.auto" value="create"/>
             <property name="hibernate.archive.autodetection" value="class, hbm"/>

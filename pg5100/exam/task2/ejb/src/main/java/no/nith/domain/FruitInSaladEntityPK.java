@@ -2,7 +2,6 @@ package no.nith.domain;
 
 import javax.persistence.Column;
 import javax.persistence.Embeddable;
-import javax.persistence.Id;
 
 import java.io.Serializable;
 
@@ -13,16 +12,19 @@ import java.io.Serializable;
 public class FruitInSaladEntityPK implements Serializable {
     @Column(name = "FK_FRUITINSALAD_FRUITSALAD", nullable = false, insertable = true, updatable = true, length = 10)
     protected int fkFruitinsaladFruitsalad;
-
     @Column(name = "FK_FRUITINSALAD_FRUIT", nullable = false, insertable = true, updatable = true, length = 10)
     protected int fkFruitinsaladFruit;
 
-    public int getFkFruitinsaladFruitsalad() {
-        return fkFruitinsaladFruitsalad;
+    protected FruitInSaladEntityPK() {
     }
 
-    public void setFkFruitinsaladFruitsalad(final int fkFruitinsaladFruitsalad) {
+    public FruitInSaladEntityPK(final int fkFruitinsaladFruitsalad, final int fkFruitinsaladFruit) {
         this.fkFruitinsaladFruitsalad = fkFruitinsaladFruitsalad;
+        this.fkFruitinsaladFruit = fkFruitinsaladFruit;
+    }
+
+    public int getFkFruitinsaladFruitsalad() {
+        return fkFruitinsaladFruitsalad;
     }
 
     public int getFkFruitinsaladFruit() {

@@ -7,26 +7,30 @@ import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.Table;
 
+import java.io.Serializable;
+
 /**
  * @author Simen Bekkhus
  */
 @Entity
 @Table(name = "CUSTOMER", schema = "BEKSIM_EXAM", catalog = "")
-public class CustomerEntity {
+public class CustomerEntity implements Serializable {
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
     @Column(name = "CUSTOMER_ID", nullable = false, insertable = false, updatable = false, length = 10)
     private int customerId;
-
     @Column(name = "NAME", nullable = false)
     private String name;
 
-    public int getCustomerId() {
-        return customerId;
+    public CustomerEntity(final String name) {
+        this.name = name;
     }
 
-    public void setCustomerId(final int customerId) {
-        this.customerId = customerId;
+    protected CustomerEntity() {
+    }
+
+    public int getCustomerId() {
+        return customerId;
     }
 
     public String getName() {

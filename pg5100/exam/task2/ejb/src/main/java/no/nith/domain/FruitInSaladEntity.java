@@ -5,24 +5,29 @@ import javax.persistence.EmbeddedId;
 import javax.persistence.Entity;
 import javax.persistence.Table;
 
+import java.io.Serializable;
+
 /**
  * @author Simen Bekkhus
  */
 @Entity
 @Table(name = "FRUIT_IN_SALAD", schema = "BEKSIM_EXAM", catalog = "")
-public class FruitInSaladEntity {
+public class FruitInSaladEntity implements Serializable {
     @EmbeddedId
     private FruitInSaladEntityPK fruitInSaladEntityPK;
-
     @Column(name = "NUMBER_OF_SINGLE_FRUIT", nullable = false, insertable = true, updatable = true, length = 10)
     private int numberOfSingleFruit;
 
-    public FruitInSaladEntityPK getFruitInSaladEntityPK() {
-        return fruitInSaladEntityPK;
+    protected FruitInSaladEntity() {
     }
 
-    public void setFruitInSaladEntityPK(final FruitInSaladEntityPK fruitInSaladEntityPK) {
+    public FruitInSaladEntity(final FruitInSaladEntityPK fruitInSaladEntityPK, final int numberOfSingleFruit) {
         this.fruitInSaladEntityPK = fruitInSaladEntityPK;
+        this.numberOfSingleFruit = numberOfSingleFruit;
+    }
+
+    public FruitInSaladEntityPK getFruitInSaladEntityPK() {
+        return fruitInSaladEntityPK;
     }
 
     public int getNumberOfSingleFruit() {
@@ -31,6 +36,13 @@ public class FruitInSaladEntity {
 
     public void setNumberOfSingleFruit(final int numberOfSingleFruit) {
         this.numberOfSingleFruit = numberOfSingleFruit;
+    }
+
+    @Override
+    public int hashCode() {
+        int result = fruitInSaladEntityPK.hashCode();
+        result = 31 * result + numberOfSingleFruit;
+        return result;
     }
 
     @Override
@@ -44,12 +56,5 @@ public class FruitInSaladEntity {
         if (!fruitInSaladEntityPK.equals(that.fruitInSaladEntityPK)) return false;
 
         return true;
-    }
-
-    @Override
-    public int hashCode() {
-        int result = fruitInSaladEntityPK.hashCode();
-        result = 31 * result + numberOfSingleFruit;
-        return result;
     }
 }

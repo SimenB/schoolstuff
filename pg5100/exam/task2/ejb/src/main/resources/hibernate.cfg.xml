@@ -7,6 +7,7 @@
         <property name="connection.driver_class">org.apache.derby.jdbc.ClientDriver</property>
         <property name="connection.username">beksim</property>
         <property name="connection.password">secure!</property>
+        <property name="hibernate.dialect">org.hibernate.dialect.DerbyTenSevenDialect</property>
         <mapping class="no.nith.domain.CustomerEntity"/>
         <mapping class="no.nith.domain.FruitEntity"/>
         <mapping class="no.nith.domain.FruitInSaladEntity"/>

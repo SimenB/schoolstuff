@@ -36,10 +36,10 @@ INSERT INTO FRUIT_IN_SALAD (fk_fruitinsalad_fruitsalad, fk_fruitinsalad_fruit, n
 
 /* Query the DB */
 SELECT
-  customer.name AS "Customer",
-  fruit_salad.name AS "Fruit Salad",
-  fruit_salad.price AS "Total price",
-  fruit.name AS "Fruit",
+  customer.name                         AS "Customer",
+  fruit_salad.name                      AS "Fruit Salad",
+  fruit_salad.price                     AS "Total price",
+  fruit.name                            AS "Fruit",
   fruit_in_salad.number_of_single_fruit AS "Number of fruit"
 FROM fruit_salad
   JOIN customer
