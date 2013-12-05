@@ -13,8 +13,8 @@
             <property name="hibernate.connection.url" value="jdbc:derby://localhost:1527/pg5100;create=true"/>
             <property name="hibernate.default_schema" value="beksim_exam"/>
             <!-- Hacking-proof -->
-            <property name="hibernate.connection.username" value=""/>
-            <property name="hibernate.connection.password" value=""/>
+            <property name="hibernate.connection.username" value="beksim"/>
+            <property name="hibernate.connection.password" value="secure!"/>
             <!-- Closest to current release (10.10) -->
             <property name="hibernate.dialect" value="org.hibernate.dialect.DerbyTenSevenDialect"/>
         </properties>

@@ -3,11 +3,9 @@ package no.nith.domain;
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
 import javax.persistence.Id;
-import javax.persistence.OneToMany;
 import javax.persistence.Table;
-
-import java.util.Collection;
 
 /**
  * @author Simen Bekkhus
@@ -16,18 +14,18 @@ import java.util.Collection;
 @Table(name = "FRUIT", schema = "BEKSIM_EXAM", catalog = "")
 public class FruitEntity {
     @Id
-    @GeneratedValue
-    @Column(name = "FRUIT_ID", nullable = false, insertable = true, updatable = true, length = 10, precision = 0)
+    @GeneratedValue(strategy = GenerationType.AUTO)
+    @Column(name = "FRUIT_ID", nullable = false, updatable = false, length = 10)
     private int fruitId;
 
-    @Column(name = "NAME", nullable = false, insertable = true, updatable = true, length = 255, precision = 0)
+    @Column(name = "NAME", nullable = false, insertable = true, updatable = true, length = 32)
     private String name;
 
-    @Column(name = "PRICE", nullable = false, insertable = true, updatable = true, length = 23, precision = 0)
+    @Column(name = "PRICE", nullable = false, insertable = true, updatable = true, length = 23)
     private float price;
 
-    @OneToMany(mappedBy = "fruitByFruitId")
-    private Collection<FruitInSaladEntity> fruitInSaladsByFruitId;
+    @Column(name = "DESCRIPTION", nullable = true, insertable = true, updatable = true, length = 255)
+    private String description;
 
     public int getFruitId() {
         return fruitId;
@@ -53,12 +51,12 @@ public class FruitEntity {
         this.price = price;
     }
 
-    public Collection<FruitInSaladEntity> getFruitInSaladsByFruitId() {
-        return fruitInSaladsByFruitId;
+    public String getDescription() {
+        return description;
     }
 
-    public void setFruitInSaladsByFruitId(final Collection<FruitInSaladEntity> fruitInSaladsByFruitId) {
-        this.fruitInSaladsByFruitId = fruitInSaladsByFruitId;
+    public void setDescription(final String description) {
+        this.description = description;
     }
 
     @Override
@@ -66,6 +64,7 @@ public class FruitEntity {
         int result = fruitId;
         result = 31 * result + (name != null ? name.hashCode() : 0);
         result = 31 * result + (price != +0.0f ? Float.floatToIntBits(price) : 0);
+        result = 31 * result + (description != null ? description.hashCode() : 0);
         return result;
     }
 
@@ -78,6 +77,7 @@ public class FruitEntity {
 
         if (fruitId != that.fruitId) return false;
         if (Float.compare(that.price, price) != 0) return false;
+        if (description != null ? !description.equals(that.description) : that.description != null) return false;
         if (name != null ? !name.equals(that.name) : that.name != null) return false;
 
         return true;

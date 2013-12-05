@@ -3,11 +3,9 @@ package no.nith.domain;
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
 import javax.persistence.Id;
-import javax.persistence.OneToMany;
 import javax.persistence.Table;
-
-import java.util.Collection;
 
 /**
  * @author Simen Bekkhus
@@ -16,15 +14,12 @@ import java.util.Collection;
 @Table(name = "CUSTOMER", schema = "BEKSIM_EXAM", catalog = "")
 public class CustomerEntity {
     @Id
-    @GeneratedValue
-    @Column(name = "CUSTOMER_ID", nullable = false, insertable = true, updatable = true, length = 10, precision = 0)
+    @GeneratedValue(strategy = GenerationType.AUTO)
+    @Column(name = "CUSTOMER_ID", nullable = false, insertable = false, updatable = false, length = 10)
     private int customerId;
 
-    @Column(name = "NAME", nullable = false, insertable = true, updatable = true, length = 255, precision = 0)
+    @Column(name = "NAME", nullable = false)
     private String name;
-
-    @OneToMany(mappedBy = "customerByCustomerId")
-    private Collection<FruitSaladEntity> fruitSaladsByCustomerId;
 
     public int getCustomerId() {
         return customerId;
@@ -40,14 +35,6 @@ public class CustomerEntity {
 
     public void setName(final String name) {
         this.name = name;
-    }
-
-    public Collection<FruitSaladEntity> getFruitSaladsByCustomerId() {
-        return fruitSaladsByCustomerId;
-    }
-
-    public void setFruitSaladsByCustomerId(final Collection<FruitSaladEntity> fruitSaladsByCustomerId) {
-        this.fruitSaladsByCustomerId = fruitSaladsByCustomerId;
     }
 
     @Override

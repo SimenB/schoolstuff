@@ -12,35 +12,39 @@ DROP TABLE customer;
 CREATE TABLE customer (
   customer_id INTEGER      NOT NULL PRIMARY KEY
   GENERATED ALWAYS AS IDENTITY ( START WITH 1, INCREMENT BY 1),
-  name        VARCHAR(255) NOT NULL
+  name        VARCHAR(255) NOT NULL UNIQUE
 );
 
 CREATE TABLE fruit_salad (
-  salad_id    INTEGER      NOT NULL PRIMARY KEY
+  salad_id               INTEGER      NOT NULL PRIMARY KEY
   GENERATED ALWAYS AS IDENTITY ( START WITH 1, INCREMENT BY 1),
-  customer_id INTEGER      NOT NULL,
-  name        VARCHAR(255) NOT NULL,
-  price       REAL         NOT NULL,
-  FOREIGN KEY (customer_id) REFERENCES customer (customer_id)
+  fk_fruitsalad_customer INTEGER      NOT NULL,
+  name                   VARCHAR(255) NOT NULL,
+  price                  REAL         NOT NULL,
+  instructions           VARCHAR(1023),
+  FOREIGN KEY (fk_fruitsalad_customer) REFERENCES customer (customer_id),
+  UNIQUE (fk_fruitsalad_customer, name)
 );
 
 CREATE TABLE fruit (
-  fruit_id INTEGER      NOT NULL PRIMARY KEY
+  fruit_id    INTEGER     NOT NULL PRIMARY KEY
   GENERATED ALWAYS AS IDENTITY ( START WITH 1, INCREMENT BY 1),
-  name     VARCHAR(255) NOT NULL,
-  price    REAL         NOT NULL
+  name        VARCHAR(32) NOT NULL UNIQUE,
+  price       REAL        NOT NULL,
+  description VARCHAR(255)
 );
 
 CREATE TABLE fruit_in_salad (
-  salad_id               INTEGER NOT NULL,
-  fruit_id               INTEGER NOT NULL,
-  number_of_single_fruit INTEGER NOT NULL,
-  FOREIGN KEY (salad_id) REFERENCES fruit_salad (salad_id),
-  FOREIGN KEY (fruit_id) REFERENCES fruit (fruit_id),
-  PRIMARY KEY (salad_id, fruit_id)
+  fk_fruitinsalad_fruitsalad INTEGER NOT NULL,
+  fk_fruitinsalad_fruit      INTEGER NOT NULL,
+  number_of_single_fruit     INTEGER NOT NULL,
+  FOREIGN KEY (fk_fruitinsalad_fruitsalad) REFERENCES fruit_salad (salad_id),
+  FOREIGN KEY (fk_fruitinsalad_fruit) REFERENCES fruit (fruit_id),
+  PRIMARY KEY (fk_fruitinsalad_fruitsalad, fk_fruitinsalad_fruit)
 );
 
 /* TODO: Change / insert more testdata */
+/* TODO: This should maybe be in testdata, but there has to exist some fruit, while the other things are optional, so I'll leave it here */
 INSERT INTO fruit (name, price) VALUES
   ('Apple', 2),
   ('Banana', 2),

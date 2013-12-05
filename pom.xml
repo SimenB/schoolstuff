@@ -157,7 +157,7 @@
             </dependency>
             <dependency>
                 <groupId>org.apache.derby</groupId>
-                <artifactId>derby</artifactId>
+                <artifactId>derbyclient</artifactId>
                 <version>${derby.version}</version>
             </dependency>
 

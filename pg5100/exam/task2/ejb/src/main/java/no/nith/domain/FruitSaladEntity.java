@@ -1,15 +1,14 @@
 package no.nith.domain;
 
+import javax.persistence.Basic;
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
-import javax.persistence.OneToMany;
 import javax.persistence.Table;
-
-import java.util.Collection;
 
 /**
  * @author Simen Bekkhus
@@ -18,25 +17,23 @@ import java.util.Collection;
 @Table(name = "FRUIT_SALAD", schema = "BEKSIM_EXAM", catalog = "")
 public class FruitSaladEntity {
     @Id
-    @GeneratedValue
-    @Column(name = "SALAD_ID", nullable = false, insertable = true, updatable = true, length = 10, precision = 0)
+    @GeneratedValue(strategy = GenerationType.AUTO)
+    @Column(name = "SALAD_ID", nullable = false, insertable = true, updatable = true, length = 10)
     private int saladId;
 
-    @Column(name = "CUSTOMER_ID", nullable = false, insertable = true, updatable = true, length = 10, precision = 0)
-    private int customerId;
-
-    @Column(name = "NAME", nullable = false, insertable = true, updatable = true, length = 255, precision = 0)
+    @Column(name = "NAME", nullable = false, insertable = true, updatable = true, length = 255)
     private String name;
 
-    @Column(name = "PRICE", nullable = false, insertable = true, updatable = true, length = 23, precision = 0)
+    @Column(name = "PRICE", nullable = false, insertable = true, updatable = true, length = 23)
     private float price;
 
-    @OneToMany(mappedBy = "fruitSaladBySaladId")
-    private Collection<FruitInSaladEntity> fruitInSaladsBySaladId;
+    @Basic
+    @Column(name = "INSTRUCTIONS", nullable = true, insertable = true, updatable = true, length = 1023)
+    private String instructions;
 
     @ManyToOne
-    @JoinColumn(name = "CUSTOMER_ID", referencedColumnName = "CUSTOMER_ID", nullable = false)
-    private CustomerEntity customerByCustomerId;
+    @JoinColumn(name = "FK_FRUITSALAD_CUSTOMER", referencedColumnName = "CUSTOMER_ID", nullable = false)
+    private CustomerEntity customerByFkFruitsaladCustomer;
 
     public int getSaladId() {
         return saladId;
@@ -44,14 +41,6 @@ public class FruitSaladEntity {
 
     public void setSaladId(final int saladId) {
         this.saladId = saladId;
-    }
-
-    public int getCustomerId() {
-        return customerId;
-    }
-
-    public void setCustomerId(final int customerId) {
-        this.customerId = customerId;
     }
 
     public String getName() {
@@ -70,28 +59,28 @@ public class FruitSaladEntity {
         this.price = price;
     }
 
-    public Collection<FruitInSaladEntity> getFruitInSaladsBySaladId() {
-        return fruitInSaladsBySaladId;
+    public String getInstructions() {
+        return instructions;
     }
 
-    public void setFruitInSaladsBySaladId(final Collection<FruitInSaladEntity> fruitInSaladsBySaladId) {
-        this.fruitInSaladsBySaladId = fruitInSaladsBySaladId;
+    public void setInstructions(final String instructions) {
+        this.instructions = instructions;
     }
 
-    public CustomerEntity getCustomerByCustomerId() {
-        return customerByCustomerId;
+    public CustomerEntity getCustomerByFkFruitsaladCustomer() {
+        return customerByFkFruitsaladCustomer;
     }
 
-    public void setCustomerByCustomerId(final CustomerEntity customerByCustomerId) {
-        this.customerByCustomerId = customerByCustomerId;
+    public void setCustomerByFkFruitsaladCustomer(final CustomerEntity customerByFkFruitsaladCustomer) {
+        this.customerByFkFruitsaladCustomer = customerByFkFruitsaladCustomer;
     }
 
     @Override
     public int hashCode() {
         int result = saladId;
-        result = 31 * result + customerId;
         result = 31 * result + (name != null ? name.hashCode() : 0);
         result = 31 * result + (price != +0.0f ? Float.floatToIntBits(price) : 0);
+        result = 31 * result + (instructions != null ? instructions.hashCode() : 0);
         return result;
     }
 
@@ -102,9 +91,9 @@ public class FruitSaladEntity {
 
         FruitSaladEntity that = (FruitSaladEntity) o;
 
-        if (customerId != that.customerId) return false;
         if (Float.compare(that.price, price) != 0) return false;
         if (saladId != that.saladId) return false;
+        if (instructions != null ? !instructions.equals(that.instructions) : that.instructions != null) return false;
         if (name != null ? !name.equals(that.name) : that.name != null) return false;
 
         return true;

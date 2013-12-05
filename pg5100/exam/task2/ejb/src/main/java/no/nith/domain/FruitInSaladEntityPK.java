@@ -1,6 +1,7 @@
 package no.nith.domain;
 
 import javax.persistence.Column;
+import javax.persistence.Embeddable;
 import javax.persistence.Id;
 
 import java.io.Serializable;
@@ -8,35 +9,34 @@ import java.io.Serializable;
 /**
  * @author Simen Bekkhus
  */
-class FruitInSaladEntityPK implements Serializable {
-    @Id
-    @Column(name = "SALAD_ID", nullable = false, insertable = true, updatable = true, length = 10, precision = 0)
-    private int saladId;
+@Embeddable
+public class FruitInSaladEntityPK implements Serializable {
+    @Column(name = "FK_FRUITINSALAD_FRUITSALAD", nullable = false, insertable = true, updatable = true, length = 10)
+    protected int fkFruitinsaladFruitsalad;
 
-    @Id
-    @Column(name = "FRUIT_ID", nullable = false, insertable = true, updatable = true, length = 10, precision = 0)
-    private int fruitId;
+    @Column(name = "FK_FRUITINSALAD_FRUIT", nullable = false, insertable = true, updatable = true, length = 10)
+    protected int fkFruitinsaladFruit;
 
-    public int getSaladId() {
-        return saladId;
+    public int getFkFruitinsaladFruitsalad() {
+        return fkFruitinsaladFruitsalad;
     }
 
-    public void setSaladId(final int saladId) {
-        this.saladId = saladId;
+    public void setFkFruitinsaladFruitsalad(final int fkFruitinsaladFruitsalad) {
+        this.fkFruitinsaladFruitsalad = fkFruitinsaladFruitsalad;
     }
 
-    public int getFruitId() {
-        return fruitId;
+    public int getFkFruitinsaladFruit() {
+        return fkFruitinsaladFruit;
     }
 
-    public void setFruitId(final int fruitId) {
-        this.fruitId = fruitId;
+    public void setFkFruitinsaladFruit(final int fkFruitinsaladFruit) {
+        this.fkFruitinsaladFruit = fkFruitinsaladFruit;
     }
 
     @Override
     public int hashCode() {
-        int result = saladId;
-        result = 31 * result + fruitId;
+        int result = fkFruitinsaladFruitsalad;
+        result = 31 * result + fkFruitinsaladFruit;
         return result;
     }
 
@@ -47,8 +47,8 @@ class FruitInSaladEntityPK implements Serializable {
 
         FruitInSaladEntityPK that = (FruitInSaladEntityPK) o;
 
-        if (fruitId != that.fruitId) return false;
-        if (saladId != that.saladId) return false;
+        if (fkFruitinsaladFruit != that.fkFruitinsaladFruit) return false;
+        if (fkFruitinsaladFruitsalad != that.fkFruitinsaladFruitsalad) return false;
 
         return true;
     }
