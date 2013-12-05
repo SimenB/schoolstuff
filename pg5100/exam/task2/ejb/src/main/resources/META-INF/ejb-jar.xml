@@ -1,11 +1,14 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<ejb-jar version="2.1" xmlns="http://java.sun.com/xml/ns/j2ee" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://java.sun.com/xml/ns/j2ee http://java.sun.com/xml/ns/j2ee/ejb-jar_2_1.xsd">
+<ejb-jar version="3.0" xmlns="http://java.sun.com/xml/ns/javaee" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+         xsi:schemaLocation="http://java.sun.com/xml/ns/javaee
+		  http://java.sun.com/xml/ns/javaee/ejb-jar_3_0.xsd">
     <display-name>ejb</display-name>
     <enterprise-beans>
         <session>
-            <ejb-name>HelloEJB</ejb-name>
-            <ejb-class>no.nith.HelloBean</ejb-class>
-            <session-type>Stateless</session-type>
+            <ejb-name>CounterEJB</ejb-name>
+            <business-remote>no.nith.beans.Counter</business-remote>
+            <ejb-class>no.nith.beans.CounterEJB</ejb-class>
+            <session-type>Stateful</session-type>
             <transaction-type>Bean</transaction-type>
         </session>
     </enterprise-beans>

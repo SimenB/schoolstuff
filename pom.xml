@@ -39,6 +39,7 @@
         <javaee-endorsed-api.version>7.0</javaee-endorsed-api.version>
         <jsf.version>2.2</jsf.version>
         <javax.servlet-api.version>3.1.0</javax.servlet-api.version>
+        <derby.version>10.10.1.1</derby.version>
 
         <!-- Maven-stuff -->
         <maven-source-plugin.version>2.2.1</maven-source-plugin.version>
@@ -153,6 +154,11 @@
                 <groupId>javax.faces</groupId>
                 <artifactId>javax.faces-api</artifactId>
                 <version>${jsf.version}</version>
+            </dependency>
+            <dependency>
+                <groupId>org.apache.derby</groupId>
+                <artifactId>derby</artifactId>
+                <version>${derby.version}</version>
             </dependency>
 
             <dependency>
