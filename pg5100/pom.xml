@@ -16,7 +16,6 @@
     <modules>
         <module>l03</module>
         <module>l04</module>
-        <module>l07</module>
         <module>exam</module>
     </modules>
 </project>
