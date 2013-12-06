@@ -1,5 +1,6 @@
 package no.nith.beans;
 
+import no.nith.entities.Customer;
 import no.nith.entities.Fruit;
 import no.nith.entities.FruitEntity;
 
@@ -16,12 +17,13 @@ import java.util.List;
  * @author Simen Bekkhus
  */
 @Named("fruit")
-@SessionScoped
 @ManagedBean
+@SessionScoped
 public class FruitBean implements Serializable {
     @EJB(beanName = "FruitEJB")
     private FruitFace fruitEJB;
     private List<Fruit> fruits;
+    private Customer customer;
 
     public List<Fruit> getFruits() {
         if (fruits == null) {
@@ -41,5 +43,21 @@ public class FruitBean implements Serializable {
         for (FruitEntity fruit : allFruits) {
             this.fruits.add(new Fruit(fruit.getName(), fruit.getPrice(), fruit.getDescription()));
         }
+    }
+
+    public String login(String name) {
+        return "";
+    }
+
+    public int createCustomer(String name) {
+        int id;
+        if (customer == null) {
+            customer = new Customer();
+            customer.setName(name);
+            id = fruitEJB.createCustomer(name);
+            customer.setId(id);
+        }
+
+        return customer.getId();
     }
 }

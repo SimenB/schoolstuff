@@ -5,17 +5,22 @@
                 template="resources/templates/template.xhtml">
 
     <ui:define name="menu">
-        <h:outputLabel>Meny</h:outputLabel>
+        <h:form>
+            <h:outputLabel value="Please enter your name:"/>
+            <h:inputText id="name"/>
+            <h:commandButton value="Login" action="#{fruitBean.login('name')}"/>
+        </h:form>
     </ui:define>
 
 
     <ui:define name="content">
-        <h:outputLabel>Halla!</h:outputLabel>
+        <h:outputLabel value="All our available fruit!"/>
 
-        <h:form>
-            <h:commandButton action="#{fruitBean.refetch}"/>
-
-        </h:form>
+        <div class="floatRight">
+            <h:form>
+                <h:commandButton id="fetch" value="Refetch fruit" action="#{fruitBean.refetch}"/>
+            </h:form>
+        </div>
 
         <h:panelGroup id="table-wrapper">
             <p:dataTable value="#{fruitBean.fruits}" var="fruit">
@@ -30,7 +35,6 @@
                 </p:column>
             </p:dataTable>
         </h:panelGroup>
-
     </ui:define>
 
 </ui:composition>

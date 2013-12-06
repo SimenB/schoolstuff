@@ -4,9 +4,10 @@ body {
 }
 
 .wrapper {
-    background: #adddda;
+    background: #bdeded;
     margin: auto;
     display: table;
+    position: relative;
 }
 
 .header {
@@ -28,7 +29,6 @@ body {
 }
 
 .contentWrapper {
-    color: blue;
     background-color: aliceblue;
     width: 1000px;
     min-height: 600px;
@@ -40,9 +40,21 @@ body {
 }
 
 .leftColumn {
-    width: 300px;
+    width: 290px;
+    border-right: solid 1px black;
 }
 
 .rightColumn {
     width: 700px;
+    border-left: solid 1px black;
+    margin-left: -1px;
+    padding-left: 3px;
+}
+
+.floatRight {
+    float: right;
+}
+
+.push {
+    clear: both;
 }
