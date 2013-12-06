@@ -1,6 +1,5 @@
-package no.nith.domain;
+package no.nith.entities;
 
-import javax.persistence.Basic;
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
@@ -9,6 +8,7 @@ import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
 import javax.persistence.Table;
+import javax.persistence.UniqueConstraint;
 
 import java.io.Serializable;
 
@@ -16,21 +16,21 @@ import java.io.Serializable;
  * @author Simen Bekkhus
  */
 @Entity
-@Table(name = "FRUIT_SALAD", schema = "BEKSIM_EXAM", catalog = "")
+@Table(name = "FRUIT_SALAD", schema = "BEKSIM_EXAM", catalog = "",
+        uniqueConstraints = {@UniqueConstraint(columnNames = {"FK_FRUITSALAD_CUSTOMER", "NAME"})})
 public class FruitSaladEntity implements Serializable {
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
-    @Column(name = "SALAD_ID", nullable = false, insertable = true, updatable = true, length = 10)
+    @Column(name = "SALAD_ID", nullable = false, insertable = false, updatable = false, length = 10)
     private int saladId;
     @Column(name = "NAME", nullable = false, insertable = true, updatable = true, length = 255)
     private String name;
     @Column(name = "PRICE", nullable = false, insertable = true, updatable = true, length = 23)
     private float price;
-    @Basic
     @Column(name = "INSTRUCTIONS", nullable = true, insertable = true, updatable = true, length = 1023)
     private String instructions;
     @ManyToOne
-    @JoinColumn(name = "FK_FRUITSALAD_CUSTOMER", referencedColumnName = "CUSTOMER_ID", nullable = false)
+    @JoinColumn(name = "FK_FRUITSALAD_CUSTOMER", referencedColumnName = "CUSTOMER_ID", nullable = false, updatable = false)
     private CustomerEntity customerByFkFruitsaladCustomer;
 
     protected FruitSaladEntity() {

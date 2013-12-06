@@ -1,4 +1,4 @@
-package no.nith.domain;
+package no.nith.entities;
 
 import javax.persistence.Column;
 import javax.persistence.EmbeddedId;
@@ -15,7 +15,7 @@ import java.io.Serializable;
 public class FruitInSaladEntity implements Serializable {
     @EmbeddedId
     private FruitInSaladEntityPK fruitInSaladEntityPK;
-    @Column(name = "NUMBER_OF_SINGLE_FRUIT", nullable = false, insertable = true, updatable = true, length = 10)
+    @Column(name = "NUMBER_OF_SINGLE_FRUIT", nullable = false, length = 10)
     private int numberOfSingleFruit;
 
     protected FruitInSaladEntity() {

@@ -1,21 +1,14 @@
 package no.nith.utils;
 
-import no.nith.domain.CustomerEntity;
-import no.nith.domain.FruitEntity;
-import no.nith.domain.FruitInSaladEntity;
-import no.nith.domain.FruitInSaladEntityPK;
-import no.nith.domain.FruitSaladEntity;
-import org.hibernate.HibernateException;
+import no.nith.entities.CustomerEntity;
+import no.nith.entities.FruitEntity;
+import no.nith.entities.FruitInSaladEntity;
+import no.nith.entities.FruitInSaladEntityPK;
+import no.nith.entities.FruitSaladEntity;
 import org.hibernate.Query;
 import org.hibernate.Session;
-import org.hibernate.SessionFactory;
-import org.hibernate.cfg.Configuration;
-import org.hibernate.service.ServiceRegistry;
-import org.hibernate.service.ServiceRegistryBuilder;
 
 import javax.persistence.EntityManager;
-import javax.persistence.EntityManagerFactory;
-import javax.persistence.Persistence;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -23,26 +16,29 @@ import java.util.List;
 /**
  * @author Simen Bekkhus
  */
-public class Dao {
-    public static EntityManagerFactory entityManagerFactory = Persistence.createEntityManagerFactory("PG5100");
-    public static SessionFactory sessionFactory;
+public class FruitSaladDAO {
+   /* @PersistenceUnit
+    private EntityManagerFactory entityManagerFactory;
+    *//*@PersistenceContext(unitName = "PG5100")
+    private Session session;*//*
 
-    static {
-        try {
-            Configuration configuration = new Configuration().configure("hibernate.cfg.xml");
 
-            ServiceRegistry serviceRegistry = new ServiceRegistryBuilder().applySettings(configuration.getProperties()).buildServiceRegistry();
-            sessionFactory = configuration.buildSessionFactory(serviceRegistry);
-        } catch (HibernateException he) {
-            System.err.println("Error creating Session: " + he);
-            throw new ExceptionInInitializerError(he);
-        }
+    private EntityManager entityManager;
+
+    //private static EntityManagerFactory entityManagerFactory = Persistence.createEntityManagerFactory("PG5100");*/
+
+    private EntityManager entityManager;
+
+    public FruitSaladDAO(final EntityManager entityManager) {
+        this.entityManager = entityManager;
+    }
+
+    public FruitSaladDAO() {
     }
 
     public CustomerEntity createCustomer(String name) {
-        EntityManager entityManager = entityManagerFactory.createEntityManager();
-
         CustomerEntity customer = new CustomerEntity(name);
+        //EntityManager entityManager = entityManagerFactory.createEntityManager();
 
         entityManager.getTransaction().begin();
         entityManager.persist(customer);
@@ -53,11 +49,9 @@ public class Dao {
     }
 
     public FruitEntity createFruit(String name, float price, String description) {
-        EntityManager entityManager = entityManagerFactory.createEntityManager();
-
         FruitEntity fruit = new FruitEntity(name, price);
-
         fruit.setDescription(description);
+        //EntityManager entityManager = entityManagerFactory.createEntityManager();
 
         entityManager.getTransaction().begin();
         entityManager.persist(fruit);
@@ -70,13 +64,12 @@ public class Dao {
     public FruitSaladEntity createFruitSalad(CustomerEntity customer, String nameOfSalad,
                                              ArrayList<FruitEntity> ingredients, ArrayList<Integer> numberOfIngredients,
                                              String instructions) {
-        EntityManager entityManager = entityManagerFactory.createEntityManager();
+        //EntityManager entityManager = entityManagerFactory.createEntityManager();
         float totalPrice = 0;
 
         FruitSaladEntity saladEntity = new FruitSaladEntity(nameOfSalad, customer);
 
         saladEntity.setInstructions(instructions);
-
         entityManager.getTransaction().begin();
 
         for (int i = 0; i < ingredients.size(); i++) {
@@ -99,8 +92,7 @@ public class Dao {
 
     private float getPriceOfIngredient(final FruitInSaladEntity fruitInSalad) {
         float totalPrice = 0;
-
-        Session session = sessionFactory.openSession();
+        Session session = HibernateUtils.getSessionFactory().openSession();
 
         Query query = session.createQuery("select price from FruitEntity where fruitId = :fruitId");
 
@@ -113,5 +105,17 @@ public class Dao {
         totalPrice += fruitInSalad.getNumberOfSingleFruit() * ((float) list.get(0));
 
         return totalPrice;
+    }
+
+    public List<FruitEntity> getAllFruits() {
+        Session session = HibernateUtils.getSessionFactory().openSession();
+
+        Query query = session.createQuery("from FruitEntity");
+
+        List<FruitEntity> fruits = (List<FruitEntity>) query.list();
+
+        session.close();
+
+        return fruits;
     }
 }

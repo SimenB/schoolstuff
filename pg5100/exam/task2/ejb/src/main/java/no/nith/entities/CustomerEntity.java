@@ -1,4 +1,4 @@
-package no.nith.domain;
+package no.nith.entities;
 
 import javax.persistence.Column;
 import javax.persistence.Entity;
@@ -17,9 +17,9 @@ import java.io.Serializable;
 public class CustomerEntity implements Serializable {
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
-    @Column(name = "CUSTOMER_ID", nullable = false, insertable = false, updatable = false, length = 10)
+    @Column(name = "CUSTOMER_ID", nullable = false, updatable = false, length = 10)
     private int customerId;
-    @Column(name = "NAME", nullable = false)
+    @Column(name = "NAME", nullable = false, unique = true)
     private String name;
 
     public CustomerEntity(final String name) {

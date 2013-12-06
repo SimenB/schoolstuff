@@ -20,6 +20,22 @@
             <artifactId>javax.faces-api</artifactId>
             <scope>provided</scope>
         </dependency>
+        <dependency>
+            <groupId>javax</groupId>
+            <artifactId>javaee-web-api</artifactId>
+            <scope>provided</scope>
+        </dependency>
+        <dependency>
+            <groupId>no.nith</groupId>
+            <artifactId>ejb</artifactId>
+            <version>${project.parent.version}</version>
+            <type>ejb</type>
+            <scope>provided</scope>
+        </dependency>
+        <dependency>
+            <groupId>org.primefaces</groupId>
+            <artifactId>primefaces</artifactId>
+        </dependency>
     </dependencies>
 
     <build>

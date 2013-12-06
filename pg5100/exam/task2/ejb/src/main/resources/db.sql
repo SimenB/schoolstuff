@@ -1,3 +1,8 @@
+/*
+ This was used to  devlop the initial architecture of the DB. It was much easier visualising than going directly for entities
+ I also used this for genereating the initial entities.
+ */
+
 CREATE SCHEMA beksim_exam;
 
 SET SCHEMA beksim_exam;
@@ -42,27 +47,3 @@ CREATE TABLE fruit_in_salad (
   FOREIGN KEY (fk_fruitinsalad_fruit) REFERENCES fruit (fruit_id),
   PRIMARY KEY (fk_fruitinsalad_fruitsalad, fk_fruitinsalad_fruit)
 );
-
-/* TODO: Change / insert more testdata */
-/* TODO: This should maybe be in testdata, but there has to exist some fruit, while the other things are optional, so I'll leave it here */
-INSERT INTO fruit (name, price) VALUES
-  ('Apple', 2),
-  ('Banana', 2),
-  ('Blueberry', 2),
-  ('Cherry', 2),
-  ('Clementine', 2),
-  ('Grape', 2),
-  ('Honeydew Melon', 2),
-  ('Mandarin', 2),
-  ('Mango', 2),
-  ('Orange', 2),
-  ('Peach', 2),
-  ('Pineapple', 2),
-  ('Raspberry', 2),
-  ('Strawberry', 2),
-  ('Watermelon', 2),
-  ('Yogurt', 2);
-
-SELECT
-  *
-FROM fruit;

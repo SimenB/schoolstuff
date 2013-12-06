@@ -39,13 +39,14 @@
                         <webModule>
                             <groupId>no.nith</groupId>
                             <artifactId>web</artifactId>
-                            <contextRoot>/pg5500-exam</contextRoot>
+                            <contextRoot>${context-root}</contextRoot>
                         </webModule>
                         <ejbModule>
                             <groupId>no.nith</groupId>
                             <artifactId>ejb</artifactId>
                         </ejbModule>
                     </modules>
+                    <defaultLibBundleDir>lib</defaultLibBundleDir>
                 </configuration>
             </plugin>
         </plugins>

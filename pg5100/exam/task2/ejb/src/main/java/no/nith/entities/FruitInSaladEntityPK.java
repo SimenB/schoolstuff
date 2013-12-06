@@ -1,4 +1,4 @@
-package no.nith.domain;
+package no.nith.entities;
 
 import javax.persistence.Column;
 import javax.persistence.Embeddable;
@@ -10,9 +10,9 @@ import java.io.Serializable;
  */
 @Embeddable
 public class FruitInSaladEntityPK implements Serializable {
-    @Column(name = "FK_FRUITINSALAD_FRUITSALAD", nullable = false, insertable = true, updatable = true, length = 10)
+    @Column(name = "FK_FRUITINSALAD_FRUITSALAD", nullable = false, length = 10)
     protected int fkFruitinsaladFruitsalad;
-    @Column(name = "FK_FRUITINSALAD_FRUIT", nullable = false, insertable = true, updatable = true, length = 10)
+    @Column(name = "FK_FRUITINSALAD_FRUIT", nullable = false, length = 10)
     protected int fkFruitinsaladFruit;
 
     protected FruitInSaladEntityPK() {

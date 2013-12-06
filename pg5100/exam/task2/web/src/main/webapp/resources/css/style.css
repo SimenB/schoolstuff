@@ -1,0 +1,48 @@
+body {
+    font-family: Arial, Helvetica, sans-serif;
+    background-color: lightblue;
+}
+
+.wrapper {
+    background: #adddda;
+    margin: auto;
+    display: table;
+}
+
+.header {
+    height: 150px;
+}
+
+.headerImage {
+    height: 150px;
+    overflow: hidden;
+    width: 800px;
+    float: right;
+    display: inline-block;
+}
+
+.footer {
+    min-height: 50px;
+    text-align: right;
+    clear: left;
+}
+
+.contentWrapper {
+    color: blue;
+    background-color: aliceblue;
+    width: 1000px;
+    min-height: 600px;
+}
+
+.contentDiv {
+    float: left;
+    display: inline-block;
+}
+
+.leftColumn {
+    width: 300px;
+}
+
+.rightColumn {
+    width: 700px;
+}

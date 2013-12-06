@@ -1,4 +1,4 @@
-package no.nith.domain;
+package no.nith.entities;
 
 import javax.persistence.Column;
 import javax.persistence.Entity;
@@ -19,11 +19,11 @@ public class FruitEntity implements Serializable {
     @GeneratedValue(strategy = GenerationType.AUTO)
     @Column(name = "FRUIT_ID", nullable = false, updatable = false, length = 10)
     private int fruitId;
-    @Column(name = "NAME", nullable = false, insertable = true, updatable = true, length = 32)
+    @Column(name = "NAME", nullable = false, length = 32, unique = true)
     private String name;
-    @Column(name = "PRICE", nullable = false, insertable = true, updatable = true, length = 23)
+    @Column(name = "PRICE", nullable = false, length = 23)
     private float price;
-    @Column(name = "DESCRIPTION", nullable = true, insertable = true, updatable = true, length = 255)
+    @Column(name = "DESCRIPTION", length = 255)
     private String description;
 
     public FruitEntity(final String name, final float price) {

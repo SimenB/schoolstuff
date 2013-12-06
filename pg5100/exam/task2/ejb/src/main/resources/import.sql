@@ -1,5 +1,24 @@
 SET SCHEMA beksim_exam;
 
+/* Add some fruit */
+INSERT INTO fruit (name, price) VALUES
+  ('Apple', 2),
+  ('Banana', 2),
+  ('Blueberry', 2),
+  ('Cherry', 2),
+  ('Clementine', 2),
+  ('Grape', 2),
+  ('Honeydew Melon', 2),
+  ('Mandarin', 2),
+  ('Mango', 2),
+  ('Orange', 2),
+  ('Peach', 2),
+  ('Pineapple', 2),
+  ('Raspberry', 2),
+  ('Strawberry', 2),
+  ('Watermelon', 2),
+  ('Yogurt', 2);
+
 /* Add some customers */
 INSERT INTO customer (name) VALUES
   ('Per'),
@@ -34,7 +53,7 @@ INSERT INTO FRUIT_IN_SALAD (fk_fruitinsalad_fruitsalad, fk_fruitinsalad_fruit, n
   (3, 9, 5),
   (3, 16, 2);
 
-/* Query the DB */
+/* Query the DB TO check that stuff was inserted as requested */
 SELECT
   customer.name                         AS "Customer",
   fruit_salad.name                      AS "Fruit Salad",
