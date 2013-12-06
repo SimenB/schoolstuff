@@ -6,8 +6,9 @@ import no.nith.utils.FruitSaladDAO;
 
 import javax.ejb.Stateless;
 
-import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 
 /**
  * @author Simen Bekkhus
@@ -16,25 +17,23 @@ import java.util.List;
 public class FruitImpl implements FruitFace {
     @Override
     public List<Fruit> getAllFruits() {
-        List<Fruit> fruits = new ArrayList<>();
-
-        Fruit banana = new Fruit("Banana", 15);
-        banana.setDescription("yuuuuus");
-        fruits.add(banana);
-
-        //return fruits;
-
-        FruitSaladDAO dao = new FruitSaladDAO();
-
-        return dao.getAllFruits();
+        return new FruitSaladDAO().getAllFruits();
     }
 
     @Override
-    public int createCustomer(final String name) {
+    public Customer createCustomer(final String name) {
+        return new FruitSaladDAO().createCustomer(name);
+    }
+
+    @Override
+    public Map<Integer, Map<String, Integer>> fetchIngredientsForSalads(final List<Integer> saladIds) {
+        Map<Integer, Map<String, Integer>> amountOfEachFruit = new HashMap<>();
         FruitSaladDAO dao = new FruitSaladDAO();
 
-        Customer customer = dao.createCustomer(name);
+        for (int id : saladIds) {
+            amountOfEachFruit.put(id, dao.getIngredientsInSalads(id));
+        }
 
-        return customer.getCustomerId();
+        return amountOfEachFruit;
     }
 }

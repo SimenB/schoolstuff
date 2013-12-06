@@ -7,9 +7,13 @@
     <ui:define name="menu">
         <h:form>
             <h:outputLabel value="Please enter your name:"/>
-            <h:inputText id="name"/>
-            <h:commandButton value="Login" action="#{fruitBean.login('name')}"/>
+            <h:inputText id="name" value="#{loginBean.name}"/>
+            <h:commandButton value="Login" action="#{loginBean.login}"/>
         </h:form>
+
+        Hello from Facelets
+        <br/>
+        <h:link outcome="welcomePrimefaces" value="Primefaces welcome page"/>
     </ui:define>
 
 

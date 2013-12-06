@@ -7,41 +7,44 @@ import no.nith.entities.FruitInSaladPK;
 import no.nith.entities.FruitSalad;
 
 import javax.persistence.EntityManager;
-import javax.persistence.EntityManagerFactory;
-import javax.persistence.Persistence;
+import javax.persistence.NoResultException;
 
 import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 
 /**
  * @author Simen Bekkhus
  */
 public class FruitSaladDAO {
-    private static final EntityManagerFactory entityManagerFactory = Persistence.createEntityManagerFactory("PG5100");
-
     public FruitSaladDAO() {
     }
 
     public Customer createCustomer(String name) {
-        Customer customer = new Customer(name);
-        EntityManager entityManager = getEntityManager();
+        EntityManager entityManager = Dao.getEntityManager();
+        Customer customer;
 
-        entityManager.getTransaction().begin();
-        entityManager.persist(customer);
-        entityManager.getTransaction().commit();
-        entityManager.close();
+        try {
+            return entityManager.createNamedQuery("Customer.findByName", Customer.class)
+                    .setParameter("name", name)
+                    .getSingleResult();
+        } catch (NoResultException e) {
+            customer = new Customer(name);
 
-        return customer;
-    }
+            entityManager.getTransaction().begin();
+            entityManager.persist(customer);
+            entityManager.getTransaction().commit();
+            entityManager.close();
 
-    private EntityManager getEntityManager() {
-        return entityManagerFactory.createEntityManager();
+            return customer;
+        }
     }
 
     public Fruit createFruit(String name, float price, String description) {
         Fruit fruit = new Fruit(name, price);
         fruit.setDescription(description);
-        EntityManager entityManager = getEntityManager();
+        EntityManager entityManager = Dao.getEntityManager();
 
         entityManager.getTransaction().begin();
         entityManager.persist(fruit);
@@ -54,7 +57,7 @@ public class FruitSaladDAO {
     public FruitSalad createFruitSalad(Customer customer, String nameOfSalad,
                                        ArrayList<Fruit> ingredients, ArrayList<Integer> numberOfIngredients,
                                        String instructions) {
-        EntityManager entityManager = getEntityManager();
+        EntityManager entityManager = Dao.getEntityManager();
         float totalPrice = 0;
 
         FruitSalad salad = new FruitSalad(nameOfSalad, customer);
@@ -82,18 +85,36 @@ public class FruitSaladDAO {
 
     private float getPriceOfIngredient(final FruitInSalad fruitInSalad) {
         float totalPrice = 0;
-        EntityManager entityManager = getEntityManager();
+        EntityManager entityManager = Dao.getEntityManager();
 
-        List results = entityManager.createNamedQuery("Fruit.findByFruitId")
+        Float result = entityManager.createNamedQuery("Fruit.findByFruitId", Float.class)
                 .setParameter("fruitId", fruitInSalad.getFruitInSaladPK().getFkFruitinsaladFruit())
-                .getResultList();
+                .getSingleResult();
 
-        totalPrice += fruitInSalad.getNumberOfSingleFruit() * ((float) results.get(0));
+        totalPrice += fruitInSalad.getNumberOfSingleFruit() * result;
 
         return totalPrice;
     }
 
     public List<Fruit> getAllFruits() {
-        return getEntityManager().createNamedQuery("Fruit.findAll", Fruit.class).getResultList();
+        return Dao.getEntityManager().createNamedQuery("Fruit.findAll", Fruit.class).getResultList();
+    }
+
+    public Map<String, Integer> getIngredientsInSalads(final int id) {
+        List<FruitInSalad> resultList = Dao.getEntityManager().createNamedQuery("FruitInSalad.findByFkFruitinsaladFruitsalad", FruitInSalad.class)
+                .setParameter("fkFruitinsaladFruitsalad", id)
+                .getResultList();
+
+        Map<String, Integer> ingredientsMap = new HashMap<>();
+
+        for (FruitInSalad fruitInSalad : resultList) {
+            Fruit singleFruit = Dao.getEntityManager().createNamedQuery("Fruit.findByFruitId", Fruit.class)
+                    .setParameter("fruitId", fruitInSalad.getFruitInSaladPK().getFkFruitinsaladFruit())
+                    .getSingleResult();
+
+            ingredientsMap.put(singleFruit.getName(), fruitInSalad.getNumberOfSingleFruit());
+        }
+
+        return ingredientsMap;
     }
 }

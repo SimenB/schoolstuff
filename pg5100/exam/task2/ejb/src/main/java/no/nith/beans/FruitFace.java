@@ -1,10 +1,12 @@
 package no.nith.beans;
 
+import no.nith.entities.Customer;
 import no.nith.entities.Fruit;
 
 import javax.ejb.Local;
 
 import java.util.List;
+import java.util.Map;
 
 /**
  * @author Simen Bekkhus
@@ -13,5 +15,7 @@ import java.util.List;
 public interface FruitFace {
     List<Fruit> getAllFruits();
 
-    int createCustomer(String name);
+    Customer createCustomer(String name);
+
+    Map<Integer, Map<String, Integer>> fetchIngredientsForSalads(List<Integer> saladIds);
 }

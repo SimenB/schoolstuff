@@ -1,14 +1,14 @@
-package no.nith.entities;
+package no.nith.domain;
 
 /**
  * @author Simen Bekkhus
  */
-public class Fruit {
+public class FruitWeb {
     private String name;
-    private float price;
+    private double price;
     private String description;
 
-    public Fruit(final String name, final float price, final String description) {
+    public FruitWeb(final String name, final double price, final String description) {
         this.name = name;
         this.price = price;
         this.description = description;
@@ -22,11 +22,11 @@ public class Fruit {
         this.name = name;
     }
 
-    public float getPrice() {
+    public double getPrice() {
         return price;
     }
 
-    public void setPrice(final float price) {
+    public void setPrice(final double price) {
         this.price = price;
     }
 

@@ -37,6 +37,7 @@ body {
 .contentDiv {
     float: left;
     display: inline-block;
+    min-height: 600px;
 }
 
 .leftColumn {

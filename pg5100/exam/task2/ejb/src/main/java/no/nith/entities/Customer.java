@@ -32,7 +32,6 @@ public class Customer implements Serializable {
     private static final long serialVersionUID = 1L;
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    @NotNull
     @Column(name = "CUSTOMER_ID")
     private Integer customerId;
     @NotNull
@@ -72,8 +71,7 @@ public class Customer implements Serializable {
 
     @Override
     public int hashCode() {
-        int result = customerId.hashCode();
-        result = 31 * result + name.hashCode();
+        int result = name.hashCode();
         result = 31 * result + (fruitSaladCollection != null ? fruitSaladCollection.hashCode() : 0);
         return result;
     }
