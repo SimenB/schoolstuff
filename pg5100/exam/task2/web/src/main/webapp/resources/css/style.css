@@ -1,0 +1,65 @@
+body {
+    font-family: Arial, Helvetica, sans-serif;
+    background-color: lightblue;
+}
+
+.wrapper {
+    background: #bdeded;
+    margin: auto;
+    display: table;
+    position: relative;
+}
+
+.header {
+    height: 150px;
+}
+
+.headerImage {
+    height: 150px;
+    overflow: hidden;
+    width: 800px;
+    float: right;
+    display: inline-block;
+}
+
+.footer {
+    min-height: 50px;
+    text-align: right;
+    clear: left;
+}
+
+.contentWrapper {
+    background-color: aliceblue;
+    width: 1000px;
+    min-height: 600px;
+}
+
+.contentDiv {
+    float: left;
+    display: inline-block;
+    min-height: 600px;
+}
+
+.leftColumn {
+    width: 290px;
+    border-right: solid 1px black;
+}
+
+.rightColumn {
+    width: 700px;
+    border-left: solid 1px black;
+    margin-left: -1px;
+    padding-left: 3px;
+}
+
+.floatRight {
+    float: right;
+}
+
+.push {
+    clear: both;
+}
+
+#saladList {
+    width: 285px;
+}
