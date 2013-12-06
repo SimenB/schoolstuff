@@ -1,12 +1,12 @@
 package no.nith.beans;
 
-import no.nith.entities.FruitEntity;
+import no.nith.entities.Customer;
+import no.nith.entities.Fruit;
 import no.nith.utils.FruitSaladDAO;
 
 import javax.ejb.Stateless;
-import javax.persistence.EntityManager;
-import javax.persistence.PersistenceContext;
 
+import java.util.ArrayList;
 import java.util.List;
 
 /**
@@ -14,21 +14,27 @@ import java.util.List;
  */
 @Stateless(name = "FruitEJB")
 public class FruitImpl implements FruitFace {
-    @PersistenceContext(unitName = "PG5100")
-    private EntityManager em;
-
     @Override
-    public List<FruitEntity> getAllFruits() {
-        FruitSaladDAO dao = new FruitSaladDAO(em);
+    public List<Fruit> getAllFruits() {
+        List<Fruit> fruits = new ArrayList<>();
+
+        Fruit banana = new Fruit("Banana", 15);
+        banana.setDescription("yuuuuus");
+        fruits.add(banana);
+
+        //return fruits;
+
+        FruitSaladDAO dao = new FruitSaladDAO();
 
         return dao.getAllFruits();
+    }
 
-        /*List<FruitEntity> fruits = new ArrayList<>();
+    @Override
+    public int createCustomer(final String name) {
+        FruitSaladDAO dao = new FruitSaladDAO();
 
-        FruitEntity banan = new FruitEntity("Banan", 5.50f);
-        banan.setDescription("KJEMPEEEEEEEEEEEEEEBRAAAAAAAAAA");
-        fruits.add(banan);
+        Customer customer = dao.createCustomer(name);
 
-        return fruits;*/
+        return customer.getCustomerId();
     }
 }
