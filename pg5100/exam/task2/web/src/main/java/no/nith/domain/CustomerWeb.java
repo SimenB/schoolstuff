@@ -14,14 +14,17 @@ public class CustomerWeb {
     private int id;
     private String name;
     private List<FruitSaladWeb> salads;
+    private FruitSaladWeb selectedSalad;
 
     public CustomerWeb(Customer customer) {
         this.id = customer.getCustomerId();
         this.name = customer.getName();
         salads = new ArrayList<>();
 
-        for (FruitSalad fruitSalad : customer.getFruitSaladCollection()) {
-            salads.add(new FruitSaladWeb(fruitSalad));
+        if (customer.getFruitSaladCollection() != null) {
+            for (FruitSalad fruitSalad : customer.getFruitSaladCollection()) {
+                salads.add(new FruitSaladWeb(fruitSalad));
+            }
         }
     }
 
@@ -39,10 +42,6 @@ public class CustomerWeb {
         return id;
     }
 
-    public void setId(final int id) {
-        this.id = id;
-    }
-
     public String getName() {
         return name;
     }
@@ -57,6 +56,14 @@ public class CustomerWeb {
 
     public void setSalads(final List<FruitSaladWeb> salads) {
         this.salads = salads;
+    }
+
+    public FruitSaladWeb getSelectedSalad() {
+        return selectedSalad;
+    }
+
+    public void setSelectedSalad(final FruitSaladWeb selectedSalad) {
+        this.selectedSalad = selectedSalad;
     }
 
     public void setSaladIngredients(final Map<Integer, Map<FruitWeb, Integer>> ingredients) {

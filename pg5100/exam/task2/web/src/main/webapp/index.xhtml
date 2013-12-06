@@ -10,12 +10,7 @@
             <h:inputText id="name" value="#{loginBean.name}"/>
             <h:commandButton value="Login" action="#{loginBean.login}"/>
         </h:form>
-
-        Hello from Facelets
-        <br/>
-        <h:link outcome="welcomePrimefaces" value="Primefaces welcome page"/>
     </ui:define>
-
 
     <ui:define name="content">
         <h:outputLabel value="All our available fruit!"/>
@@ -26,7 +21,7 @@
             </h:form>
         </div>
 
-        <h:panelGroup id="table-wrapper">
+        <h:panelGroup class="table-wrapper">
             <p:dataTable value="#{fruitBean.fruits}" var="fruit">
                 <p:column headerText="Name">
                     <h:outputText value="#{fruit.name}"/>

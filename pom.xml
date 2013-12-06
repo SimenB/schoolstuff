@@ -19,10 +19,11 @@
     </prerequisites>
 
     <properties>
+        <context-root>/pg5500-exam</context-root>
         <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
 
-        <hibernate-jpa-2.0-api.version>1.0.1.Final</hibernate-jpa-2.0-api.version>
-        <hibernate.version>4.2.7.SP1</hibernate.version>
+        <hibernate-jpa-2.0-api.version>1.0.0.Final</hibernate-jpa-2.0-api.version>
+        <hibernate.version>4.3.0.CR1</hibernate.version>
         <mysql-connector-java.version>5.1.27</mysql-connector-java.version>
         <junit.version>4.11</junit.version>
         <android.platform.version>4.4_r1</android.platform.version>
@@ -40,6 +41,8 @@
         <jsf.version>2.2</jsf.version>
         <javax.servlet-api.version>3.1.0</javax.servlet-api.version>
         <derby.version>10.10.1.1</derby.version>
+        <primefaces.version>4.0</primefaces.version>
+        <primefaces-bootsrap.version>1.0.10</primefaces-bootsrap.version>
 
         <!-- Maven-stuff -->
         <maven-source-plugin.version>2.2.1</maven-source-plugin.version>
@@ -70,6 +73,12 @@
                 <updatePolicy>always</updatePolicy>
                 <checksumPolicy>ignore</checksumPolicy>
             </snapshots>
+        </repository>
+        <repository>
+            <id>prime-repo</id>
+            <name>PrimeFaces Maven Repository</name>
+            <url>http://repository.primefaces.org</url>
+            <layout>default</layout>
         </repository>
     </repositories>
 
@@ -159,6 +168,16 @@
                 <groupId>org.apache.derby</groupId>
                 <artifactId>derbyclient</artifactId>
                 <version>${derby.version}</version>
+            </dependency>
+            <dependency>
+                <groupId>org.primefaces</groupId>
+                <artifactId>primefaces</artifactId>
+                <version>${primefaces.version}</version>
+            </dependency>
+            <dependency>
+                <groupId>org.primefaces.themes</groupId>
+                <artifactId>bootstrap</artifactId>
+                <version>${primefaces-bootsrap.version}</version>
             </dependency>
 
             <dependency>

@@ -3,6 +3,7 @@ package no.nith.beans;
 import no.nith.domain.FruitWeb;
 import no.nith.entities.Fruit;
 
+import javax.annotation.PostConstruct;
 import javax.ejb.EJB;
 import javax.enterprise.context.SessionScoped;
 import javax.faces.bean.ManagedBean;
@@ -27,11 +28,12 @@ public class FruitBean implements Serializable {
     public List<FruitWeb> getFruits() {
         if (fruits == null) {
             this.fetchFruits();
-
         }
+
         return fruits;
     }
 
+    @PostConstruct
     private void fetchFruits() {
         List<Fruit> allFruits = fruitEJB.getAllFruits();
         fruits = new ArrayList<>();

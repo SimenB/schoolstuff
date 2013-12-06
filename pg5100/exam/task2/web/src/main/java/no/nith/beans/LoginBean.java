@@ -25,17 +25,21 @@ public class LoginBean implements Serializable {
     private String name;
     private CustomerWeb customer;
 
+    public CustomerWeb getCustomer() {
+        return customer;
+    }
+
     public void setFruitBean(FruitBean fruitBean) {
         this.fruitBean = fruitBean;
     }
 
-    public int login() {
+    public String login() {
         if (customer == null) {
             customer = new CustomerWeb(fruitEJB.createCustomer(this.name));
             fetchIngredients();
         }
 
-        return customer.getId();
+        return "showSalads";
     }
 
     private void fetchIngredients() {
@@ -59,8 +63,6 @@ public class LoginBean implements Serializable {
         }
 
         customer.setSaladIngredients(mappedIngredients);
-
-        String halla = "dsd";
     }
 
     public String getName() {

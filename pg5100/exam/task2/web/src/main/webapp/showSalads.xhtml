@@ -1,0 +1,51 @@
+<ui:composition xmlns="http://www.w3.org/1999/xhtml"
+                xmlns:h="http://java.sun.com/jsf/html"
+                xmlns:ui="http://java.sun.com/jsf/facelets"
+                xmlns:p="http://primefaces.org/ui" xmlns:f="http://java.sun.com/jsf/core"
+                template="resources/templates/template.xhtml">
+    <ui:define name="menu">
+        <h:outputLabel value="#{loginBean.name} is logged in!"/>
+        <p:dataTable id="saladList" var="salad" value="#{loginBean.customer.salads}">
+            <p:column headerText="Name" style="width:75%">
+                <h:outputText value="#{salad.name}"/>
+            </p:column>
+
+            <p:column headerText="Price" style="width:20%">
+                <h:outputText value="#{salad.price} kr"/>
+            </p:column>
+
+            <p:column style="width:5%">
+                <h:form>
+                    <p:commandButton id="selectButton" icon="ui-icon-circle-check" title="View"
+                                     action="#{loginBean.customer.setSelectedSalad}">
+                        <f:setPropertyActionListener value="#{salad}" target="#{loginBean.customer.selectedSalad}"/>
+                    </p:commandButton>
+                </h:form>
+            </p:column>
+        </p:dataTable>
+    </ui:define>
+
+    <ui:define name=" content">
+        <!-- I was not able to display the data conserning a specific salad, as I was unable to set the currently chosen salad -->
+        <!-- I could maybe have defaulted to the first one, but as I write this the time reads 23:27 Friday night, so I'll drop it -->
+
+
+        <h:outputLabel value="The current salad"/>
+
+        <h3>#{loginBean.customer.selectedSalad.name}</h3>
+        <h4>#{loginBean.customer.selectedSalad.price}</h4>
+
+        <p>#{loginBean.customer.selectedSalad.instructions}</p>
+        <!--<h:panelGroup class="table-wrapper">
+            <p:dataTable value="#{loginBean.customer.selectedSalad.ingredients}" var="ingredient">
+                <p:column headerText="Name">
+                    <h:outputText value="#{ingredient.name}"/>
+                </p:column>
+                <p:column headerText="Quantity">
+                    <h:outputText value="#{ingredient.quantity}"/>
+                </p:column>
+            </p:dataTable>
+        </h:panelGroup>-->
+    </ui:define>
+
+</ui:composition>
