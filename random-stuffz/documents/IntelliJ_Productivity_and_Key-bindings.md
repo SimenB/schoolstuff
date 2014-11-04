@@ -43,21 +43,27 @@ PPPS: This list will be horribly disorganised. I'll try to make it more clean in
  * Delete the current line.
 * Generate: `alt insert`
  * This will open the 'generate' window. Depending on where your selection is, it'll be different windows. E.g. While in a class, it'll ask if you mean getters & setters, constructors etc.. If you're in the project explorer, it'll suggest files depending on the type of folder, such as classes, Android layouts, SQL-files etc..
-* Run: `(ctrl) shift f10`
- * This will run the current configuration. If you hold `ctrl` as well, it'll run the current context (e.g. the test-class you're in).
-* Debug: `(ctrl) shift f9`
- * Will debug the current configuration. Adding `ctrl` will allow you to choose between run-configurations.
+* Run: `(ctrl) (alt) shift f10`
+ * This will run the current configuration. If you hold `ctrl` as well, it'll run the current context (e.g. the test-class you're in). If you hold `alt`, you'll get a list of run configurations to choose from
+* Debug: `(alt) shift f9`
+ * Will debug the current configuration. Adding `alt` will allow you to choose between run-configurations.
 * Quick fix: `alt enter`
  * Proposes a quick fix to a potential problem, or just a refactoring. E.g. inverting an assertion, converting a for-loop to a foreach-loop or fixing an import.
 * Rename...: `shift f6`
- * Rename a variable or method.
+ * Rename a variable, method, class, file etc..
 * (Un)comment: `ctrl (shift) /`
  * Comments out, or in if already commented the selection. Adding `shift`
 * Format code: `ctrl alt L`
- * Auto-formats the code. This can be configured to also organise imports as well.
+ * Auto-formats the code. This can be configured to also organise imports and perform code cleanup as well.
 * Optimise imports: `ctrl alt O`
-* Show usages: `ctrl alt f7`
+* Show usages: `alt f7`
  * Searches for where a symbol is used elsewhere in the codebase.
+* Multiple selections:
+ * `alt shift *mouseclick*` place additional cursor
+ * `alt (shift) J` (de)select next occurrence of word
+ * `alt shift ctrl J` Select all occurrences of word in file
+ * `alt shift *mouseclick*` place additional cursor
+ * `alt *drag mouse*` make a vertical selection
 * Live templates: `ctrl (alt) J`
  * This will suggest live-templates. A live template means e.g. writing `sout`, pressing `tab` and getting `System.out.println();`. This shortcut will give you a list of the ones available. Adding `alt` to the mix will try to _surround with_ a live template.
 * Extract variable: `ctrl alt V`
@@ -100,8 +106,12 @@ PPPS: This list will be horribly disorganised. I'll try to make it more clean in
  * Cycles through your recent changes in files, in a reversed, chronological order. Jumps between files, both open ones, and the ones you've closed.
 * Evaluate expression: `alt f8`
  * During debug, this allows you to run the code and figure out what it evaluates to.
-* Go to test: `ctrl shift t`
+* Go to test: `ctrl shift T`
  * Navigates to the associated test. If none is applicable, it prompts for the creation of the test-class.
+* Update project: `ctrl T`
+ * Make a pull using VCS
+* See changes: `alt 9`
+ * See a list of changed files (integration with VCS, otherwise local file history), as well as a commit log
 
 ##Tips & Tricks
 * In every popup and menu, you can filtrate the content just by typing. From options to generate, this allows you to quickly find what you're looking for in a window.
@@ -117,7 +127,7 @@ PPPS: This list will be horribly disorganised. I'll try to make it more clean in
 * Using `ctrl /` (comment) when having no selection, automatically comments out the current line, and jumps to the next one. This allows you to quickly comment out multiple consecutive lines.
  * Similarly, using `ctrl C/X` with no selection copies/cuts the whole current line.
 * You can compare a section with the text in your clipboard
-* Writing `*//` and pressing enter will generate quick documentation for you, with all parameters and return-values.
+* Writing `/**` and pressing enter will generate quick documentation for you, with all parameters and return-values.
 * When using an auto-complete list, there are four different alternatives for completing the word.
  1. Using `enter`. This completes the current word.
  2. Using `tab`. This completes the current word, and deletes the stuff after it, up to a `.` or `()`.
